@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="Menu" stylesheets="css/estilos.css" prefHeight="30.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuCtrl">
+    <children>
+        <MenuBar prefHeight="30.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Inicío">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Início" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Pessoa">
+                    <items>
+                        <MenuItem fx:id="itemFuncionario" mnemonicParsing="false" onAction="#solicitarViewFuncionario" text="Gerenciar Funcionarios" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewCliente" text="Gerenciar Clientes" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Equipamentos">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewMarca" text="Gerenciar Marcas" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewModelo" text="Gerenciar Modelos" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Manutenções">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewManutencao" text="Gerenciar Manutenções" />
+                    </items>
+                </Menu>
+                <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatórios">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewRelatorio" text="Relatórios de Manutenções" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Conta">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarLogoff" text="Logoff" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>

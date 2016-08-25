@@ -1,0 +1,17 @@
+Bom dia, Professora.
+
+Estamos trabalhando com JavaFX e surgiu uma dúvida referente à modelagem.
+
+A estrutura do JavaFX trabalha de modo que uma view (.fxml) é unida a um controller (.java). 
+
+Esse controller por sua vez é responsável por disparar as ações da view (que sem ele acaba sendo somente um arquivo de markup e formatação), solicitadas
+pelo usuário através da interface.
+
+Utilizando a entidade "Pessoa" para exemplificar, criei a seguinte estrutura:
+
+Pessoa.java (Model)
+CtrlPessoa.java (Controller)
+CadastrarPessoa.fxml (View) (utiliza CtrlPessoa)
+ListarPessoa.fxml (View) (utiliza CtrlPessoa)
+
+Na modelagem, as ações disponíveis para os atores estão sendo representadas pelo métodos utilizados nesse Controller compartilhado (CtrlPessoa.java).

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManutencaoCtrl">
+    <children>
+        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <top>
+                        <fx:include fx:id="menu" source="/views/menu.fxml" />
+                    </top>
+                    <center>
+                        <TabPane fx:id="painelAbas">
+                            <tabs>
+                                <Tab closable="false" text="Nova">
+                                    <content>
+                                        <VBox prefHeight="425.0" prefWidth="600.0">
+                                            <children>
+                                                <GridPane hgap="8.0" vgap="2.0" BorderPane.alignment="CENTER">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints maxHeight="0.0" minHeight="20.0" percentHeight="0.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="0.0" minHeight="30.0" percentHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label text="Relato do Cliente" GridPane.columnIndex="2" />
+                                                        <TextField fx:id="campoRelatoCliente" style="-fx-border-color: #EE6158;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                        <Label layoutX="413.0" layoutY="21.0" text="Modelo do Aparelho" />
+                                                        <Label layoutX="18.0" layoutY="21.0" text="Proprietário" GridPane.columnIndex="1" />
+                                                        <ComboBox fx:id="comboModelos" maxWidth="1.7976931348623157E308" style="-fx-border-color: #EE6158;" GridPane.rowIndex="1" />
+                                                        <ComboBox fx:id="comboClientes" layoutX="18.0" layoutY="43.0" maxWidth="1.7976931348623157E308" style="-fx-border-color: #EE6158;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                    </children>
+                                                    <BorderPane.margin>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </BorderPane.margin>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </GridPane>
+                                                <Separator prefWidth="200.0" />
+                                                <HBox fx:id="linhaAtividade" nodeOrientation="LEFT_TO_RIGHT" spacing="8.0" visible="false">                                                   
+                                                    <children>
+                                                        <TextField fx:id="campoDescricao" prefHeight="27.0" prefWidth="188.0" promptText="Descrição da Atividade:" style="-fx-border-color: #EE6158;" />
+                                                        <TextField fx:id="campoTempo" layoutX="150.0" layoutY="18.0" prefHeight="27.0" prefWidth="65.0" promptText="Tempo (Minutos):" style="-fx-border-color: #EE6158;" />
+                                                        <TextField fx:id="campoValor" layoutX="215.0" layoutY="18.0" prefHeight="27.0" prefWidth="102.0" promptText="Valor:" style="-fx-border-color: #EE6158;" />
+                                                        <TextField fx:id="campoItem" layoutX="18.0" layoutY="18.0" prefHeight="27.0" prefWidth="92.0" promptText="Item:" />
+                                                        <Button mnemonicParsing="false" onAction="#salvarAtividade" prefHeight="25.0" prefWidth="103.0" text="Incluir Atividade" />
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </HBox>
+                                                <TableView fx:id="tabelaAtividade" visible="false">
+                                                    <columns>
+                                                    </columns>
+                                                </TableView>
+                                                <HBox layoutX="10.0" layoutY="281.0" nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
+                                                    <children>
+                                                        <Label fx:id="labelTempoTotal" alignment="BASELINE_LEFT" text="Tempo total: 45 minutos" visible="false">
+                                                            <HBox.margin>
+                                                                <Insets top="4.0" />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <Separator fx:id="separador" orientation="VERTICAL" prefHeight="200.0" visible="false" />
+                                                        <Label fx:id="labelStatus" alignment="BASELINE_LEFT" layoutX="18.0" layoutY="18.0" text="Status: Aguardando Manutenção" visible="false">
+                                                            <opaqueInsets>
+                                                                <Insets />
+                                                            </opaqueInsets>
+                                                            <padding>
+                                                                <Insets top="4.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <Separator fx:id="separador1" orientation="VERTICAL" prefHeight="200.0" visible="false" />
+                                                        <Label fx:id="labelValorTotal" alignment="BASELINE_LEFT" layoutX="18.0" layoutY="18.0" text="R$ Total: " visible="false">
+                                                            <opaqueInsets>
+                                                                <Insets />
+                                                            </opaqueInsets>
+                                                            <padding>
+                                                                <Insets top="4.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <FlowPane prefHeight="25.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                                                        <Button fx:id="botaoFinalizar" mnemonicParsing="false" onAction="#finalizarManutencao" text="Finalizar" visible="false" />
+                                                        <Button fx:id="botaoPagar" layoutX="417.0" layoutY="18.0" mnemonicParsing="false" onAction="#informarPagamento" text="Pagar" visible="false" />
+                                                        <Button layoutX="554.0" layoutY="18.0" mnemonicParsing="false" onAction="#salvarManutencao" text="Salvar" />
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </content>
+                                </Tab>
+                                <Tab closable="false" text="Ver Itens Cadastrados">
+                                    <content>
+                                        <VBox>
+                                            <children>
+                                                <TableView fx:id="tabelaManutencao" BorderPane.alignment="CENTER">
+                                                </TableView>
+                                                <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="8.0">
+                                                    <children>
+                                                        <Button mnemonicParsing="false" onAction="#novo" text="+" />
+                                                        <Button mnemonicParsing="false" onAction="#deletarManutencao" text="Deletar" />
+                                                        <Button mnemonicParsing="false" onAction="#editarManutencao" text="Editar" />
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </center>
+                </BorderPane>
+            </children>
+        </StackPane>
+    </children>
+    <padding>
+    </padding>
+</AnchorPane>

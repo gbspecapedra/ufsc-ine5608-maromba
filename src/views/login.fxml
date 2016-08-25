@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="400.0" styleClass="background" stylesheets="css/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginCtrl">
+    <children>
+        <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>                                               
+                <VBox id="VBox" prefHeight="254.0" prefWidth="270.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Label id="label1" text="Usuário">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </Label>
+                        <TextField id="textField1" fx:id="userId" text="">
+                            <VBox.margin>
+                                <Insets bottom="8.0" top="-5.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Label id="label1" text="Senha" />
+                        <PasswordField id="passwordField1" fx:id="password" text="">
+                            <VBox.margin>
+                                <Insets top="-5.0" />
+                            </VBox.margin>
+                        </PasswordField>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                            <children>
+                                <Button id="button1" fx:id="login" defaultButton="true" onAction="#processLogin" text="Login" />
+                                <!--<Button id="button1" fx:id="botaoSenha" defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#alterarSenha" text="Alterar Senha" />-->
+                            </children>
+                            <padding>
+                                <Insets bottom="8.0" right="8.0" top="8.0" />
+                            </padding>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </HBox>
+                        <Label id="label2" fx:id="errorMessage" />
+                    </children>
+                    <padding>
+                        <Insets bottom="8.0" right="30.0" top="55.0" />
+                    </padding>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </VBox>                                                                             
+            </center>
+            <left>
+                <ImageView id="app-login-logo" fitHeight="254.0" fitWidth="130.0" BorderPane.alignment="CENTER">
+                    <image>
+                        <Image url="/img/logo.png" />
+                    </image>
+                </ImageView>
+            </left>
+        </BorderPane>
+    </children>
+</AnchorPane>

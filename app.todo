@@ -1,0 +1,6 @@
+Sugestões:
+  ☐ alterar nome dos métodos "editarMarca()" para editar, com isso terei um melhor reaproveitamento de código
+      - O mesmo serve para componentes da interface como "tabelaMarcas"
+  ☐ criar um confirmBox
+  ☐ implementar a autenticação antes de continuar com a criação das telas
+  Adicionar novamente editar atividade em UC03.02 - Registrar Atividades das Manutenções
