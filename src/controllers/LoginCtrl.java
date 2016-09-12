@@ -48,8 +48,7 @@ public class LoginCtrl implements Initializable {
 
     // MÉTODOS DO CONTROLLER
     public void processLogin(ActionEvent event) throws SQLException, NoSuchAlgorithmException {
-        // if (!application.userLogging(userId.getText(), password.getText())) {
-        if (false) {
+        if (!application.userLogging(userId.getText(), password.getText())) {
             errorMessage.setText("Usuário e/ou Senha Inválidos");
         }
     }

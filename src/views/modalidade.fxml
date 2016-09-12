@@ -19,31 +19,68 @@
                     <center>
                         <TabPane fx:id="painelAbas">
                             <tabs>
-                                <Tab closable="false" text="Novo">
+                                <Tab closable="false" text="Nova Modalidade">
                                     <content>
                                         <VBox>
                                             <children>
                                                 <GridPane hgap="8.0" vgap="2.0" BorderPane.alignment="CENTER">
                                                     <columnConstraints>
                                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     </columnConstraints>
                                                     <rowConstraints>
                                                         <RowConstraints maxHeight="33.0" minHeight="20.0" percentHeight="0.0" prefHeight="33.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-                                                        <RowConstraints maxHeight="36.0" minHeight="17.0" percentHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="44.0" minHeight="11.0" percentHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
                                           <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
                                                         <Label text="Nome" />
-                                                        <TextField fx:id="campoNome" style="-fx-border-color: #EE6158;" GridPane.rowIndex="1" />
-                                          <TextField fx:id="campoCtps" layoutX="18.0" layoutY="42.0" style="-fx-border-color: #EE6158;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Label layoutX="18.0" layoutY="21.0" text="CTPS" GridPane.columnIndex="1" />
-                                          <Label layoutX="18.0" layoutY="21.0" text="CPF" GridPane.rowIndex="2" />
-                                          <Label layoutX="314.0" layoutY="21.0" text="Função" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <TextField fx:id="campoNome1" layoutX="18.0" layoutY="58.0" style="-fx-border-color: #EE6158;" GridPane.rowIndex="3" />
-                                          <ComboBox prefHeight="25.0" prefWidth="287.0" promptText="Selecione" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <HBox GridPane.rowIndex="1">
+                                             <children>
+                                                <TextField />
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="0.0" prefWidth="584.0" GridPane.rowIndex="3">
+                                             <children>
+                                                <CheckBox mnemonicParsing="false" text="Segunda-Feira">
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </CheckBox>
+                                                <CheckBox layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terça-Feira">
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </CheckBox>
+                                                <CheckBox layoutX="128.0" layoutY="20.0" mnemonicParsing="false" text="Quarta-Feira">
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </CheckBox>
+                                                <CheckBox layoutX="228.0" layoutY="20.0" mnemonicParsing="false" text="Quinta-Feira">
+                                                   <HBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </HBox.margin>
+                                                </CheckBox>
+                                                <CheckBox layoutX="326.0" layoutY="20.0" mnemonicParsing="false" text="Sexta-Feira">
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </CheckBox>
+                                                <CheckBox layoutX="423.0" layoutY="20.0" mnemonicParsing="false" text="Sábado">
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </CheckBox>
+                                             </children>
+                                          </HBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label text="Selecione os dias da semana em que haverão aula da nova modalidade:" />
+                                                <Separator prefWidth="200.0" />
+                                             </children>
+                                          </VBox>
                                                     </children>
                                                     <BorderPane.margin>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -66,7 +103,7 @@
                                         </VBox>
                                     </content>
                                 </Tab>
-                                <Tab closable="false" text="Ver Funcionários Cadastrados">
+                                <Tab closable="false" text="Ver Modalidades Cadastradas">
                                     <content>
                                         <VBox>
                                             <children>

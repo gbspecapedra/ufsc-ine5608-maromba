@@ -15,6 +15,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Funcionario;
 import models.Log;
 
@@ -34,6 +35,9 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+              
+    // System.out.println(args[0]);
+        
         Application.launch(Main.class, (java.lang.String[]) null);
     }
     private Funcionario loggedUser;
@@ -55,6 +59,7 @@ public class Main extends Application {
             this.log = new Log();
             stage = primaryStage;
             stage.setTitle("MAROMBA");
+//            primaryStage.initStyle(StageStyle.UNDECORATED);
 //            stage.setMinWidth(MINIMUM_WINDOW_WIDTH);
 //            stage.setMinHeight(MINIMUM_WINDOW_HEIGHT);
             exibirViewLogin();
@@ -66,6 +71,7 @@ public class Main extends Application {
 
     // MÉTODOS DE AUTENTICAÇÃO
     public boolean userLogging(String userId, String password) throws SQLException, NoSuchAlgorithmException {
+        
         loggedUser = loggedUser.verificarCredenciais(userId, password);
         if (loggedUser.getMatricula() > 0) {
             exibirViewInicio();

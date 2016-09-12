@@ -16,26 +16,26 @@
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Início" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Pessoa">
+                <Menu mnemonicParsing="false" text="Cadastros">
                     <items>
-                        <MenuItem fx:id="itemFuncionario" mnemonicParsing="false" onAction="#solicitarViewFuncionario" text="Gerenciar Funcionarios" />
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewCliente" text="Gerenciar Clientes" />
+                        <MenuItem fx:id="itemFuncionario" mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Alunos" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Clientes" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Equipamentos">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewMarca" text="Gerenciar Marcas" />
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewModelo" text="Gerenciar Modelos" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Marcas" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Modelos" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Manutenções">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewManutencao" text="Gerenciar Manutenções" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Manutenções" />
                     </items>
                 </Menu>
                 <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatórios">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewRelatorio" text="Relatórios de Manutenções" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Relatórios de Manutenções" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Conta">

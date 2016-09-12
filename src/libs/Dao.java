@@ -17,10 +17,11 @@ public class Dao {
 
 //     CONFIGURAÇÃO DO BANCO DE DADOS
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://192.168.79.65/cellfix?useSSL=false";
-//    static final String DB_URL = "jdbc:mysql://150.162.79.1:1404/cellfix?useSSL=false";
-    static final String USER = "usuario";
-    static final String PASS = "senha";
+    // static final String DB_URL = "jdbc:mysql://192.168.79.65/cellfix?useSSL=false";
+    //  static final String DB_URL = "jdbc:mysql://150.162.79.1:1404/cellfix?useSSL=false";
+    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/cellfix?useSSL=false";
+    static final String USER = "root";
+    static final String PASS = "zorariver";
 
     private void conecta() throws SQLException {
 //        System.out.println("Conectando...");

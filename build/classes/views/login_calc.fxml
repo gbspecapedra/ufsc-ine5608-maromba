@@ -22,33 +22,41 @@
                            <center>
                               <GridPane BorderPane.alignment="CENTER">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="329.0" minWidth="10.0" prefWidth="274.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="96.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button layoutX="144.0" layoutY="208.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="ACESSAR" textFill="#038d15" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <PasswordField prefHeight="17.0" prefWidth="274.0" promptText="MATRÍCULA">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </PasswordField>
-                                    <PasswordField layoutX="25.0" layoutY="45.0" prefHeight="17.0" prefWidth="274.0" promptText="SENHA" GridPane.rowIndex="1">
+                                    <Button minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="1" GridPane.halignment="CENTER" />
+                                    <Button layoutX="52.0" layoutY="17.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                    <Button layoutX="186.0" layoutY="17.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                                    <Button layoutX="52.0" layoutY="17.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <Button layoutX="52.0" layoutY="17.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <Button layoutX="52.0" layoutY="17.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <Button layoutX="52.0" layoutY="17.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <Button layoutX="10.0" layoutY="145.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <Button layoutX="144.0" layoutY="145.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <Button layoutX="277.0" layoutY="145.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="LIMPAR" textFill="#f20707" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <Button layoutX="10.0" layoutY="208.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <Button layoutX="144.0" layoutY="208.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" text="ACESSAR" textFill="#038d15" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                           </center>
+                           <top>
+                              <HBox alignment="BASELINE_CENTER" prefHeight="46.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <PasswordField minWidth="340.0" text="1234">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </PasswordField>
                                  </children>
-                                 <padding>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                              </GridPane>
-                           </center>
-                           <top>
-                              <HBox alignment="BASELINE_CENTER" prefHeight="46.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
