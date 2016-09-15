@@ -14,48 +14,6 @@
     <children>
       <TabPane prefHeight="250.0" prefWidth="400.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Aluno">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <BorderPane prefHeight="254.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <center>
-                              <GridPane BorderPane.alignment="CENTER">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="329.0" minWidth="10.0" prefWidth="274.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="96.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Button layoutX="144.0" layoutY="208.0" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" text="ACESSAR" textFill="#038d15" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                    <PasswordField prefHeight="17.0" prefWidth="274.0" text="1234">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </PasswordField>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                              </GridPane>
-                           </center>
-                           <top>
-                              <HBox alignment="BASELINE_CENTER" prefHeight="46.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </HBox>
-                           </top>
-                           <bottom>
-                              <HBox prefHeight="24.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
-                           </bottom>
-                        </BorderPane>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
           <Tab text="Colaborador">
                <content>
                     <BorderPane prefHeight="400.0" prefWidth="600.0">
