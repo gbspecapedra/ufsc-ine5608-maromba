@@ -3,6 +3,7 @@ package main;
 import controllers.FuncionarioCtrl;
 import controllers.LoginCtrl;
 import controllers.InicioCtrl;
+import controllers.ModalidadeCtrl;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -71,7 +72,6 @@ public class Main extends Application {
 
     // MÉTODOS DE AUTENTICAÇÃO
     public boolean userLogging(String userId, String password) throws SQLException, NoSuchAlgorithmException {
-        
         loggedUser = loggedUser.verificarCredenciais(userId, password);
         if (loggedUser.getMatricula() > 0) {
             exibirViewInicio();
@@ -93,6 +93,18 @@ public class Main extends Application {
             inicio.setApp(this);
             inicio.setMenuApp(this); 
             inicio.getMenuController().setPerfil(this.loggedUser.getFuncao());
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     public void exibirViewModalidade() {
+        try {
+            stage.sizeToScene();
+            ModalidadeCtrl modalidade = (ModalidadeCtrl) alterarCena("modalidade.fxml");
+            modalidade.setApp(this);
+            modalidade.setMenuApp(this); 
+            modalidade.getMenuController().setPerfil(this.loggedUser.getFuncao());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

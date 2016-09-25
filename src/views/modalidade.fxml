@@ -8,17 +8,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="css/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FuncionarioCtrl">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="css/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModalidadeCtrl">
     <children>
         <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <BorderPane prefHeight="200.0" prefWidth="200.0">
                     <top>
-                        <!--<fx:include fx:id="menu" source="/views/menu.fxml" />-->
+                        <fx:include fx:id="menu" source="/views/menu.fxml" />
                     </top>
                     <center>
                         <TabPane fx:id="painelAbas">
                             <tabs>
+                                <Tab closable="false" text="Ver Modalidades Cadastradas">
+                                    <content>
+                                        <VBox>
+                                            <children>
+                                                <TableView fx:id="tabelaModalidades" BorderPane.alignment="CENTER">
+                                                </TableView>
+                                                <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="8.0">
+                                                    <children>
+                                                        <Button mnemonicParsing="false" onAction="#novo" text="+" />
+                                                        <Button mnemonicParsing="false" onAction="#deletarModalidade" text="Deletar" />                                                        
+                                                        <Button mnemonicParsing="false" onAction="#editarModalidade" text="Editar" />
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </content>
+                                </Tab>
                                 <Tab closable="false" text="Nova Modalidade">
                                     <content>
                                         <VBox>
@@ -28,54 +48,60 @@
                                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     </columnConstraints>
                                                     <rowConstraints>
-                                                        <RowConstraints maxHeight="33.0" minHeight="20.0" percentHeight="0.0" prefHeight="33.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-                                                        <RowConstraints maxHeight="44.0" minHeight="11.0" percentHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="47.0" minHeight="11.0" percentHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
                                           <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="18.0" vgrow="SOMETIMES" />
                                           <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
                                           <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                                        <Label text="Nome" />
-                                          <HBox GridPane.rowIndex="1">
+                                          <HBox>
                                              <children>
-                                                <TextField />
+                                                <TextField fx:id="campoNome" promptText="Nome">
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin></TextField>
+                                                <TextField fx:id="campoValor" layoutX="10.0" layoutY="10.0" promptText="Valor">
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
                                              </children>
                                           </HBox>
-                                          <HBox prefHeight="0.0" prefWidth="584.0" GridPane.rowIndex="3">
+                                          <HBox prefHeight="0.0" prefWidth="584.0" GridPane.rowIndex="2">
                                              <children>
-                                                <CheckBox mnemonicParsing="false" text="Segunda-Feira">
+                                                <CheckBox fx:id="segunda" mnemonicParsing="false" text="Segunda-Feira">
                                                    <HBox.margin>
                                                       <Insets bottom="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terça-Feira">
+                                                <CheckBox fx:id="terca" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terça-Feira">
                                                    <HBox.margin>
                                                       <Insets bottom="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox layoutX="128.0" layoutY="20.0" mnemonicParsing="false" text="Quarta-Feira">
+                                                <CheckBox fx:id="quarta" layoutX="128.0" layoutY="20.0" mnemonicParsing="false" text="Quarta-Feira">
                                                    <HBox.margin>
                                                       <Insets bottom="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox layoutX="228.0" layoutY="20.0" mnemonicParsing="false" text="Quinta-Feira">
+                                                <CheckBox fx:id="quinta" layoutX="228.0" layoutY="20.0" mnemonicParsing="false" text="Quinta-Feira">
                                                    <HBox.margin>
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox layoutX="326.0" layoutY="20.0" mnemonicParsing="false" text="Sexta-Feira">
+                                                <CheckBox fx:id="sexta" layoutX="326.0" layoutY="20.0" mnemonicParsing="false" text="Sexta-Feira">
                                                    <HBox.margin>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox layoutX="423.0" layoutY="20.0" mnemonicParsing="false" text="Sábado">
+                                                <CheckBox fx:id="sabado" layoutX="423.0" layoutY="20.0" mnemonicParsing="false" text="Sábado">
                                                    <HBox.margin>
                                                       <Insets bottom="10.0" right="10.0" top="10.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                              </children>
                                           </HBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                                          <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                                              <children>
                                                 <Label text="Selecione os dias da semana em que haverão aula da nova modalidade:" />
                                                 <Separator prefWidth="200.0" />
@@ -93,27 +119,7 @@
                                                     <children>
                                                         <Label alignment="BASELINE_LEFT" text="." />
                                                         <FlowPane HBox.hgrow="ALWAYS" />
-                                                        <Button mnemonicParsing="false" onAction="#salvarFuncionario" text="Salvar" />
-                                                    </children>
-                                                    <padding>
-                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                                    </padding>
-                                                </HBox>
-                                            </children>
-                                        </VBox>
-                                    </content>
-                                </Tab>
-                                <Tab closable="false" text="Ver Modalidades Cadastradas">
-                                    <content>
-                                        <VBox>
-                                            <children>
-                                                <TableView fx:id="tabelaFuncionarios" BorderPane.alignment="CENTER">
-                                                </TableView>
-                                                <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="8.0">
-                                                    <children>
-                                                        <Button mnemonicParsing="false" onAction="#novo" text="+" />
-                                                        <Button mnemonicParsing="false" onAction="#deletarFuncionario" text="Deletar" />                                                        
-                                                        <Button mnemonicParsing="false" onAction="#editarFuncionario" text="Editar" />
+                                                        <Button mnemonicParsing="false" onAction="#salvarModalidade" text="Salvar" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

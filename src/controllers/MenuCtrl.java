@@ -26,7 +26,15 @@ public class MenuCtrl implements Initializable {
     public void setApp(Main application) {
         this.application = application;
     }
+    
 
+    @FXML
+    public void solicitarViewModalidades(ActionEvent event) {
+        application.exibirViewModalidade();
+    }
+    
+    
+    
     @FXML
     public void solicitarViewInicio(ActionEvent event) {
 //        if (application == null) {
@@ -53,10 +61,10 @@ public class MenuCtrl implements Initializable {
     Menu menuRelatorios;
 
     public void setPerfil(String funcao) {
-        if (funcao.equals("t")) {
-            itemFuncionario.setVisible(false);
-            menuRelatorios.setVisible(false);
-        }
+//        if (funcao.equals("t")) {
+//            itemFuncionario.setVisible(false);
+//            menuRelatorios.setVisible(false);
+//        }
     }
 
     @Override

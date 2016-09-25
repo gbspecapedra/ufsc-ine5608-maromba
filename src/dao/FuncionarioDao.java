@@ -16,8 +16,8 @@ public class FuncionarioDao extends Dao {
     public FuncionarioDao() throws SQLException {
     }
 
-    public int inserirFuncionarioDAO(Funcionario funcionario) throws SQLException, NoSuchAlgorithmException {
-        this.execute("INSERT INTO pessoas (nome, funcao) VALUES ('" + funcionario.getNome() + "', 't')");
+    public int inserirFuncionarioDAO(Funcionario modalidade) throws SQLException, NoSuchAlgorithmException {
+        this.execute("INSERT INTO pessoas (nome, funcao) VALUES ('" + modalidade.getNome() + "', 't')");
         int retorno = 0;
         ResultSet linhas = this.select("select id from pessoas order by id desc limit 1");
         if (linhas.next()) {
@@ -37,9 +37,9 @@ public class FuncionarioDao extends Dao {
         return resultados;
     }
 
-    public boolean atualizarFuncionarioDAO(Funcionario funcionario) throws SQLException {
+    public boolean atualizarFuncionarioDAO(Funcionario modalidade) throws SQLException {
         try {
-            this.execute("UPDATE pessoas SET nome = '" + funcionario.getNome() + "' WHERE id = " + funcionario.getMatricula() + "");
+            this.execute("UPDATE pessoas SET nome = '" + modalidade.getNome() + "' WHERE id = " + modalidade.getMatricula() + "");
             return true;
         } catch (Exception e) {
             return false;
@@ -47,9 +47,9 @@ public class FuncionarioDao extends Dao {
 
     }
 
-    public boolean deletarFuncionarioDAO(Funcionario funcionario) throws SQLException {
+    public boolean deletarFuncionarioDAO(Funcionario modalidade) throws SQLException {
         try {
-            String query = "DELETE from pessoas WHERE id = " + funcionario.getMatricula() + "";
+            String query = "DELETE from pessoas WHERE id = " + modalidade.getMatricula() + "";
             System.out.println(query);
             this.execute(query);
             return true;

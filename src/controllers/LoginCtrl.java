@@ -18,7 +18,6 @@ import javafx.scene.control.TextField;
  * Login Controller.
  */
 public class LoginCtrl implements Initializable {
-
     // ATRIBUTOS DA VIEW
     @FXML
     TextField userId;
@@ -48,7 +47,7 @@ public class LoginCtrl implements Initializable {
 
     // MÉTODOS DO CONTROLLER
     public void processLogin(ActionEvent event) throws SQLException, NoSuchAlgorithmException {
-        if (!application.userLogging(userId.getText(), password.getText())) {
+        if (application.userLogging(userId.getText(), password.getText())) {
             errorMessage.setText("Usuário e/ou Senha Inválidos");
         }
     }

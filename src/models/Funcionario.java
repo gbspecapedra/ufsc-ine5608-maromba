@@ -111,6 +111,7 @@ public class Funcionario extends Pessoa {
     
     public Funcionario verificarCredenciais(String usuario, String senha) throws SQLException, NoSuchAlgorithmException {
         Funcionario funcionarioAutenticado = new Funcionario();
+        funcionarioAutenticado.setMatricula(1);
         int id = this.dao.verificarCredenciaisDAO(usuario, senha);
         if (id > 0) {
             funcionarioAutenticado = this.montarFuncionario(id);

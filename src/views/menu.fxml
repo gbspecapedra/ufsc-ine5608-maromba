@@ -18,10 +18,11 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Cadastros">
                     <items>
-                        <MenuItem fx:id="itemFuncionario" mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Alunos" />
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Clientes" />
+                        <MenuItem fx:id="itemModalidade" mnemonicParsing="false" onAction="#solicitarViewModalidades" text="Gerenciar Modalidades" />
+                        <!--<MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Clientes" />-->
                     </items>
                 </Menu>
+<!--                
                 <Menu mnemonicParsing="false" text="Equipamentos">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Marcas" />
@@ -42,7 +43,7 @@
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#solicitarLogoff" text="Logoff" />
                     </items>
-                </Menu>
+                </Menu>-->
             </menus>
         </MenuBar>
     </children>
