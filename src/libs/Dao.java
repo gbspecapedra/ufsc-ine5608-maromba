@@ -8,8 +8,8 @@ import java.sql.Statement;
 
 public class Dao {
 
-    private Connection conexao;
-    private Statement statement = null;
+    private static Connection conexao;
+    private static Statement statement = null;
 
     //  CONFIGURAÇÃO DO BANCO DE DADOS
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -26,22 +26,22 @@ public class Dao {
     static final String PASS = "underwood";
     
 
-    private void conecta() throws SQLException {
+    private static void conecta() throws SQLException {
 //        System.out.println("Conectando...");
-        this.conexao = DriverManager.getConnection(DB_URL, USER, PASS);
-        this.statement = this.conexao.createStatement();
+        Dao.conexao = DriverManager.getConnection(DB_URL, USER, PASS);
+        Dao.statement = Dao.conexao.createStatement();
 //        System.out.println("Conexão efetuada com sucesso");
     }
 
-    public ResultSet select(String query) throws SQLException {
-        this.conecta();
+    public static ResultSet select(String query) throws SQLException {
+        Dao.conecta();
         ResultSet resultados = statement.executeQuery(query);
         return resultados;
     }
 
-    public void execute(String query) throws SQLException {
-        this.conecta();
-        this.statement.execute(query);
-        this.conexao.close();
+    public static void execute(String query) throws SQLException {
+        Dao.conecta();
+        Dao.statement.execute(query);
+        Dao.conexao.close();
     }
 }

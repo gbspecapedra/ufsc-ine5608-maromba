@@ -6,26 +6,17 @@
 package models;
 
 import java.sql.SQLException;
-import java.util.Date;
+import libs.Model;
 
 /**
  *
  * @author orlando
  */
-public class Pessoa {
+public class Pessoa extends Model {
 
-    protected int id;
-    protected String bairro;
-    protected String celular;
-    protected String cep;
-    protected String cidade;
-    protected int codigo;
+    protected int matricula;
     protected String cpf;
-    protected Date dtNascimento;
-    protected String fone;
     protected String nome;
-    protected String uf;
-    protected String telefone;
 
     public Pessoa() throws SQLException {
     }
@@ -35,44 +26,12 @@ public class Pessoa {
         return nome;
     }
 
-    public String getBairro() {
-        return bairro;
+    public int getMatricula() {
+        return matricula;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
     }
 
     public String getCpf() {
@@ -83,22 +42,6 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
-    public Date getDtNascimento() {
-        return dtNascimento;
-    }
-
-    public void setDtNascimento(Date dtNascimento) {
-        this.dtNascimento = dtNascimento;
-    }
-
-    public String getFone() {
-        return fone;
-    }
-
-    public void setFone(String fone) {
-        this.fone = fone;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -107,30 +50,5 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    
-    
-    
+   
 }

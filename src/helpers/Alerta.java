@@ -25,7 +25,7 @@ public class Alerta {
     
     public static void informar(String texto){        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("CelFix");
+        alert.setTitle("MAROMBA");
         alert.setHeaderText(texto);
         alert.showAndWait();
     }

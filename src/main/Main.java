@@ -1,5 +1,6 @@
 package main;
 
+import controllers.AlunoCtrl;
 import controllers.FuncionarioCtrl;
 import controllers.LoginCtrl;
 import controllers.InicioCtrl;
@@ -16,9 +17,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import models.Funcionario;
-import models.Log;
 
 /**
  * MAIN - GERENCIA LOGIN E NAVEGAÇÃO
@@ -27,61 +26,53 @@ public class Main extends Application {
 
     private Stage stage;
     private String texto;
-    private Log log;
-    
-//    private final double MINIMUM_WINDOW_WIDTH = 600.0;
-//    private final double MINIMUM_WINDOW_HEIGHT = 400.0;
+    private static Funcionario funcionarioLogado;
 
-    /**
-     * @param args the command line arguments
-     */
+    // private final double MINIMUM_WINDOW_WIDTH = 600.0;
+    // private final double MINIMUM_WINDOW_HEIGHT = 400.0;
     public static void main(String[] args) {
-              
-    // System.out.println(args[0]);
-        
+        // System.out.println(args[0]);
         Application.launch(Main.class, (java.lang.String[]) null);
     }
-    private Funcionario loggedUser;
 
     @Override
     public void start(Stage primaryStage) {
-        try {            
-            
+        try {
+            Main.funcionarioLogado = new Funcionario();
+
             // TESTES
 //            if(Validador.validarCPF("04817039930")){
 //                Alerta.log("CPF valido");
 //            } else {
 //                Alerta.log("CPF invalido");
 //            }
-            
 //            Alerta.log(Validador.converterMD5("123"));
-            
-            this.loggedUser = new Funcionario();
-            this.log = new Log();
-            stage = primaryStage;
-            stage.setTitle("MAROMBA");
+            this.stage = primaryStage;
+            this.stage.setTitle("MAROMBA");
+
 //            primaryStage.initStyle(StageStyle.UNDECORATED);
 //            stage.setMinWidth(MINIMUM_WINDOW_WIDTH);
 //            stage.setMinHeight(MINIMUM_WINDOW_HEIGHT);
             exibirViewLogin();
             primaryStage.show();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     // MÉTODOS DE AUTENTICAÇÃO
-    public boolean userLogging(String userId, String password) throws SQLException, NoSuchAlgorithmException {
-        loggedUser = loggedUser.verificarCredenciais(userId, password);
-        if (loggedUser.getMatricula() > 0) {
+    public boolean loginDoFuncionario(String matricula, String senha) throws SQLException, NoSuchAlgorithmException {
+        funcionarioLogado = funcionarioLogado.verificarCredenciais(matricula, senha);
+
+        if (funcionarioLogado.getMatricula() > 0) {
             exibirViewInicio();
             return true;
         }
         return false;
     }
 
-    public void userLogout() throws SQLException {
-        this.loggedUser = new Funcionario();
+    public void logoffDoFuncionario() throws SQLException {
+
         exibirViewLogin();
     }
 
@@ -91,20 +82,32 @@ public class Main extends Application {
             stage.sizeToScene();
             InicioCtrl inicio = (InicioCtrl) alterarCena("inicio.fxml");
             inicio.setApp(this);
-            inicio.setMenuApp(this); 
-            inicio.getMenuController().setPerfil(this.loggedUser.getFuncao());
+            inicio.setMenuApp(this);
+            inicio.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     public void exibirViewModalidade() {
+
+    public void exibirViewModalidade() {
         try {
             stage.sizeToScene();
             ModalidadeCtrl modalidade = (ModalidadeCtrl) alterarCena("modalidade.fxml");
             modalidade.setApp(this);
-            modalidade.setMenuApp(this); 
-            modalidade.getMenuController().setPerfil(this.loggedUser.getFuncao());
+            modalidade.setMenuApp(this);
+            modalidade.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void exibirViewAluno() {
+        try {
+            stage.sizeToScene();
+            AlunoCtrl alunoCtrl = (AlunoCtrl) alterarCena("aluno.fxml");
+            alunoCtrl.setApp(this);
+            alunoCtrl.setMenuApp(this);
+            alunoCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,30 +122,19 @@ public class Main extends Application {
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }       
-    
+    }
+
     public void exibirViewFuncionario() {
         try {
             stage.sizeToScene();
             FuncionarioCtrl funcionarioCtrl = (FuncionarioCtrl) alterarCena("funcionario.fxml");
             funcionarioCtrl.setApp(this);
             funcionarioCtrl.setMenuApp(this);
-            funcionarioCtrl.getMenuController().setPerfil(this.loggedUser.getFuncao());
+            funcionarioCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    // LOG
-     public void criarLog(String descricao) throws SQLException {
-       this.log = new Log();
-       this.log.setDescricao(descricao);
-       this.log.setIdusuario(loggedUser.getMatricula());
-       this.log.inserirLog(this.log);
-    }
-    
-
 
     private Initializable alterarCena(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader();
@@ -162,6 +154,6 @@ public class Main extends Application {
 
     // GETTERS E SETTERS
     public Funcionario getLoggedUser() {
-        return loggedUser;
+        return Main.funcionarioLogado;
     }
 }

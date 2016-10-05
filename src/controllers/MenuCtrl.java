@@ -5,7 +5,6 @@
  */
 package controllers;
 
-import helpers.Alerta;
 import main.Main;
 import java.net.URL;
 import java.sql.SQLException;
@@ -37,13 +36,14 @@ public class MenuCtrl implements Initializable {
     
     @FXML
     public void solicitarViewInicio(ActionEvent event) {
-//        if (application == null) {
-//            System.out.println("Fora do contexto da aplicacao");
-//            return;
-//        }
         application.exibirViewInicio();
     }
 
+    @FXML
+    public void solicitarViewAluno(ActionEvent event) {
+        application.exibirViewAluno();
+    }
+    
     @FXML
     public void solicitarViewFuncionario(ActionEvent event) {
         application.exibirViewFuncionario();
@@ -51,7 +51,7 @@ public class MenuCtrl implements Initializable {
 
     @FXML
     public void solicitarLogoff(ActionEvent event) throws SQLException {
-        application.userLogout();
+        application.logoffDoFuncionario();
     }
 
     @FXML

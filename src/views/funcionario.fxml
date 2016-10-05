@@ -56,7 +56,7 @@
                                                     <children>
                                                         <Label alignment="BASELINE_LEFT" text="." />
                                                         <FlowPane HBox.hgrow="ALWAYS" />
-                                                        <Button mnemonicParsing="false" onAction="#salvarFuncionario" text="Salvar" />
+                                                        <Button mnemonicParsing="false" onAction="" text="Salvar" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -74,9 +74,9 @@
                                                 </TableView>
                                                 <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="8.0">
                                                     <children>
-                                                        <Button mnemonicParsing="false" onAction="#novo" text="+" />
-                                                        <Button mnemonicParsing="false" onAction="#deletarFuncionario" text="Deletar" />                                                        
-                                                        <Button mnemonicParsing="false" onAction="#editarFuncionario" text="Editar" />
+                                                        <Button mnemonicParsing="false" onAction="" text="+" />
+                                                        <Button mnemonicParsing="false" onAction="" text="Deletar" />                                                        
+                                                        <Button mnemonicParsing="false" onAction="" text="Editar" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

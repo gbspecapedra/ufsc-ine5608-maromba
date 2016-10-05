@@ -92,7 +92,7 @@ public class ModalidadeCtrl implements Initializable {
         }
 
         // Se já houver um item associado ao modelo, atualizá-lo
-        if (this.model.getId() > 0) {
+        if (this.model.getMatricula()> 0) {
             System.out.println("Atualizar: " + this.model.getNome());
 
             // Atualiza o model com os dados do formulario
@@ -117,10 +117,10 @@ public class ModalidadeCtrl implements Initializable {
             this.model = new Modalidade();
             this.model.setNome(nome);
             this.model.setValor(valor);
-            this.model.setId(0);
+            this.model.setMatricula(0);
 
             // Executa o método de cadastro
-            this.model.setId(this.model.inserirModalidade(this.model));
+            this.model.setMatricula(this.model.inserirModalidade(this.model));
 
             // Avisa o usuário
             System.out.println("Cadastrou: " + this.model.getNome());
@@ -184,7 +184,7 @@ public class ModalidadeCtrl implements Initializable {
         Modalidade editar = itemSelecionado.get(0);
 
         // Avisa no console 
-        System.out.println("Editar: " + editar.getNome() + " " + editar.getId());
+        System.out.println("Editar: " + editar.getNome() + " " + editar.getMatricula());
 
         // Preeche o campo com os dados para edição
         campoNome.setText(editar.getNome());

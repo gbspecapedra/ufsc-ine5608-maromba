@@ -39,7 +39,7 @@ public class ModalidadeDao extends Dao {
 
     public boolean atualizarModalidadeDAO(Modalidade modalidade) throws SQLException {
         try {
-            this.execute("UPDATE modalidades SET nome = '" + modalidade.getNome() + "' WHERE id = " + modalidade.getId() + "");
+            this.execute("UPDATE modalidades SET nome = '" + modalidade.getNome() + "' WHERE id = " + modalidade.getMatricula()+ "");
             return true;
         } catch (Exception e) {
             return false;
@@ -49,7 +49,7 @@ public class ModalidadeDao extends Dao {
 
     public boolean deletarModalidadeDAO(Modalidade modalidade) throws SQLException {
         try {
-            String query = "DELETE from modalidades WHERE id = " + modalidade.getId() + "";
+            String query = "DELETE from modalidades WHERE id = " + modalidade.getMatricula()+ "";
             System.out.println(query);
             this.execute(query);
             return true;

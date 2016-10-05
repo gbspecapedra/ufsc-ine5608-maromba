@@ -99,7 +99,7 @@ public class FuncionarioCtrl implements Initializable {
             this.model.setNome(nome);
 
             // Atualiza o intem no banco de dados
-            this.model.atualizarFuncionario(this.model);
+//            this.model.atualizarFuncionario(this.model);
 
             // Remove a linha com a informação antiga
             ObservableList<Funcionario> itemSelecionado, lista;
@@ -118,7 +118,7 @@ public class FuncionarioCtrl implements Initializable {
             this.model.setMatricula(0);
 
             // Executa o método de cadastro
-            this.model.setMatricula(this.model.inserirFuncionario(this.model));
+//            this.model.setMatricula(this.model.inserirFuncionario(this.model));
 
             // Avisa o usuário
             System.out.println("Cadastrou: " + this.model.getNome());
@@ -163,7 +163,7 @@ public class FuncionarioCtrl implements Initializable {
             tabelaFuncionarios.refresh();
 
             // Remove do DB
-            this.model.deletarFuncionario(remover);
+//            this.model.deletarFuncionario(remover);
 
             // Reinicializa o model
             this.model = new Funcionario();
@@ -214,8 +214,8 @@ public class FuncionarioCtrl implements Initializable {
         colunaFuncao.setMinWidth(200);
         colunaFuncao.setCellValueFactory(new PropertyValueFactory<>("funcao"));
 
-        ObservableList<Funcionario> lista = model.listarFuncionario();
-        tabelaFuncionarios.setItems(lista);
+//        ObservableList<Funcionario> lista = model.listarFuncionario();
+//        tabelaFuncionarios.setItems(lista);
         tabelaFuncionarios.getColumns().addAll(colunaNome, colunaFuncao);
     }
 

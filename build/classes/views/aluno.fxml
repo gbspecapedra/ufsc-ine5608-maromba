@@ -8,40 +8,69 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="css/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="css/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AlunoCtrl">
     <children>
         <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <BorderPane prefHeight="200.0" prefWidth="200.0">
                     <top>
-                      <!-- <fx:include fx:id="menu" source="/views/menu.fxml" /> -->
+                        <fx:include fx:id="menu" source="/views/menu.fxml" />
                     </top>
                     <center>
                         <TabPane fx:id="painelAbas">
                             <tabs>
-                                <Tab closable="false" text="Aluno">
+                                <Tab closable="false" text="Ver Alunos Cadastradas">
+                                    <content>
+                                        <VBox>
+                                            <children>
+                                                <TableView fx:id="tabelaAlunos" BorderPane.alignment="CENTER">
+                                                </TableView>
+                                                <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="8.0">
+                                                    <children>
+                                                        <Button mnemonicParsing="false" onAction="#novo" text="+" />
+                                                        <Button mnemonicParsing="false" onAction="#deletar" text="Deletar" />                                                        
+                                                        <Button mnemonicParsing="false" onAction="#editar" text="Editar" />
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </content>
+                                </Tab>
+                                <Tab closable="false" text="Novo Aluno">
                                     <content>
                                         <VBox>
                                             <children>
                                                 <GridPane hgap="8.0" vgap="2.0" BorderPane.alignment="CENTER">
                                                     <columnConstraints>
-                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="192.0" />
-                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="97.0" />
-                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="211.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="49.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="133.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="133.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     </columnConstraints>
                                                     <rowConstraints>
-                                                        <RowConstraints maxHeight="0.0" minHeight="20.0" percentHeight="0.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-                                                        <RowConstraints maxHeight="0.0" minHeight="30.0" percentHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="47.0" minHeight="2.0" percentHeight="0.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="92.0" minHeight="11.0" percentHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                                        <Label text="Nome" />
-                                                        <TextField fx:id="campoNome" style="-fx-border-color: #EE6158;" GridPane.rowIndex="1" />
-                                          <TextField fx:id="campoCtps" layoutX="18.0" layoutY="42.0" style="-fx-border-color: #EE6158;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Label layoutX="18.0" layoutY="21.0" text="CPF" GridPane.columnIndex="1" />
-                                          <Label layoutX="216.0" layoutY="21.0" text="Modalidade" GridPane.columnIndex="2" />
-                                          <ComboBox prefHeight="25.0" prefWidth="210.0" promptText="Selecione" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                        <Button mnemonicParsing="false" text="Salvar" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                          <ComboBox fx:id="comboPlano" prefHeight="25.0" prefWidth="242.0" promptText="Selecione"  GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                                          </ComboBox>
+                                                          <TextField fx:id="campoCPF" promptText="CPF" style="-fx-border-color: #D84A38;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </GridPane.margin>
+                                                          </TextField>
+                                          <Label text="CPF" GridPane.columnIndex="1" />
+                                                          <TextField fx:id="campoNome" promptText="Nome" style="-fx-border-color: #D84A38;" GridPane.rowIndex="1" />
+                                          <Label layoutX="159.0" layoutY="21.0" text="Nome" />
+                                          <Label layoutX="18.0" layoutY="21.0" text="Plano" GridPane.columnIndex="2" />
                                                     </children>
                                                     <BorderPane.margin>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -50,42 +79,11 @@
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                                     </padding>
                                                 </GridPane>
-                                    <Separator prefWidth="200.0" />
                                                 <HBox nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
                                                     <children>
-                                          <Label text="Histórico de Pagamentos">
-                                             <HBox.margin>
-                                                <Insets top="5.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                                        <FlowPane prefHeight="25.0" prefWidth="254.0" HBox.hgrow="ALWAYS" />
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Registrar Recebimento" />
-                                                    </children>
-                                                    <padding>
-                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                                    </padding>
-                                                </HBox>
-                                    <TableView prefHeight="264.0" prefWidth="600.0">
-                                      <columns>
-                                        <TableColumn prefWidth="307.0" text="Data de Vencimento" />
-                                        <TableColumn minWidth="0.0" prefWidth="290.0" text="Situação" />
-                                      </columns>
-                                    </TableView>
-                                            </children>
-                                        </VBox>
-                                    </content>
-                                </Tab>
-                                <Tab closable="false" text="Listar Alunos">
-                                    <content>
-                                        <VBox>
-                                            <children>
-                                                <TableView fx:id="tabelaFuncionarios" BorderPane.alignment="CENTER">
-                                                </TableView>
-                                                <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="8.0">
-                                                    <children>
-                                                        <Button mnemonicParsing="false" text="+" />
-                                                        <Button mnemonicParsing="false" text="Deletar" />                                                        
-                                                        <Button mnemonicParsing="false" text="Editar" />
+                                                        <Label alignment="BASELINE_LEFT" text="." />
+                                                        <FlowPane HBox.hgrow="ALWAYS" />
+                                                        <Button fx:id="salvar" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
