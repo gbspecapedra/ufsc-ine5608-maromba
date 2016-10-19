@@ -57,7 +57,7 @@
                                                         <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                                          <ComboBox fx:id="comboPlano" prefHeight="25.0" prefWidth="242.0" promptText="Selecione"  GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                                          <ComboBox fx:id="comboPlano" prefHeight="25.0" prefWidth="242.0" promptText="Selecione" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets />
                                              </GridPane.margin>
@@ -81,8 +81,11 @@
                                                 </GridPane>
                                                 <HBox nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
                                                     <children>
-                                                        <Label alignment="BASELINE_LEFT" text="." />
-                                                        <FlowPane HBox.hgrow="ALWAYS" />
+<!--                                                        <Label alignment="BASELINE_LEFT" text="." />-->
+                                                        <FlowPane HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Os campos marcados em vermelho são de preenchimento obrigatório" />
+                                             </children></FlowPane>
                                                         <Button fx:id="salvar" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
                                                     </children>
                                                     <padding>
