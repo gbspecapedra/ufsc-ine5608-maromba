@@ -41,6 +41,7 @@ public class Funcionario extends Pessoa {
     
     public int verificarCredenciaisDAO(String usuario, String senha) throws SQLException, NoSuchAlgorithmException {
         String query = "select id from pessoas where usuario = '" + usuario + "' and senha = '" + Validador.converterMD5(senha) + "' and (funcao = 't' or funcao = 'g')";
+        System.out.println(query);
         ResultSet retorno = this.dao.select(query);
         int i = 0;
         int id = 0;
@@ -128,7 +129,7 @@ public class Funcionario extends Pessoa {
         if (id > 0) {
             funcionarioAutenticado = this.montarFuncionario(id);
         }
-        funcionarioAutenticado.setNome("Aeee");
+        funcionarioAutenticado.setNome(funcionarioAutenticado.getNome());
         return funcionarioAutenticado;
     }
     

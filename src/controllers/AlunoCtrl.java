@@ -75,6 +75,13 @@ public class AlunoCtrl implements Initializable {
         this.model = new Aluno();
     }
 
+    
+    @FXML
+    private void teste() {
+        System.out.println(this.application.getFuncionarioLogado().getNome());
+    }
+    
+    
     // DISPARADORES DA VIEW
     @FXML
     private void salvar() throws SQLException, NoSuchAlgorithmException {

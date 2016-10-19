@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import models.Funcionario;
 
 /**
  * Login Controller.
@@ -12,6 +13,11 @@ import javafx.fxml.Initializable;
 public class InicioCtrl implements Initializable {
 
     private Main application;
+
+    @FXML
+    private void teste() {
+        System.out.println(this.application.getFuncionarioLogado().getNome());
+    }
 
     @FXML
     private MenuCtrl menuController;
@@ -27,7 +33,7 @@ public class InicioCtrl implements Initializable {
     public MenuCtrl getMenuController() {
         return menuController;
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("");

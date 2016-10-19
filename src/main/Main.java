@@ -62,8 +62,7 @@ public class Main extends Application {
 
     // MÉTODOS DE AUTENTICAÇÃO
     public boolean loginDoFuncionario(String matricula, String senha) throws SQLException, NoSuchAlgorithmException {
-        funcionarioLogado = funcionarioLogado.verificarCredenciais(matricula, senha);
-
+        Main.funcionarioLogado = funcionarioLogado.verificarCredenciais(matricula, senha);
         if (funcionarioLogado.getMatricula() > 0) {
             exibirViewInicio();
             return true;
@@ -153,7 +152,7 @@ public class Main extends Application {
     }
 
     // GETTERS E SETTERS
-    public Funcionario getLoggedUser() {
+    public Funcionario getFuncionarioLogado() {
         return Main.funcionarioLogado;
     }
 }
