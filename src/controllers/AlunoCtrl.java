@@ -2,7 +2,6 @@ package controllers;
 
 import main.Main;
 import helpers.Alerta;
-import helpers.Validador;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -22,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Aluno;
+import models.Funcionario;
 
 public class AlunoCtrl implements Initializable {
 
@@ -56,12 +56,15 @@ public class AlunoCtrl implements Initializable {
     private ComboBox comboPlano;
 
     @FXML
-    private ObservableList<Aluno> funcionarios = FXCollections.observableArrayList();
+    private ObservableList<Aluno> listaAlunos = FXCollections.observableArrayList();
 
-    // TAB PESQUISA        
+    // TAB PESQUISA
     @FXML
     private TableView<Aluno> tabelaAlunos;
-
+    
+    @FXML
+    TableColumn<Aluno, String> colunaMatricula;
+    
     @FXML
     TableColumn<Aluno, String> colunaNome;
 
@@ -117,6 +120,7 @@ public class AlunoCtrl implements Initializable {
             mensagem = this.model.validarModelo();
             sucesso = false;
         }
+        
         Alerta.informar(mensagem);
 
         if (sucesso) {
@@ -206,21 +210,26 @@ public class AlunoCtrl implements Initializable {
     
     public void desenharTabela() throws SQLException {
         tabelaAlunos.getColumns().clear();
+        
+        colunaMatricula = new TableColumn<>("Matr.");
+        colunaMatricula.setMinWidth(50);
+        colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
+        
         colunaNome = new TableColumn<>("Nome");
-        colunaNome.setMinWidth(200);
+        colunaNome.setMinWidth(195);
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
         colunaCPF = new TableColumn<>("CPF");
-        colunaCPF.setMinWidth(200);
+        colunaCPF.setMinWidth(175);
         colunaCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         
         colunaPlano = new TableColumn<>("Plano");
-        colunaPlano.setMinWidth(200);
+        colunaPlano.setMinWidth(175);
         colunaPlano.setCellValueFactory(new PropertyValueFactory<>("plano"));
 
         ObservableList<Aluno> lista = model.listarAlunos();
         tabelaAlunos.setItems(lista);
-        tabelaAlunos.getColumns().addAll(colunaNome, colunaCPF, colunaPlano);
+        tabelaAlunos.getColumns().addAll(colunaMatricula, colunaNome, colunaCPF, colunaPlano);
     }
 
     public MenuCtrl getMenuController() {

@@ -18,8 +18,9 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Cadastros">
                     <items>
-                        <!--<MenuItem fx:id="itemModalidade" mnemonicParsing="false" onAction="#solicitarViewModalidades" text="Gerenciar Modalidades" />-->
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewAluno" text="Cadastrar Aluno" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewMatricula" text="Cadastrar Aluno em Modalidades" />
+                        <MenuItem fx:id="itemModalidade" mnemonicParsing="false" onAction="#solicitarViewFuncionario" text="Cadastrar Funcionário" />
                     </items>
                 </Menu>
 <!--                

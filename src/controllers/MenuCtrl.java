@@ -32,6 +32,11 @@ public class MenuCtrl implements Initializable {
         application.exibirViewModalidade();
     }
     
+    @FXML
+    public void solicitarViewMatricula(ActionEvent event) {
+        application.exibirViewMatricula();
+    }
+    
     
     
     @FXML

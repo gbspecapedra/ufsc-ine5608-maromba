@@ -88,7 +88,7 @@
                                                 <Label text="Os campos marcados em vermelho são de preenchimento obrigatório" />
                                              </children></FlowPane>
                                                         <Button fx:id="salvar" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
-                                                        <Button mnemonicParsing="false" onAction="#teste" text="Verificar Usuário Logado" />
+                                                        <Button mnemonicParsing="false" onAction="#teste" text="Logado" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

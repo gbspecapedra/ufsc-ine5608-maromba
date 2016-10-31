@@ -4,6 +4,7 @@ import controllers.AlunoCtrl;
 import controllers.FuncionarioCtrl;
 import controllers.LoginCtrl;
 import controllers.InicioCtrl;
+import controllers.MatriculaCtrl;
 import controllers.ModalidadeCtrl;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
@@ -59,7 +60,10 @@ public class Main extends Application {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    public void ajustarDimensoes(){
+        stage.setHeight(400);
+    }
     // MÉTODOS DE AUTENTICAÇÃO
     public boolean loginDoFuncionario(String matricula, String senha) throws SQLException, NoSuchAlgorithmException {
         Main.funcionarioLogado = funcionarioLogado.verificarCredenciais(matricula, senha);
@@ -78,6 +82,7 @@ public class Main extends Application {
     // MÉTODOS DE NAVEGAÇÃO DO USUÁRIO
     public void exibirViewInicio() {
         try {
+            ajustarDimensoes();
             stage.sizeToScene();
             InicioCtrl inicio = (InicioCtrl) alterarCena("inicio.fxml");
             inicio.setApp(this);
@@ -90,6 +95,7 @@ public class Main extends Application {
 
     public void exibirViewModalidade() {
         try {
+            ajustarDimensoes();
             stage.sizeToScene();
             ModalidadeCtrl modalidade = (ModalidadeCtrl) alterarCena("modalidade.fxml");
             modalidade.setApp(this);
@@ -102,6 +108,7 @@ public class Main extends Application {
 
     public void exibirViewAluno() {
         try {
+            ajustarDimensoes();
             stage.sizeToScene();
             AlunoCtrl alunoCtrl = (AlunoCtrl) alterarCena("aluno.fxml");
             alunoCtrl.setApp(this);
@@ -125,11 +132,26 @@ public class Main extends Application {
 
     public void exibirViewFuncionario() {
         try {
+            ajustarDimensoes();
             stage.sizeToScene();
             FuncionarioCtrl funcionarioCtrl = (FuncionarioCtrl) alterarCena("funcionario.fxml");
             funcionarioCtrl.setApp(this);
             funcionarioCtrl.setMenuApp(this);
             funcionarioCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public void exibirViewMatricula() {
+        try {
+            stage.sizeToScene();
+            stage.setHeight(600);
+            MatriculaCtrl matriculaCtrl = (MatriculaCtrl) alterarCena("matricula.fxml");
+            matriculaCtrl.setApp(this);
+            matriculaCtrl.setMenuApp(this);
+            matriculaCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

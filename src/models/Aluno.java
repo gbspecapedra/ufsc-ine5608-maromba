@@ -23,17 +23,15 @@ public class Aluno extends Pessoa {
     
     public Aluno() throws SQLException {
     }
-
+    
     public int salvar() throws SQLException {
-
+        
         String sql;
         ResultSet linhas;
         int retorno = 0;
         
         // Verifica se já existe um aluno com esse CPF
-        sql = "select id from pessoas where cpf = '" + this.getCpf() + "' and id <> '" + this.getMatricula()+ "'";
-        linhas = Dao.select(sql);
-        if (linhas.next()) {
+        if (verificarCpfCadastrado()) {
             return -1;
         }
                         
@@ -45,7 +43,7 @@ public class Aluno extends Pessoa {
             
         } else {                           
             // Insere novo registro
-            sql = "INSERT into pessoas (nome, cpf, plano, funcao) values ('" + this.getNome() + "', '" + this.getCpf() + "','" + this.getPlano()+ "', 'a')";
+            sql = "INSERT into pessoas (nome, cpf, plano, tipo) values ('" + this.getNome() + "', '" + this.getCpf() + "','" + this.getPlano()+ "', 'Aluno')";
             Dao.execute(sql);
             
             // Retorna o id do novo aluno
@@ -71,7 +69,7 @@ public class Aluno extends Pessoa {
         
     public ObservableList<Aluno> listarAlunos() throws SQLException {
         ObservableList<Aluno> alunos = FXCollections.observableArrayList();
-        ResultSet linhas = Dao.select("select * from pessoas");
+        ResultSet linhas = Dao.select("select * from pessoas where tipo = 'Aluno'");
         while (linhas.next()) {
                     
             // Inicializa um objeto
@@ -80,13 +78,6 @@ public class Aluno extends Pessoa {
             aluno.setMatricula(linhas.getInt("id"));
             aluno.setPlano(linhas.getString("plano"));
             aluno.setCpf(linhas.getString("cpf"));
-            
-//            if(linhaFuncao.equals("t")){
-////                aluno.setFuncao("Técnico");
-//            } else {
-////                aluno.setFuncao("Gerente");
-//            }
-
             // Adiciona o objeto ao retorno
             alunos.add(aluno);
         }

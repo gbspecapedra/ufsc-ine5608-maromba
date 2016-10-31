@@ -15,15 +15,15 @@ public class Dao {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     //  static final String DB_URL = "jdbc:mysql://192.168.79.65/cellfix?useSSL=false";
     //  static final String DB_URL = "jdbc:mysql://150.162.79.1:1404/cellfix?useSSL=false";
-//    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/cellfix?useSSL=false";
-    static final String DB_URL = "jdbc:mysql://msxacademic.mysql.dbaas.com.br:3306/msxacademic?useSSL=false";
+    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/cellfix?useSSL=false";
+//    static final String DB_URL = "jdbc:mysql://msxacademic.mysql.dbaas.com.br:3306/msxacademic?useSSL=false";
     
             
-//    static final String USER = "root";
-//    static final String PASS = "zorariver";
+    static final String USER = "root";
+    static final String PASS = "zorariver";
     
-    static final String USER = "msxacademic";
-    static final String PASS = "underwood";
+//    static final String USER = "msxacademic";
+//    static final String PASS = "underwood";
     
 
     private static void conecta() throws SQLException {
