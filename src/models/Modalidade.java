@@ -20,7 +20,7 @@ public class Modalidade extends Pessoa {
 
     private int Id;
     private String diasSemana;
-    private float valor;
+    private Double valor;
     private ModalidadeDao dao;
 
     public Modalidade() throws SQLException {
@@ -59,7 +59,7 @@ public class Modalidade extends Pessoa {
             Modalidade modalidade = new Modalidade();
             modalidade.setId(linhas.getInt("id"));
             modalidade.setNome(linhas.getString("nome"));
-            modalidade.setValor(linhas.getFloat("valor"));
+            modalidade.setValor(linhas.getDouble("valor"));
             modalidade.setDiasSemana(linhas.getString("diasSemana"));
 
             // Adiciona o objeto ao retorno
@@ -95,11 +95,11 @@ public class Modalidade extends Pessoa {
         this.diasSemana = diasSemana;
     }
 
-    public float getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 

@@ -23,10 +23,11 @@ public class Aluno extends Pessoa {
     private String plano;
     private AlunoDao dao;
     private HashMap<Modalidade, Integer> modalidades;
+    private ObservableList<Pagamento> pagamentos;
+    private ObservableList<Frequencia> frequencia;
 
     public Aluno() throws SQLException {
         this.dao = new AlunoDao();
-
     }
 
     public int persistir() throws SQLException {

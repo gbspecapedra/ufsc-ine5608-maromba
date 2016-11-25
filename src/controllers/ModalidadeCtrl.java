@@ -98,7 +98,7 @@ public class ModalidadeCtrl implements Initializable {
         boolean sucesso = true;
         boolean edicao = false;
         String mensagem = "";
-        Float valor;
+        Double valor;
         String diasSemana = "";
 
         if (segunda.isSelected()) {
@@ -126,9 +126,9 @@ public class ModalidadeCtrl implements Initializable {
         }
 
         if (campoValor.getText().isEmpty()) {
-            valor = 0f;
+            valor = 0.00;
         } else {
-            valor = Float.parseFloat(campoValor.getText());
+            valor = Double.parseDouble(campoValor.getText());
         }
 
         if (this.model.getId() > 0) {
@@ -218,7 +218,7 @@ public class ModalidadeCtrl implements Initializable {
         // System.out.println("Editar: " + editar.getNome() + " " + editar.getId());
         // Preeche o campo com os dados para edição
         campoNome.setText(editar.getNome());
-        campoValor.setText(Float.toString(editar.getValor()));
+        campoValor.setText(Double.toString(editar.getValor()));
 //        campoCPF.setText(editar.getCpf());
 //        comboPlano.getSelectionModel().select(editar.getPlano());
 

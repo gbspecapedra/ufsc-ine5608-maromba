@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/libs/Dao.java</file>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/controllers/MatriculaCtrl.java</file>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/views/matricula.fxml</file>
+            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/dao/ModalidadeDao.java</file>
+            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/models/Modalidade.java</file>
+            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/controllers/ModalidadeCtrl.java</file>
+            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/controllers/AlunoCtrl.java</file>
+            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/models/Aluno.java</file>
+            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/models/Pagamento.java</file>
+            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/models/Frequencia.java</file>
         </group>
     </open-files>
 </project-private>

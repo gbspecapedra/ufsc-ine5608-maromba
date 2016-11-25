@@ -23,7 +23,7 @@ public class ModalidadeDao extends Dao {
 
         if (modalidade.getId() > 0) {
             // Atualiza um registro
-            sql = "UPDATE modalidades SET nome = '" + modalidade.getNome() + "', diasSemana = '" + modalidade.getDiasSemana()+ "', valor = '" + Float.toString(modalidade.getValor())+ "' WHERE id = '" + modalidade.getId() + "'";
+            sql = "UPDATE modalidades SET nome = '" + modalidade.getNome() + "', diasSemana = '" + modalidade.getDiasSemana()+ "', valor = '" + Double.toString(modalidade.getValor())+ "' WHERE id = '" + modalidade.getId() + "'";
             System.out.println(sql);
             this.execute(sql);
             retorno = modalidade.getId();
