@@ -20,7 +20,8 @@
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewAluno" text="Cadastrar Aluno" />
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewMatricula" text="Cadastrar Aluno em Modalidades" />
-                        <MenuItem fx:id="itemModalidade" mnemonicParsing="false" onAction="#solicitarViewFuncionario" text="Cadastrar Funcionário" />
+                        <MenuItem fx:id="itemFuncionario" mnemonicParsing="false" onAction="#solicitarViewFuncionario" text="Cadastrar Funcionário" />
+                        <MenuItem fx:id="itemModalidade" mnemonicParsing="false" onAction="#solicitarViewModalidade" text="Cadastrar Modalidade" />
                     </items>
                 </Menu>
 <!--                

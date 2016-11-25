@@ -111,7 +111,7 @@ public class FuncionarioCtrl implements Initializable {
         // Alerta.informar(this.model.getFuncao());
         // Valida e persiste o modelo
         if (this.model.validarModelo().equals("0")) {
-            this.model.setMatricula(this.model.salvar());
+            this.model.setMatricula(this.model.persistir());
             if (this.model.getMatricula() == -1) {
                 mensagem = "Já existe um funcionario cadastrado com o CPF informado.";
                 sucesso = false;

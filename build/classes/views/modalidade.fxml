@@ -28,8 +28,8 @@
                                                 <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="8.0">
                                                     <children>
                                                         <Button mnemonicParsing="false" onAction="#novo" text="+" />
-                                                        <Button mnemonicParsing="false" onAction="#deletarModalidade" text="Deletar" />                                                        
-                                                        <Button mnemonicParsing="false" onAction="#editarModalidade" text="Editar" />
+                                                        <Button mnemonicParsing="false" onAction="#deletar" text="Deletar" />                                                        
+                                                        <Button mnemonicParsing="false" onAction="#editar" text="Editar" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -49,64 +49,65 @@
                                                     </columnConstraints>
                                                     <rowConstraints>
                                                         <RowConstraints maxHeight="47.0" minHeight="11.0" percentHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="18.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                          <HBox>
-                                             <children>
-                                                <TextField fx:id="campoNome" promptText="Nome">
-                                                   <HBox.margin>
-                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                   </HBox.margin></TextField>
-                                                <TextField fx:id="campoValor" layoutX="10.0" layoutY="10.0" promptText="Valor">
-                                                   <HBox.margin>
-                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
-                                                   </HBox.margin>
-                                                </TextField>
-                                             </children>
-                                          </HBox>
-                                          <HBox prefHeight="0.0" prefWidth="584.0" GridPane.rowIndex="2">
-                                             <children>
-                                                <CheckBox fx:id="segunda" mnemonicParsing="false" text="Segunda-Feira">
-                                                   <HBox.margin>
-                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
-                                                   </HBox.margin>
-                                                </CheckBox>
-                                                <CheckBox fx:id="terca" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terça-Feira">
-                                                   <HBox.margin>
-                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
-                                                   </HBox.margin>
-                                                </CheckBox>
-                                                <CheckBox fx:id="quarta" layoutX="128.0" layoutY="20.0" mnemonicParsing="false" text="Quarta-Feira">
-                                                   <HBox.margin>
-                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
-                                                   </HBox.margin>
-                                                </CheckBox>
-                                                <CheckBox fx:id="quinta" layoutX="228.0" layoutY="20.0" mnemonicParsing="false" text="Quinta-Feira">
-                                                   <HBox.margin>
-                                                      <Insets top="10.0" />
-                                                   </HBox.margin>
-                                                </CheckBox>
-                                                <CheckBox fx:id="sexta" layoutX="326.0" layoutY="20.0" mnemonicParsing="false" text="Sexta-Feira">
-                                                   <HBox.margin>
-                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                   </HBox.margin>
-                                                </CheckBox>
-                                                <CheckBox fx:id="sabado" layoutX="423.0" layoutY="20.0" mnemonicParsing="false" text="Sábado">
-                                                   <HBox.margin>
-                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
-                                                   </HBox.margin>
-                                                </CheckBox>
-                                             </children>
-                                          </HBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                                             <children>
-                                                <Label text="Selecione os dias da semana em que haverão aula da nova modalidade:" />
-                                                <Separator prefWidth="200.0" />
-                                             </children>
-                                          </VBox>
+                                                        <HBox>
+                                                            <children>
+                                                                <TextField fx:id="campoNome" promptText="Nome" style="-fx-border-color: #D84A38;">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                    </HBox.margin>
+                                                                </TextField>
+                                                                <TextField fx:id="campoValor" layoutX="10.0" layoutY="10.0" promptText="Valor" style="-fx-border-color: #D84A38;">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                                    </HBox.margin>
+                                                                </TextField>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox prefHeight="0.0" prefWidth="584.0" GridPane.rowIndex="2">
+                                                            <children>
+                                                                <CheckBox fx:id="segunda" mnemonicParsing="false" text="Segunda-Feira">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                                <CheckBox fx:id="terca" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terça-Feira">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                                <CheckBox fx:id="quarta" layoutX="128.0" layoutY="20.0" mnemonicParsing="false" text="Quarta-Feira">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                                <CheckBox fx:id="quinta" layoutX="228.0" layoutY="20.0" mnemonicParsing="false" text="Quinta-Feira">
+                                                                    <HBox.margin>
+                                                                        <Insets top="10.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                                <CheckBox fx:id="sexta" layoutX="326.0" layoutY="20.0" mnemonicParsing="false" text="Sexta-Feira">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                                <CheckBox fx:id="sabado" layoutX="423.0" layoutY="20.0" mnemonicParsing="false" text="Sábado">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                            </children>
+                                                        </HBox>
+                                                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                                                            <children>
+                                                                <Label text="Selecione os dias da semana em que haverão aula da nova modalidade:" />
+                                                                <Separator prefWidth="200.0" />
+                                                            </children>
+                                                        </VBox>
                                                     </children>
                                                     <BorderPane.margin>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -119,7 +120,7 @@
                                                     <children>
                                                         <Label alignment="BASELINE_LEFT" text="." />
                                                         <FlowPane HBox.hgrow="ALWAYS" />
-                                                        <Button mnemonicParsing="false" onAction="#salvarModalidade" text="Salvar" />
+                                                        <Button fx:id="salvar" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

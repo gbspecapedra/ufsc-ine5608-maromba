@@ -8,34 +8,32 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import libs.Dao;
-import models.Modalidade;
+import models.Aluno;
 
 /**
  *
  * @author orlando
  */
-public class ModalidadeDao extends Dao {
+public class AlunoDao extends Dao {
 
-    public int persistir(Modalidade modalidade) throws SQLException {
+    public int persistir(Aluno aluno) throws SQLException {
         String sql;
         ResultSet linhas;
         int retorno = 0;
 
-        if (modalidade.getId() > 0) {
+        if (aluno.getMatricula() > 0) {
             // Atualiza um registro
-            sql = "UPDATE modalidades SET nome = '" + modalidade.getNome() + "', diasSemana = '" + modalidade.getDiasSemana()+ "', valor = '" + Float.toString(modalidade.getValor())+ "' WHERE id = '" + modalidade.getId() + "'";
-            System.out.println(sql);
+            sql = "UPDATE pessoas SET nome = '" + aluno.getNome() + "', cpf = '" + aluno.getCpf() + "', plano = '" + aluno.getPlano() + "' WHERE id = '" + aluno.getMatricula() + "'";
             this.execute(sql);
-            retorno = modalidade.getId();
+            retorno = aluno.getMatricula();
 
         } else {
             // Insere novo registro
-            sql = "INSERT into modalidades (nome, diasSemana, valor) values ('" + modalidade.getNome() + "', '" + modalidade.getDiasSemana()+ "', " + modalidade.getValor() + ")";
-            System.out.println(sql);
+            sql = "INSERT into pessoas (nome, cpf, plano, tipo) values ('" + aluno.getNome() + "', '" + aluno.getCpf() + "','" + aluno.getPlano() + "', 'Aluno')";
             this.execute(sql);
 
-            // Retorna o id do novo modalidade
-            sql = "SELECT id FROM modalidades ORDER by id DESC LIMIT 1";
+            // Retorna o id do novo aluno
+            sql = "SELECT id FROM pessoas WHERE cpf = '" + aluno.getCpf() + "'";
             linhas = this.select(sql);
             if (linhas.next()) {
                 retorno = linhas.getInt("id");
@@ -47,7 +45,7 @@ public class ModalidadeDao extends Dao {
     public int deletar(int matricula) throws SQLException {
 
         // VERIFICAR SE NÃO HÁ PAGAMENTOS PENDENTES        
-        String sql = "DELETE FROM modalidades WHERE id = " + matricula;
+        String sql = "DELETE FROM pessoas WHERE id = " + matricula;
         try {
             this.execute(sql);
             return matricula;
@@ -58,7 +56,7 @@ public class ModalidadeDao extends Dao {
     }
 
     public ResultSet listar() throws SQLException {
-        ResultSet itens = this.select("select * from modalidades");
+        ResultSet itens = this.select("select * from pessoas where tipo = 'Aluno'");
         return itens;
     }
 

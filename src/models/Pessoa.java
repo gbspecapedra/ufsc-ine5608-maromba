@@ -7,7 +7,6 @@ package models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import libs.Dao;
 import libs.Model;
 
 /**
@@ -16,25 +15,25 @@ import libs.Model;
  */
 public class Pessoa extends Model {
 
-    protected int matricula;
-    protected String cpf;
-    protected String nome;
-    protected String tipo;
+    private int matricula;
+    private String cpf;
+    private String nome;
+    private String tipo;
 
     public Pessoa() throws SQLException {
     }
-    
-    public boolean verificarCpfCadastrado() throws SQLException{
-        
+
+    public boolean verificarCpfCadastrado() throws SQLException {
+
         String sql;
         ResultSet linhas;
-        
-        sql = "select id from pessoas where cpf = '" + this.getCpf() + "' and id <> '" + this.getMatricula() + "' and tipo = '"+ this.getTipo()+"'";
-        linhas = Dao.select(sql);
-        return linhas.next();
+
+//        sql = "select id from pessoas where cpf = '" + this.getCpf() + "' and id <> '" + this.getMatricula() + "' and tipo = '"+ this.getTipo()+"'";
+//        linhas = Dao.select(sql);
+//        return linhas.next();
+        return true;
     }
-    
-    
+
     @Override
     public String toString() {
         return nome;
@@ -72,5 +71,4 @@ public class Pessoa extends Model {
         this.tipo = tipo;
     }
 
-   
 }

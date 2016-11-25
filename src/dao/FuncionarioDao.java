@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package dao;
 
 import helpers.Validador;
@@ -13,83 +18,71 @@ import models.Funcionario;
  */
 public class FuncionarioDao extends Dao {
 
-    public FuncionarioDao() throws SQLException {
-    }
-
-    public int inserirFuncionarioDAO(Funcionario modalidade) throws SQLException, NoSuchAlgorithmException {
-        this.execute("INSERT INTO pessoas (nome, funcao) VALUES ('" + modalidade.getNome() + "', 't')");
+    public int persistir(Funcionario funcionario) throws SQLException, NoSuchAlgorithmException {
+        String sql;
+        ResultSet linhas;
         int retorno = 0;
-        ResultSet linhas = this.select("select id from pessoas order by id desc limit 1");
-        if (linhas.next()) {
-            retorno = linhas.getInt("id");
+        String novaSenha = "";
+
+        if (funcionario.getMatricula() > 0) {
+            // Atualiza um registro
+            sql = "UPDATE pessoas SET nome = '" + funcionario.getNome() + "', cpf = '" + funcionario.getCpf() + "', ctps = '" + funcionario.getCtps() + "', funcao = '" + funcionario.getFuncao() + "' WHERE id = '" + funcionario.getMatricula() + "'";
+            this.execute(sql);
+            retorno = funcionario.getMatricula();
+
+        } else {
+            // Insere novo registro
+            sql = "INSERT into pessoas (nome, cpf, funcao, tipo, ctps) values ('" + funcionario.getNome() + "', '" + funcionario.getCpf() + "','" + funcionario.getFuncao() + "', 'Funcionario', '" + funcionario.getCtps() + "')";
+            this.execute(sql);
+
+            // Retorna o id do novo funcionario
+            sql = "SELECT id FROM pessoas WHERE cpf = '" + funcionario.getCpf() + "'";
+            linhas = this.select(sql);
+            if (linhas.next()) {
+                retorno = linhas.getInt("id");
+            }
+            
+            // Cria a nova senha
+            novaSenha = Validador.converterMD5(Integer.toString(retorno));
+            sql = "UPDATE pessoas set senha = '"+novaSenha+"' where id = "+retorno;
+            this.execute(sql);
+            
         }
-        this.atualizarSenhaDAO(retorno, Validador.converterMD5(String.valueOf(retorno)));
         return retorno;
     }
 
-    public ResultSet listarFuncionariosDAO() throws SQLException {
-        ResultSet resultados = this.select("select * from pessoas where funcao = 'g' or funcao = 't' order by nome desc");
-        return resultados;
-    }
-    
-    public ResultSet listarTecnicosDAO() throws SQLException {
-        ResultSet resultados = this.select("select * from pessoas where funcao = 't' order by nome desc");
-        return resultados;
-    }
+    public int deletar(int matricula) throws SQLException {
 
-    public boolean atualizarFuncionarioDAO(Funcionario modalidade) throws SQLException {
+        // VERIFICAR SE NÃO HÁ PAGAMENTOS PENDENTES        
+        String sql = "DELETE FROM pessoas WHERE id = " + matricula;
         try {
-            this.execute("UPDATE pessoas SET nome = '" + modalidade.getNome() + "' WHERE id = " + modalidade.getMatricula() + "");
-            return true;
-        } catch (Exception e) {
-            return false;
+            this.execute(sql);
+            return matricula;
+        } catch (SQLException e) {
+
         }
-
-    }
-
-    public boolean deletarFuncionarioDAO(Funcionario modalidade) throws SQLException {
-        try {
-            String query = "DELETE from pessoas WHERE id = " + modalidade.getMatricula() + "";
-            System.out.println(query);
-            this.execute(query);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public ResultSet retornarFuncionarioDAO(int id) throws SQLException {
-        ResultSet resultados = this.select("select * from pessoas where id = " + id);
-        return resultados;
-    }
-
-    public int verificarCredenciaisDAO(String usuario, String senha) throws SQLException, NoSuchAlgorithmException {
-
-        String query = "select id from pessoas where usuario = '" + usuario + "' and senha = '" + Validador.converterMD5(senha) + "' and (funcao = 't' or funcao = 'g')";
-
-        ResultSet retorno = this.select(query);
-
-        int i = 0;
-        int id = 0;
-
-        while (retorno.next()) {
-            i++;
-            id = retorno.getInt("id");
-        }
-
-        if (i == 1) {
-            return id;
-        }
-
         return 0;
     }
-    
-    public boolean atualizarSenhaDAO(int id, String senha){
-        try {           
-            this.execute("UPDATE pessoas SET senha = '" + senha + "', usuario = "+id+" WHERE id = " + id + "");
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+
+    public ResultSet listar() throws SQLException {
+        ResultSet itens = this.select("select * from pessoas where tipo = 'Funcionario'");
+        return itens;
     }
+
+    public String verificarCredenciais(int matricula, String senha) throws NoSuchAlgorithmException, SQLException {
+        
+        String mensagem = "0";
+        
+        String query = "select id from pessoas where id = '" + matricula + "' and senha = '" + Validador.converterMD5(senha) + "' and tipo like 'Funcionario'";
+        System.out.println(query);
+        ResultSet linhas = this.select(query);
+        if (linhas.next()) {
+            mensagem = "1";
+        } else {
+            mensagem = "Senha Icorreta";           
+        }
+        
+        return mensagem;
+    }
+
 }

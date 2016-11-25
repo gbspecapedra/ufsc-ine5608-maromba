@@ -6,7 +6,7 @@
 package models;
 
 import dao.ModalidadeDao;
-import java.security.NoSuchAlgorithmException;
+import helpers.Alerta;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
@@ -14,113 +14,77 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author orlando
+ * @author Orlando
  */
 public class Modalidade extends Pessoa {
-    
-    // ASSOCIAÇÕES
-    private final ModalidadeDao dao;
-    
-    // ATRIBUTOS    
-    private String nome;
-    private int valor;
+
+    private int Id;
     private String diasSemana;
-    
-    // CONSTRUTOR
+    private float valor;
+    private ModalidadeDao dao;
+
     public Modalidade() throws SQLException {
         this.dao = new ModalidadeDao();
+
     }
 
-    // MONTA
-    public Modalidade montarModalidade(int id) throws SQLException {
-        ResultSet linha = this.dao.retornarModalidadeDAO(id);
-        linha.next();
-        Modalidade retorno = new Modalidade();
-        retorno.setNome(linha.getString("nome"));
-        retorno.setValor(linha.getInt("valor"));
-        retorno.setDiasSemana(linha.getString("diasSemana"));
-        return retorno;
+    public int persistir() throws SQLException {
+        
+        // Verifica se já existe um aluno com esse CPF
+        ObservableList<Modalidade> modalidades = this.listarModalidades();
+        for (Modalidade modalidade : modalidades) {
+            if((this.getNome().equals(modalidade.getNome())) && this.getId() == 0){                
+                return -2;
+            }
+        }
+        
+        
+        return this.dao.persistir(this);
     }
 
-    // MÈTODOS do CRUD
-    public int inserirModalidade(Modalidade modalidade) throws SQLException, NoSuchAlgorithmException {
-        return this.dao.inserirModalidadeDAO(modalidade);
+    public int deletar() throws SQLException {
+
+        // VERIFICAR SE NÃO HÁ ALUNOS MATRICULADOS
+        this.dao.deletar(this.getId());
+        Alerta.informar("Dados excluídos com sucesso.");
+        return 0;
     }
 
-    public boolean atualizarModalidade(Modalidade modalidade) throws SQLException {
-        return this.dao.atualizarModalidadeDAO(modalidade);
-    }
-
-    public boolean deletarModalidade(Modalidade modalidade) throws SQLException {
-        return this.dao.deletarModalidadeDAO(modalidade);
-    }
-
-    
-    
-    public ObservableList<Modalidade> listarModalidade() throws SQLException {
+    public ObservableList<Modalidade> listarModalidades() throws SQLException {
         ObservableList<Modalidade> modalidades = FXCollections.observableArrayList();
-        ResultSet linhas = this.dao.listarModalidadesDAO();
+        ResultSet linhas = this.dao.listar();
         while (linhas.next()) {
 
-            // Lê os parametros retornados nas tuplas
-            String linhaNome = linhas.getString("nome");
-            int linhaValor = linhas.getInt("valor");
-//            int linhaMatricula = linhas.getInt("id");
-            
-            
             // Inicializa um objeto
             Modalidade modalidade = new Modalidade();
-            modalidade.setNome(linhaNome);
-            
+            modalidade.setId(linhas.getInt("id"));
+            modalidade.setNome(linhas.getString("nome"));
+            modalidade.setValor(linhas.getFloat("valor"));
+            modalidade.setDiasSemana(linhas.getString("diasSemana"));
 
             // Adiciona o objeto ao retorno
             modalidades.add(modalidade);
         }
         return modalidades;
     }
-    
-    public ObservableList<Modalidade> listarTecnico() throws SQLException {
-        ObservableList<Modalidade> modalidades = FXCollections.observableArrayList();
-        ResultSet linhas = this.dao.listarTecnicosDAO();
-        while (linhas.next()) {
 
-            // Lê os parametros retornados nas tuplas
-            String linhaNome = linhas.getString("nome");
-            String linhaValor = linhas.getString("valor");
-            int linhaMatricula = linhas.getInt("id");
-            
-            
-            // Inicializa um objeto
-            Modalidade modalidade = new Modalidade();
-            modalidade.setNome(linhaNome);
-           
-            
-            // Adiciona o objeto ao retorno
-            modalidades.add(modalidade);
+    public String validarModelo() {
+
+        
+        if (this.getNome().isEmpty()) {
+            return "Os campos em vermelho são de preenchimehto obrigatório.";
         }
-        return modalidades;
-    }
-    
-    
-    
-    public boolean atualizarSenha(int id, String senha){
-        return this.dao.atualizarSenhaDAO(id, senha);
-    }
+        
+        if (this.getValor() <= 0) {
+            return "O valor deve ser maior do que zero.";
+        }
+        
+        if (this.getDiasSemana().isEmpty()) {
+            return "Selecione ao menos um dia da semana.";
+            
+        }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
+        return "0";
     }
 
     public String getDiasSemana() {
@@ -130,5 +94,21 @@ public class Modalidade extends Pessoa {
     public void setDiasSemana(String diasSemana) {
         this.diasSemana = diasSemana;
     }
-   
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+            
 }

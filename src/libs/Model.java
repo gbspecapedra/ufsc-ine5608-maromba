@@ -5,15 +5,10 @@
  */
 package libs;
 
-import helpers.Alerta;
-import helpers.Validador;
-
 /**
  *
  * @author Orlando
  */
 public class Model {
-    public Model(){
-       
-    }
+
 }

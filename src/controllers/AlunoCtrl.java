@@ -21,7 +21,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Aluno;
-import models.Funcionario;
 
 public class AlunoCtrl implements Initializable {
 
@@ -105,7 +104,7 @@ public class AlunoCtrl implements Initializable {
         // Alerta.informar(this.model.getPlano());
         // Valida e persiste o modelo
         if (this.model.validarModelo().equals("0")) {
-            this.model.setMatricula(this.model.salvar());
+            this.model.setMatricula(this.model.persistir());
             if (this.model.getMatricula() == -1) {
                 mensagem = "Já existe um aluno cadastrado com o CPF informado.";
                 sucesso = false;
@@ -255,3 +254,4 @@ public class AlunoCtrl implements Initializable {
     }
 
 }
+ 

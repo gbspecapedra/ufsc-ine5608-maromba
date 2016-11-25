@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -46,14 +47,32 @@ public class ModalidadeCtrl implements Initializable {
     // TAB CADASTRO
     @FXML
     private TextField campoNome;
-    
+
     @FXML
     private TextField campoValor;
 
-    // TAB PESQUISA
     @FXML
-    private ObservableList<Modalidade> funcionarios = FXCollections.observableArrayList();
+    private ObservableList<Modalidade> listaModalidades = FXCollections.observableArrayList();
 
+    @FXML
+    private CheckBox segunda;
+
+    @FXML
+    private CheckBox terca;
+
+    @FXML
+    private CheckBox quarta;
+
+    @FXML
+    private CheckBox quinta;
+
+    @FXML
+    private CheckBox sexta;
+
+    @FXML
+    private CheckBox sabado;
+
+    // TAB PESQUISA
     @FXML
     private TableView<Modalidade> tabelaModalidades;
 
@@ -67,87 +86,97 @@ public class ModalidadeCtrl implements Initializable {
         this.model = new Modalidade();
     }
 
+    @FXML
+    private void teste() {
+        System.out.println(this.application.getFuncionarioLogado().getNome());
+    }
+
     // DISPARADORES DA VIEW
     @FXML
-    private void salvarModalidade() throws SQLException, NoSuchAlgorithmException {
+    private void salvar() throws SQLException, NoSuchAlgorithmException {
 
-        boolean formValido = false;
+        boolean sucesso = true;
+        boolean edicao = false;
+        String mensagem = "";
+        Float valor;
+        String diasSemana = "";
 
-        // Pega o valor dos campos
-        String nome = campoNome.getText();
-        int valor = Integer.parseInt(campoValor.getText());
-
-        // VALIDA O FORMULARIO
-        // nome em branco
-        if (nome.isEmpty()) {
-            formValido = false;
-            Alerta.informar("Os campos em vermelho são de preenchimento obrigatório");
-            return;
-        }
-        
-        if (valor < 1) {
-            formValido = false;
-            Alerta.informar("Os campos em vermelho são de preenchimento obrigatório");
-            return;
+        if (segunda.isSelected()) {
+            diasSemana = diasSemana + "Seg,";
         }
 
-        // Se já houver um item associado ao modelo, atualizá-lo
-        if (this.model.getMatricula()> 0) {
-            System.out.println("Atualizar: " + this.model.getNome());
+        if (terca.isSelected()) {
+            diasSemana = diasSemana + "Ter,";
+        }
 
-            // Atualiza o model com os dados do formulario
-            this.model.setNome(nome);
-            this.model.setValor(valor);
+        if (quarta.isSelected()) {
+            diasSemana = diasSemana + "Qua,";
+        }
 
-            // Atualiza o intem no banco de dados
-            this.model.atualizarModalidade(this.model);
+        if (quinta.isSelected()) {
+            diasSemana = diasSemana + "Qui,";
+        }
 
-            // Remove a linha com a informação antiga
-            ObservableList<Modalidade> itemSelecionado, lista;
-            lista = tabelaModalidades.getItems();
-            itemSelecionado = tabelaModalidades.getSelectionModel().getSelectedItems();
-            Modalidade remover = itemSelecionado.get(0);
-            itemSelecionado.forEach(lista::remove);
-            tabelaModalidades.refresh();
+        if (sexta.isSelected()) {
+            diasSemana = diasSemana + "Sex,";
+        }
 
-            // Remove o item desatualizado da tabela
-            // tabelaModalidades.getItems().remove(this.model);
+        if (sabado.isSelected()) {
+            diasSemana = diasSemana + "Sab,";
+        }
+
+        if (campoValor.getText().isEmpty()) {
+            valor = 0f;
         } else {
-            // Caso não haja, insere um novo item
-            this.model = new Modalidade();
-            this.model.setNome(nome);
-            this.model.setValor(valor);
-            this.model.setMatricula(0);
-
-            // Executa o método de cadastro
-            this.model.setMatricula(this.model.inserirModalidade(this.model));
-
-            // Avisa o usuário
-            System.out.println("Cadastrou: " + this.model.getNome());
-
+            valor = Float.parseFloat(campoValor.getText());
         }
 
-        // Atualiza a tabela com o novo item
-//          tabelaModalidades.getItems().add(this.model);
-//          tabelaModalidades.refresh();
-        desenharTabela();
+        if (this.model.getId() > 0) {
+            edicao = true;
+        }
 
-        // Limpa os campos
-        campoNome.clear();
-        campoValor.clear();
-        
-        SingleSelectionModel<Tab> selectionModel = painelAbas.getSelectionModel();
-        selectionModel.select(1);
-        
-        // Reinicializa o model
-        this.model = new Modalidade();
+        // Recolhe os dados do formulário
+        this.model.setNome(campoNome.getText());
+        this.model.setValor(valor);
+        this.model.setDiasSemana(diasSemana);
 
-        // Informa ao usuário
-        Alerta.informar("Dados atualizados com sucesso.");
+//        this.model.setCpf(campoCPF.getText());
+//        this.model.setPlano(comboPlano.getSelectionModel().getSelectedItem().toString());
+        // Alerta.informar(this.model.getPlano());
+        // Valida e persiste o modelo
+        if (this.model.validarModelo().equals("0")) {
+            this.model.setId(this.model.persistir());
+            
+            if (edicao) {
+                mensagem = "Dados atualizados com sucesso.";
+            } else {
+                mensagem = "Dados incluídos com sucesso.";
+            }
+            
+            if(this.model.getId() == -2){
+                mensagem = "Já existe modalidade cadastrada com esse nome";
+            }
+            
+        } else {
+            mensagem = this.model.validarModelo();
+            sucesso = false;
+        }
+
+        Alerta.informar(mensagem);
+
+        if (sucesso) {
+            // Altera para a aba de inserção/edição
+            this.desenharTabela();
+            SingleSelectionModel<Tab> selectionModel = painelAbas.getSelectionModel();
+            selectionModel.select(0);
+            this.model = new Modalidade();
+            this.limparCampos();
+        }
+
     }
 
     @FXML
-    private void deletarModalidade() throws SQLException {
+    private void deletar() throws SQLException {
 
         if (Alerta.confirmar("Confirma a exclusão do item?")) {
 
@@ -157,6 +186,8 @@ public class ModalidadeCtrl implements Initializable {
             itemSelecionado = tabelaModalidades.getSelectionModel().getSelectedItems();
             Modalidade remover = itemSelecionado.get(0);
 
+            this.model = remover;
+
             // Avisa no console 
             System.out.println("Deletou: " + remover.getNome());
 
@@ -165,7 +196,7 @@ public class ModalidadeCtrl implements Initializable {
             tabelaModalidades.refresh();
 
             // Remove do DB
-            this.model.deletarModalidade(remover);
+            this.model.deletar();
 
             // Reinicializa o model
             this.model = new Modalidade();
@@ -175,7 +206,7 @@ public class ModalidadeCtrl implements Initializable {
     }
 
     @FXML
-    private void editarModalidade() throws SQLException {
+    private void editar() throws SQLException {
 
         // Retorna o item da linha selecionada
         ObservableList<Modalidade> itemSelecionado, lista;
@@ -184,39 +215,61 @@ public class ModalidadeCtrl implements Initializable {
         Modalidade editar = itemSelecionado.get(0);
 
         // Avisa no console 
-        System.out.println("Editar: " + editar.getNome() + " " + editar.getMatricula());
-
+        // System.out.println("Editar: " + editar.getNome() + " " + editar.getId());
         // Preeche o campo com os dados para edição
         campoNome.setText(editar.getNome());
+        campoValor.setText(Float.toString(editar.getValor()));
+//        campoCPF.setText(editar.getCpf());
+//        comboPlano.getSelectionModel().select(editar.getPlano());
+
+
+
+        if(editar.getDiasSemana().contains("Seg,")){
+            segunda.setSelected(true);
+        }
+
+
 
         // Associa o item que deve ser editado ao model atual
         this.model = editar;
 
         // Altera para a aba de inserção/edição
         SingleSelectionModel<Tab> selectionModel = painelAbas.getSelectionModel();
-        selectionModel.select(0);
+        selectionModel.select(1);
     }
-    
-    
+
     @FXML
     private void novo() throws SQLException {
+        this.model = new Modalidade();
+        this.limparCampos();
         SingleSelectionModel<Tab> selectionModel = painelAbas.getSelectionModel();
-        selectionModel.select(0);
+        selectionModel.select(1);
     }
-    
-    
+
+    public void limparCampos() {
+        campoNome.setText("");
+        campoValor.setText("");
+        segunda.setSelected(false);
+        terca.setSelected(false);
+        quarta.setSelected(false);
+        quinta.setSelected(false);
+        sexta.setSelected(false);
+        sabado.setSelected(false);
+
+    }
 
     public void desenharTabela() throws SQLException {
         tabelaModalidades.getColumns().clear();
+
         colunaNome = new TableColumn<>("Nome");
-        colunaNome.setMinWidth(200);
+        colunaNome.setMinWidth(195);
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
         colunaValor = new TableColumn<>("Valor");
-        colunaValor.setMinWidth(200);
+        colunaValor.setMinWidth(175);
         colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
 
-        ObservableList<Modalidade> lista = model.listarModalidade();
+        ObservableList<Modalidade> lista = model.listarModalidades();
         tabelaModalidades.setItems(lista);
         tabelaModalidades.getColumns().addAll(colunaNome, colunaValor);
     }
@@ -228,7 +281,9 @@ public class ModalidadeCtrl implements Initializable {
     public void setMenuController(MenuCtrl menuController) {
         this.menuController = menuController;
     }
-
+    
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {

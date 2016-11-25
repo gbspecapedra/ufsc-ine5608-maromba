@@ -1,5 +1,6 @@
 package models;
 
+import dao.FuncionarioDao;
 import helpers.Alerta;
 import helpers.Validador;
 import java.security.NoSuchAlgorithmException;
@@ -7,121 +8,104 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import libs.Dao;
 
 public class Funcionario extends Pessoa {
 
     // ATRIBUTOS    
     private String funcao;
     private String ctps;
+    private FuncionarioDao dao;
 
-    public Funcionario montarFuncionario(int id) throws SQLException {
-//      ResultSet linha = this.dao.retornarFuncionarioDAO(id);
-        ResultSet linha = Dao.select("select * from pessoas where id = " + id);
-        linha.next();
-        Funcionario retorno = new Funcionario();
-        retorno.setNome(linha.getString("nome"));
-        retorno.setMatricula(linha.getInt("id"));
-        retorno.setFuncao(linha.getString("funcao"));
-        retorno.setCtps(linha.getString("ctps"));
-        return retorno;
+    public Funcionario() throws SQLException {
+        this.dao = new FuncionarioDao();
+
     }
 
-    public boolean verificarMatriculaFuncionario(String matricula) throws SQLException, NoSuchAlgorithmException {
-        String query = "select id from pessoas where id = " + matricula + " and tipo not like 'Aluno'";
-        System.out.println(query);
-        ResultSet retorno = Dao.select(query);
-        if (retorno.next()) {
-            return true;
+    public Funcionario montarFuncionario(int matricula) throws SQLException {
+        ObservableList<Funcionario> funcionarios = this.listarFuncionarios();
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getMatricula() == matricula) {
+                return funcionario;
+            }
         }
-        return false;
+        return null;
     }
 
-    public boolean verificarCredenciaisBD(String matricula, String senha) throws SQLException, NoSuchAlgorithmException {
+    public boolean verificarCredenciaisBD(int matricula, String senha) throws SQLException, NoSuchAlgorithmException {
 
         String mensagem = "";
         boolean retorno = false;
+        boolean matriculaValida = false;
 
-        if (!verificarMatriculaFuncionario(matricula)) {
-            mensagem = "Matrícula Inexistente";
-        } else {
-            String query = "select id from pessoas where id = '" + matricula + "' and senha = '" + Validador.converterMD5(senha) + "' and tipo not like 'Aluno'";
-            System.out.println(query);
-            ResultSet linhas = Dao.select(query);
-            if (linhas.next()) {
-                retorno = true;
-            } else {
-                mensagem = "Senha Icorreta";
+        // Verifica se a matrícula informada é válida
+        ObservableList<Funcionario> funcionarios = this.listarFuncionarios();
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getMatricula() == matricula) {
+                matriculaValida = true;
             }
         }
 
-        if (!retorno) {
-            Alerta.informar(mensagem);
+        if (!matriculaValida) {
+            mensagem = "Matrícula Inexistente";
+        } else {
+            mensagem = this.dao.verificarCredenciais(matricula, senha);
         }
 
-        return retorno;
+        if (!mensagem.equals("1")) {
+            Alerta.informar(mensagem);
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
     public Funcionario verificarCredenciais(String matricula, String senha) throws SQLException, NoSuchAlgorithmException {
         Funcionario funcionarioAutenticado = new Funcionario();
-        if (this.verificarCredenciaisBD(matricula, senha)) {
+        if (this.verificarCredenciaisBD(Integer.parseInt(matricula), senha)) {
             funcionarioAutenticado = this.montarFuncionario(Integer.parseInt(matricula));
         }
         return funcionarioAutenticado;
     }
 
-    public int salvar() throws SQLException {
+    public int persistir() throws SQLException, NoSuchAlgorithmException {
 
-        String sql;
-        ResultSet linhas;
-        int retorno = 0;
+        int retorno;
 
         // Verifica se já existe um funcionario com esse CPF
-        if (verificarCpfCadastrado()) {
-            return -1;
-        }
-
-        if (this.getMatricula() > 0) {
-            // Atualiza um registro
-            sql = "UPDATE pessoas SET nome = '" + this.getNome() + "', cpf = '" + this.getCpf() + "', ctps = '" + this.getCtps()+ "', funcao = '" + this.getFuncao() + "' WHERE id = '" + this.getMatricula() + "'";
-            Dao.execute(sql);
-            retorno = this.getMatricula();
-
-        } else {
-            // Insere novo registro
-            sql = "INSERT into pessoas (nome, cpf, funcao, tipo, ctps) values ('" + this.getNome() + "', '" + this.getCpf() + "','" + this.getFuncao() + "', 'Funcionario', '" + this.getCtps() + "')";
-            Dao.execute(sql);
-
-            // Retorna o id do novo funcionario
-            sql = "SELECT id FROM pessoas WHERE cpf = '" + this.getCpf() + "'";
-            linhas = Dao.select(sql);
-            if (linhas.next()) {
-                retorno = linhas.getInt("id");
+        ObservableList<Funcionario> funcionarios = this.listarFuncionarios();
+        for (Funcionario funcionario : funcionarios) {
+            if ((funcionario.getCpf().equals(this.getCpf()) && funcionario.getMatricula() != this.getMatricula())) {
+                return -1;
             }
         }
+
+        retorno = this.dao.persistir(this);
         return retorno;
     }
 
     public int deletar() throws SQLException {
 
-        // VERIFICAR SE NÃO HÁ PAGAMENTOS PENDENTES                
-        String sql = "DELETE FROM pessoas WHERE id = " + this.getMatricula() + "";
-        Dao.execute(sql);
+        this.dao.deletar(this.getMatricula());
         Alerta.informar("Dados excluídos com sucesso.");
         return 0;
     }
 
     public ObservableList<Funcionario> listarFuncionarios() throws SQLException {
         ObservableList<Funcionario> funcionarios = FXCollections.observableArrayList();
-        ResultSet linhas = Dao.select("select * from pessoas where tipo = 'Funcionario'");
+        ResultSet linhas = this.dao.listar();
+
         while (linhas.next()) {
+
             // Inicializa um objeto
             Funcionario funcionario = new Funcionario();
+            
             funcionario.setNome(linhas.getString("nome"));
             funcionario.setMatricula(linhas.getInt("id"));
             funcionario.setFuncao(linhas.getString("funcao"));
-            funcionario.setCpf(linhas.getString("cpf"));
             funcionario.setCtps(linhas.getString("ctps"));
+            funcionario.setCpf(linhas.getString("cpf"));
+
             // Adiciona o objeto ao retorno
             funcionarios.add(funcionario);
         }
@@ -155,11 +139,6 @@ public class Funcionario extends Pessoa {
         this.funcao = funcao;
     }
 
-    // CONSTRUTOR
-    public Funcionario() throws SQLException {
-        //  this.dao = new _FuncionarioDao();
-    }
-
     public String getCtps() {
         return ctps;
     }
@@ -168,5 +147,4 @@ public class Funcionario extends Pessoa {
         this.ctps = ctps;
     }
 
-    
 }

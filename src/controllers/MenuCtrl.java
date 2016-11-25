@@ -53,6 +53,11 @@ public class MenuCtrl implements Initializable {
     public void solicitarViewFuncionario(ActionEvent event) {
         application.exibirViewFuncionario();
     }
+    
+    @FXML
+    public void solicitarViewModalidade(ActionEvent event) {
+        application.exibirViewModalidade();
+    }
 
     @FXML
     public void solicitarLogoff(ActionEvent event) throws SQLException {

@@ -60,10 +60,10 @@
                                                   </rowConstraints>
                                                    <children>
                                                       <Label text="Aluno" />
-                                                      <ComboBox fx:id="comboPlano1" prefHeight="25.0" prefWidth="242.0" promptText="Selecione" GridPane.rowIndex="1" />
+                                                      <ComboBox fx:id="comboAluno" prefHeight="25.0" prefWidth="242.0" promptText="Selecione" GridPane.rowIndex="1" />
                                                       <Label layoutX="18.0" layoutY="24.0" text="Modalidade" GridPane.columnIndex="1" />
-                                                      <ComboBox fx:id="comboPlano11" layoutX="18.0" layoutY="48.0" prefHeight="25.0" prefWidth="242.0" promptText="Selecione" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <Button fx:id="salvar1" mnemonicParsing="false" onAction="#salvar" prefHeight="25.0" prefWidth="98.0" text="Adicionar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <ComboBox fx:id="comboModalidade" layoutX="18.0" layoutY="48.0" prefHeight="25.0" prefWidth="242.0" promptText="Selecione" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Button fx:id="salvar1" mnemonicParsing="false" onAction="#adicionarModalidade" prefHeight="25.0" prefWidth="98.0" text="Adicionar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                    </children>
                                                    <padding>
                                                       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -77,11 +77,10 @@
                                        <children>
                                           <FlowPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <TableView prefHeight="84.0" prefWidth="583.0">
+                                                <TableView fx:id="tabelaModalidades" prefHeight="155.0" prefWidth="583.0">
                                                   <columns>
                                                     <TableColumn prefWidth="417.0" text="Modalidade" />
                                                     <TableColumn minWidth="0.0" prefWidth="98.0" text="Valor" />
-                                                      <TableColumn prefWidth="60.0" text="Remover" />
                                                   </columns>
                                                 </TableView>
                                              </children>
@@ -94,12 +93,13 @@
                                                 <HBox nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
                                                     <children>
 <!--                                                        <Label alignment="BASELINE_LEFT" text="." />-->
-                                                        <FlowPane HBox.hgrow="ALWAYS">
+                                                        <FlowPane prefHeight="25.0" prefWidth="289.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label prefHeight="17.0" prefWidth="89.0" text="Plano do Aluno:" />
                                                 <Label style="-fx-font-weight: bold;" text="Trimestral" textFill="#616161" />
                                              </children></FlowPane>
-                                                        <Button fx:id="salvar" mnemonicParsing="false" onAction="#salvar" text="Gerar Pagamentos" />
+                                                        <Button fx:id="salvar" mnemonicParsing="false" onAction="#removerModalidade" prefHeight="25.0" prefWidth="139.0" text="Remover Modalidade" />
+                                          <Button fx:id="salvar3" layoutX="488.0" layoutY="18.0" mnemonicParsing="false" onAction="#salvar" text="Gerar Pagamentos" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -109,7 +109,7 @@
                                        <children>
                                           <FlowPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <TableView prefHeight="84.0" prefWidth="583.0">
+                                                <TableView prefHeight="152.0" prefWidth="583.0">
                                                    <columns>
                                                       <TableColumn prefWidth="62.0" text="Parcela" />
                                                       <TableColumn minWidth="0.0" prefWidth="106.0" text="Status" />
@@ -127,7 +127,7 @@
                                     <HBox layoutX="10.0" layoutY="191.0" nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
                                        <children>
                                           <FlowPane HBox.hgrow="ALWAYS" />
-                                          <Button fx:id="salvar2" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
+                                          <Button fx:id="salvar2" mnemonicParsing="false" onAction="#salvar" text="Voltar" />
                                        </children>
                                        <padding>
                                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
