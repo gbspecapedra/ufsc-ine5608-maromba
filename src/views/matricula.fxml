@@ -96,10 +96,10 @@
                                                         <FlowPane prefHeight="25.0" prefWidth="289.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label prefHeight="17.0" prefWidth="89.0" text="Plano do Aluno:" />
-                                                <Label style="-fx-font-weight: bold;" text="Trimestral" textFill="#616161" />
+                                                <Label style="-fx-font-weight: bold;" text="" textFill="#616161" fx:id="plano" />
                                              </children></FlowPane>
                                                         <Button fx:id="salvar" mnemonicParsing="false" onAction="#removerModalidade" prefHeight="25.0" prefWidth="139.0" text="Remover Modalidade" />
-                                          <Button fx:id="salvar3" layoutX="488.0" layoutY="18.0" mnemonicParsing="false" onAction="#salvar" text="Gerar Pagamentos" />
+                                          <Button fx:id="salvar3" layoutX="488.0" layoutY="18.0" mnemonicParsing="false" onAction="#gerarPagamentos" text="Gerar Pagamentos" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -127,7 +127,7 @@
                                     <HBox layoutX="10.0" layoutY="191.0" nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
                                        <children>
                                           <FlowPane HBox.hgrow="ALWAYS" />
-                                          <Button fx:id="salvar2" mnemonicParsing="false" onAction="#salvar" text="Voltar" />
+                                          <Button fx:id="salvar2" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
                                        </children>
                                        <padding>
                                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

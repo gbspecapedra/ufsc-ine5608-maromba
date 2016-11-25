@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SingleSelectionModel;
@@ -24,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import models.Aluno;
 import models.Modalidade;
+import models.Pagamento;
 
 public class MatriculaCtrl implements Initializable {
 
@@ -50,6 +52,9 @@ public class MatriculaCtrl implements Initializable {
 
     // TAB CADASTRO
     @FXML
+    Label plano;
+
+    @FXML
     ObservableList<Aluno> listaAlunos = FXCollections.observableArrayList();
 
     @FXML
@@ -57,6 +62,9 @@ public class MatriculaCtrl implements Initializable {
 
     @FXML
     ObservableList<Modalidade> listaModalidadeTabela = FXCollections.observableArrayList();
+
+    @FXML
+    ObservableList<Pagamento> listaPagamentoTabela = FXCollections.observableArrayList();
 
     // TAB PESQUISA
     @FXML
@@ -138,6 +146,7 @@ public class MatriculaCtrl implements Initializable {
             dadosValidos = false;
         } else {
             alunoSelecionado = comboAluno.getSelectionModel().getSelectedItem();
+            plano.setText(alunoSelecionado.getPlano());
         }
 
         // Verificar se a modalidade já não foi selecionada previamente
@@ -152,12 +161,39 @@ public class MatriculaCtrl implements Initializable {
         } else {
 
             comboAluno.setDisable(true);
-//            comboAluno.setStyle("-fx-opacity: 1;");
-
             this.listaModalidadeTabela.add(modalidadeSelecionada);
             this.desenharTabelaModalidades();
         }
 
+    }
+
+    @FXML
+    private void gerarPagamentos() {
+
+        Double valorTotal = 0.00;
+
+        for (Modalidade m : listaModalidadeTabela) {
+            valorTotal += m.getValor();
+        }
+        
+        Alerta.informar(Double.toString(valorTotal));
+        
+        
+        Aluno alunoSelecionado;
+        alunoSelecionado = comboAluno.getSelectionModel().getSelectedItem();
+//        Alerta.informar(alunoSelecionado.getPlano());
+
+        boolean dadosValidos = true;
+        String mensagem = "";
+
+        if (listaModalidadeTabela.isEmpty()) {
+            mensagem = "Selecione ao menos uma modalidade.";
+            dadosValidos = false;
+        }
+
+        if (!dadosValidos) {
+            Alerta.informar(mensagem);
+        }
     }
 
     @FXML
@@ -265,6 +301,12 @@ public class MatriculaCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // Ajusta o label referente ao Plano
+        comboAluno.setOnAction((event) -> {
+            Aluno alunoSelecionado = comboAluno.getSelectionModel().getSelectedItem();
+            plano.setText(alunoSelecionado.getPlano());
+        });
 
         try {
             // Preenche o combo de alunos
