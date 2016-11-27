@@ -10,7 +10,8 @@ import helpers.Alerta;
 import helpers.Validador;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.text.ParseException;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -22,26 +23,26 @@ public class Aluno extends Pessoa {
 
     private String plano;
     private AlunoDao dao;
-    private HashMap<Modalidade, Integer> modalidades;
-    private ObservableList<Pagamento> pagamentos;
-    private ObservableList<Frequencia> frequencia;
+    private ArrayList<Modalidade> modalidades;
+    private ArrayList<Pagamento> pagamentos;
+    private ArrayList<Frequencia> frequencia;
 
     public Aluno() throws SQLException {
         this.dao = new AlunoDao();
     }
 
-    public int persistir() throws SQLException {
+    public int persistir() throws SQLException, ParseException {
 
         int retorno;
-        
+
         // Verifica se já existe um aluno com esse CPF
         ObservableList<Aluno> alunos = this.listarAlunos();
         for (Aluno aluno : alunos) {
-            if((aluno.getCpf().equals(this.getCpf()) && aluno.getMatricula() != this.getMatricula())){
+            if ((aluno.getCpf().equals(this.getCpf()) && aluno.getMatricula() != this.getMatricula())) {
                 return -1;
             }
         }
-      
+
         retorno = this.dao.persistir(this);
         return retorno;
     }
@@ -56,15 +57,42 @@ public class Aluno extends Pessoa {
 
     public ObservableList<Aluno> listarAlunos() throws SQLException {
         ObservableList<Aluno> alunos = FXCollections.observableArrayList();
+//        ObservableList<Modalidade> modalidades = FXCollections.observableArrayList();
+        ArrayList<Modalidade> modalidades = new ArrayList<>();
+        ObservableList<Pagamento> pagamentos = FXCollections.observableArrayList();
+//        ObservableList<Aluno> alunos = FXCollections.observableArrayList();
         ResultSet linhas = this.dao.listar();
         while (linhas.next()) {
 
             // Inicializa um objeto
             Aluno aluno = new Aluno();
+            Modalidade modalidade = new Modalidade();
+            Pagamento pagamento = new Pagamento();
+
             aluno.setNome(linhas.getString("nome"));
             aluno.setMatricula(linhas.getInt("id"));
             aluno.setPlano(linhas.getString("plano"));
             aluno.setCpf(linhas.getString("cpf"));
+
+            // Modalidades
+            ResultSet linhasModalidades = this.dao.listarModalidades(aluno);
+            while (linhasModalidades.next()) {
+                modalidade.setId(linhasModalidades.getInt("id"));
+                modalidade.setNome(linhasModalidades.getString("nome"));
+                modalidade.setValor(linhasModalidades.getDouble("valor"));
+                modalidade.setDiasSemana(linhasModalidades.getString("diasSemana"));
+            }
+            aluno.setModalidades(modalidades);
+
+            // Pagamentos
+//            ResultSet linhasPagamentos = this.dao.listarPagamentos(aluno);
+//            while (linhasPagamentos.next()) {
+//                pagamento.setD(linhasPagamentos.getInt("id"));
+//            }
+//            aluno.setPagamentos(this.pagamentos);
+            aluno.setPagamentos(new ArrayList<>());
+            // implementar            
+            aluno.setFrequencia(new ArrayList<>());
 
             // Adiciona o objeto ao retorno
             alunos.add(aluno);
@@ -84,10 +112,8 @@ public class Aluno extends Pessoa {
 
         if (this.getCpf().isEmpty()) {
             return "Os campos em vermelho são de preenchimehto obrigatório.";
-        } else {
-            if (!Validador.validarCPF(this.getCpf())) {
-                return "O CPF informado não é válido.";
-            }
+        } else if (!Validador.validarCPF(this.getCpf())) {
+            return "O CPF informado não é válido.";
         }
 
         return "0";
@@ -99,6 +125,30 @@ public class Aluno extends Pessoa {
 
     public void setPlano(String plano) {
         this.plano = plano;
+    }
+
+    public ArrayList<Modalidade> getModalidades() {
+        return modalidades;
+    }
+
+    public void setModalidades(ArrayList<Modalidade> modalidades) {
+        this.modalidades = modalidades;
+    }
+
+    public ArrayList<Pagamento> getPagamentos() {
+        return pagamentos;
+    }
+
+    public void setPagamentos(ArrayList<Pagamento> pagamentos) {
+        this.pagamentos = pagamentos;
+    }
+
+    public ArrayList<Frequencia> getFrequencia() {
+        return frequencia;
+    }
+
+    public void setFrequencia(ArrayList<Frequencia> frequencia) {
+        this.frequencia = frequencia;
     }
 
 }

@@ -96,7 +96,7 @@
                                                         <FlowPane prefHeight="25.0" prefWidth="289.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label prefHeight="17.0" prefWidth="89.0" text="Plano do Aluno:" />
-                                                <Label style="-fx-font-weight: bold;" text="" textFill="#616161" fx:id="plano" />
+                                                <Label fx:id="plano" style="-fx-font-weight: bold;" text="" textFill="#616161" />
                                              </children></FlowPane>
                                                         <Button fx:id="salvar" mnemonicParsing="false" onAction="#removerModalidade" prefHeight="25.0" prefWidth="139.0" text="Remover Modalidade" />
                                           <Button fx:id="salvar3" layoutX="488.0" layoutY="18.0" mnemonicParsing="false" onAction="#gerarPagamentos" text="Gerar Pagamentos" />
@@ -109,7 +109,7 @@
                                        <children>
                                           <FlowPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <TableView prefHeight="152.0" prefWidth="583.0">
+                                                <TableView fx:id="tabelaPagamentos" prefHeight="152.0" prefWidth="583.0">
                                                    <columns>
                                                       <TableColumn prefWidth="62.0" text="Parcela" />
                                                       <TableColumn minWidth="0.0" prefWidth="106.0" text="Status" />
