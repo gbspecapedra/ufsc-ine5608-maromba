@@ -19,7 +19,7 @@
                     <center>
                         <TabPane fx:id="painelAbas">
                             <tabs>
-                                <Tab closable="false" text="Listar">
+<!--                                <Tab closable="false" text="Listar">
                                     <content>
                                         <VBox>
                                             <children>
@@ -38,8 +38,8 @@
                                             </children>
                                         </VBox>
                                     </content>
-                                </Tab>
-                                <Tab closable="false" text="Nova Matrícula">
+                                </Tab>-->
+                                <Tab closable="false" text="Matrícula">
                                     
                                     <content>
                                         <VBox>

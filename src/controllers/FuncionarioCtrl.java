@@ -96,6 +96,7 @@ public class FuncionarioCtrl implements Initializable {
         boolean edicao = false;
         String mensagem = "";
         String modeloValido = "";
+        SingleSelectionModel<Tab> modeloSelecionado;
 
         if (this.model.getMatricula() > 0) {
             edicao = true;
@@ -110,6 +111,7 @@ public class FuncionarioCtrl implements Initializable {
         // Alerta.informar(this.model.getFuncao());
         // Valida e persiste o modelo
         modeloValido = this.model.validarModelo();
+
         if (modeloValido.equals("0")) {
             this.model.setMatricula(this.model.persistir());
             if (this.model.getMatricula() == -1) {
@@ -130,10 +132,11 @@ public class FuncionarioCtrl implements Initializable {
         Alerta.informar(mensagem);
 
         if (sucesso) {
-            // Altera para a aba de inserção/edição
+
             this.desenharTabela();
-            SingleSelectionModel<Tab> selectionModel = painelAbas.getSelectionModel();
-            selectionModel.select(0);
+            // Altera para a aba de inserção/edição
+            modeloSelecionado = painelAbas.getSelectionModel();
+            modeloSelecionado.select(0);
             this.model = new Funcionario();
             this.limparCampos();
         }
@@ -191,8 +194,8 @@ public class FuncionarioCtrl implements Initializable {
         this.model = editar;
 
         // Altera para a aba de inserção/edição
-        SingleSelectionModel<Tab> selectionModel = painelAbas.getSelectionModel();
-        selectionModel.select(1);
+        SingleSelectionModel<Tab> modeloSelecionado = painelAbas.getSelectionModel();
+        modeloSelecionado.select(1);
     }
 
     @FXML
@@ -205,8 +208,8 @@ public class FuncionarioCtrl implements Initializable {
         campoCTPS.setText("");
         comboFuncao.getSelectionModel().select("Professor");
 
-        SingleSelectionModel<Tab> selectionModel = painelAbas.getSelectionModel();
-        selectionModel.select(1);
+        SingleSelectionModel<Tab> modeloSelecionado = painelAbas.getSelectionModel();
+        modeloSelecionado.select(1);
     }
 
     public void limparCampos() {

@@ -146,7 +146,6 @@ public class MatriculaCtrl implements Initializable {
         Aluno alunoSelecionado = new Aluno();
         Modalidade modalidadeSelecionada = new Modalidade();
         
-        
         if (comboModalidade.getSelectionModel().isEmpty()) {
             mensagem = "Selecione uma modalidade.";
             dadosValidos = false;
@@ -163,7 +162,6 @@ public class MatriculaCtrl implements Initializable {
         }
 
         // Verificar se a modalidade já não foi selecionada previamente
-//        boolean jatem = listaModalidadeTabela.contains(modalidadeSelecionada);
         for (Modalidade m : listaModalidadeTabela) {
             if (m.getNome().equals(modalidadeSelecionada.getNome())) {
                 mensagem = "A modalidade selecionada já encontra-se na lista.";
@@ -172,7 +170,7 @@ public class MatriculaCtrl implements Initializable {
         }
 
         if (dadosValidos) {
-            //            comboAluno.setDisable(true);
+            // comboAluno.setDisable(true);
             this.listaModalidadeTabela.add(modalidadeSelecionada);
             this.desenharTabelaModalidades();
             this.gerarPagamentos();
