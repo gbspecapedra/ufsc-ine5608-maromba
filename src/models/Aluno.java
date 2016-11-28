@@ -8,10 +8,12 @@ package models;
 import dao.AlunoDao;
 import helpers.Alerta;
 import helpers.Validador;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -29,6 +31,9 @@ public class Aluno extends Pessoa {
 
     public Aluno() throws SQLException {
         this.dao = new AlunoDao();
+        this.modalidades = new ArrayList<Modalidade>();
+        this.pagamentos = new ArrayList<Pagamento>();
+        this.frequencia = new ArrayList<Frequencia>();
     }
 
     public int persistir() throws SQLException, ParseException {
@@ -54,12 +59,60 @@ public class Aluno extends Pessoa {
         Alerta.informar("Dados excluídos com sucesso.");
         return 0;
     }
+    
+    
+    public Aluno verificarCredenciais(String matricula) throws SQLException, NoSuchAlgorithmException {
+        Aluno alunoAutenticado = new Aluno();
+        if (this.verificarCredenciaisBD(Integer.parseInt(matricula))) {
+            alunoAutenticado = this.montarAluno(Integer.parseInt(matricula));
+        }
+        return alunoAutenticado;
+    }
+    
+    public Aluno montarAluno(int matricula) throws SQLException {
+        ObservableList<Aluno> alunos = this.listarAlunos();
+        for (Aluno a : alunos) {
+            if (a.getMatricula() == matricula) {
+                return a;
+            }
+        }
+        return null;
+    }
+    
+    
+    public boolean verificarCredenciaisBD(int matricula) throws SQLException, NoSuchAlgorithmException {
 
+        String mensagem = "";
+        boolean retorno = false;
+        boolean matriculaValida = false;
+
+        // Verifica se a matrícula informada é válida
+        ObservableList<Aluno> alunos = this.listarAlunos();
+        for (Aluno a : alunos) {
+            if (a.getMatricula() == matricula) {
+                matriculaValida = true;
+            }
+        }
+
+        if (!matriculaValida) {
+            mensagem = "Matrícula Inexistente";
+            Alerta.informar(mensagem);
+            return false;
+        } else {
+             return true;
+        }
+
+       
+
+    }
+    
+    
+    
     public ObservableList<Aluno> listarAlunos() throws SQLException {
         ObservableList<Aluno> alunos = FXCollections.observableArrayList();
 //        ObservableList<Modalidade> modalidades = FXCollections.observableArrayList();
-        ArrayList<Modalidade> modalidades = new ArrayList<>();
-        ObservableList<Pagamento> pagamentos = FXCollections.observableArrayList();
+//        ArrayList<Modalidade> modalidadesBase = new ArrayList<>();
+//        ObservableList<Pagamento> pagamentos = FXCollections.observableArrayList();
 //        ObservableList<Aluno> alunos = FXCollections.observableArrayList();
         ResultSet linhas = this.dao.listar();
         while (linhas.next()) {
@@ -81,16 +134,21 @@ public class Aluno extends Pessoa {
                 modalidade.setNome(linhasModalidades.getString("nome"));
                 modalidade.setValor(linhasModalidades.getDouble("valor"));
                 modalidade.setDiasSemana(linhasModalidades.getString("diasSemana"));
+                aluno.getModalidades().add(modalidade);
             }
-            aluno.setModalidades(modalidades);
 
-            // Pagamentos
-//            ResultSet linhasPagamentos = this.dao.listarPagamentos(aluno);
-//            while (linhasPagamentos.next()) {
-//                pagamento.setD(linhasPagamentos.getInt("id"));
-//            }
-//            aluno.setPagamentos(this.pagamentos);
-            aluno.setPagamentos(new ArrayList<>());
+//            
+            ResultSet linhasPagamentos = this.dao.listarPagamentos(aluno);
+            while (linhasPagamentos.next()) {
+
+                pagamento.setValor(linhasPagamentos.getDouble("valor"));
+                pagamento.setDtPagamento(linhasPagamentos.getDate("dtPagamento"));
+                pagamento.setDtVencimento(linhasPagamentos.getDate("dtVencimento"));
+                pagamento.setMatriculaAluno(linhasPagamentos.getInt("idAluno"));
+
+                aluno.getPagamentos().add(pagamento);
+            }
+
             // implementar            
             aluno.setFrequencia(new ArrayList<>());
 

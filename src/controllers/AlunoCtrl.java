@@ -5,6 +5,7 @@ import helpers.Alerta;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,7 +87,7 @@ public class AlunoCtrl implements Initializable {
     
     // DISPARADORES DA VIEW
     @FXML
-    private void salvar() throws SQLException, NoSuchAlgorithmException {
+    private void salvar() throws SQLException, NoSuchAlgorithmException, ParseException {
 
         boolean sucesso = true;
         boolean edicao = false;

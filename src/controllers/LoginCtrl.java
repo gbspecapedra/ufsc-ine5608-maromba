@@ -18,13 +18,23 @@ import javafx.scene.control.TextField;
  * Login Controller.
  */
 public class LoginCtrl implements Initializable {
+
     // ATRIBUTOS DA VIEW
     @FXML
-    TextField userId;
+    TextField campoMatriculaDoAluno;
+
     @FXML
-    PasswordField password;
+    Button botaoLoginAluno;
+
     @FXML
-    Button login;
+    TextField campoLoginDoFuncionario;
+
+    @FXML
+    PasswordField campoSenhaDoFuncionario;
+
+    @FXML
+    Button loginDoFuncionario;
+
     @FXML
     Label errorMessage;
 
@@ -40,17 +50,23 @@ public class LoginCtrl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         errorMessage.setText("");
-        userId.setPromptText("demo");
-        password.setPromptText("demo");
+//        userId.setPromptText("demo");
+//        password.setPromptText("demo");
 
     }
 
     // MÉTODOS DO CONTROLLER
-    public void processLogin(ActionEvent event) throws SQLException, NoSuchAlgorithmException {
-        if (application.loginDoFuncionario(userId.getText(), password.getText())) {
-     
+    public void loginDoFuncionario(ActionEvent event) throws SQLException, NoSuchAlgorithmException {
+        if (application.loginDoFuncionario(campoLoginDoFuncionario.getText(), campoSenhaDoFuncionario.getText())) {
             errorMessage.setText("Usuário e/ou Senha Inválidos");
         }
+    }
+
+    public void loginDoAluno(ActionEvent event) throws SQLException, NoSuchAlgorithmException {
+        if (application.loginDoAluno(campoMatriculaDoAluno.getText())) {
+            errorMessage.setText("Usuário e/ou Senha Inválidos");
+        }
+
     }
 
     public void alterarSenha(ActionEvent event) throws SQLException, NoSuchAlgorithmException {

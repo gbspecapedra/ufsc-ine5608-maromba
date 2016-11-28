@@ -18,6 +18,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import models.Aluno;
 import models.Funcionario;
 
 /**
@@ -28,18 +29,20 @@ public class Main extends Application {
     private Stage stage;
     private String texto;
     private static Funcionario funcionarioLogado;
+    private static Aluno alunoLogado;
 
     // private final double MINIMUM_WINDOW_WIDTH = 600.0;
     // private final double MINIMUM_WINDOW_HEIGHT = 400.0;
     public static void main(String[] args) {
-        // System.out.println(args[0]);
+//         System.out.println(args[0]);
         Application.launch(Main.class, (java.lang.String[]) null);
     }
 
     @Override
     public void start(Stage primaryStage) {
         try {
-            Main.funcionarioLogado = new Funcionario();
+            Main.funcionarioLogado = new Funcionario(); 
+            Main.alunoLogado = new Aluno();
 
             // TESTES
 //            if(Validador.validarCPF("04817039930")){
@@ -60,18 +63,32 @@ public class Main extends Application {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void ajustarDimensoes(){
+
+    public void ajustarDimensoes() {
         stage.setHeight(400);
     }
+
     // MÉTODOS DE AUTENTICAÇÃO
     public boolean loginDoFuncionario(String matricula, String senha) throws SQLException, NoSuchAlgorithmException {
         Main.funcionarioLogado = funcionarioLogado.verificarCredenciais(matricula, senha);
         if (funcionarioLogado.getMatricula() > 0) {
             exibirViewInicio();
             return true;
+        } else {
+            return false;
         }
-        return false;
+        
+    }
+
+    public boolean loginDoAluno(String matricula) throws SQLException, NoSuchAlgorithmException {
+        Main.alunoLogado = alunoLogado.verificarCredenciais(matricula);
+        if (alunoLogado.getMatricula() > 0) {
+            exibirViewInicio();
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     public void logoffDoFuncionario() throws SQLException {
@@ -142,8 +159,7 @@ public class Main extends Application {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     public void exibirViewMatricula() {
         try {
             stage.sizeToScene();
