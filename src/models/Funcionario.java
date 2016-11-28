@@ -89,6 +89,7 @@ public class Funcionario extends Pessoa {
         this.dao.deletar(this.getMatricula());
         Alerta.informar("Dados excluídos com sucesso.");
         return 0;
+        
     }
 
     public ObservableList<Funcionario> listarFuncionarios() throws SQLException {

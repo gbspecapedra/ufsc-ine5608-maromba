@@ -24,7 +24,7 @@ import models.Funcionario;
 
 public class FuncionarioCtrl implements Initializable {
 
-     // ASSOCIAÇÔES
+    // ASSOCIAÇÔES
     private Main application;
     private Funcionario model;
 
@@ -50,7 +50,7 @@ public class FuncionarioCtrl implements Initializable {
 
     @FXML
     private TextField campoCPF;
-    
+
     @FXML
     private TextField campoCTPS;
 
@@ -63,19 +63,19 @@ public class FuncionarioCtrl implements Initializable {
     // TAB PESQUISA
     @FXML
     private TableView<Funcionario> tabelaFuncionarios;
-    
+
     @FXML
     TableColumn<Funcionario, String> colunaMatricula;
-    
+
     @FXML
     TableColumn<Funcionario, String> colunaNome;
 
     @FXML
     TableColumn<Funcionario, String> colunaCPF;
-    
+
     @FXML
     TableColumn<Funcionario, String> colunaCTPS;
-    
+
     @FXML
     TableColumn<Funcionario, String> colunaFuncao;
 
@@ -83,13 +83,11 @@ public class FuncionarioCtrl implements Initializable {
         this.model = new Funcionario();
     }
 
-    
     @FXML
     private void teste() {
         System.out.println(this.application.getFuncionarioLogado().getNome());
     }
-    
-    
+
     // DISPARADORES DA VIEW
     @FXML
     private void salvar() throws SQLException, NoSuchAlgorithmException {
@@ -97,6 +95,7 @@ public class FuncionarioCtrl implements Initializable {
         boolean sucesso = true;
         boolean edicao = false;
         String mensagem = "";
+        String modeloValido = "";
 
         if (this.model.getMatricula() > 0) {
             edicao = true;
@@ -110,7 +109,8 @@ public class FuncionarioCtrl implements Initializable {
 
         // Alerta.informar(this.model.getFuncao());
         // Valida e persiste o modelo
-        if (this.model.validarModelo().equals("0")) {
+        modeloValido = this.model.validarModelo();
+        if (modeloValido.equals("0")) {
             this.model.setMatricula(this.model.persistir());
             if (this.model.getMatricula() == -1) {
                 mensagem = "Já existe um funcionario cadastrado com o CPF informado.";
@@ -119,14 +119,14 @@ public class FuncionarioCtrl implements Initializable {
                 if (edicao) {
                     mensagem = "Dados atualizados com sucesso.";
                 } else {
-                    mensagem = "Dados incluídos com sucesso. Sua matrícula é "+this.model.getMatricula()+"";
+                    mensagem = "Dados incluídos com sucesso. Sua matrícula é " + this.model.getMatricula() + "";
                 }
             }
         } else {
-            mensagem = this.model.validarModelo();
+            mensagem = modeloValido;
             sucesso = false;
         }
-        
+
         Alerta.informar(mensagem);
 
         if (sucesso) {
@@ -146,10 +146,10 @@ public class FuncionarioCtrl implements Initializable {
         if (Alerta.confirmar("Confirma a exclusão do funcionario?")) {
 
             // Retorna o item da linha selecionada
-            ObservableList<Funcionario> itemSelecionado, lista;
+            ObservableList<Funcionario> funcionarioSelecionado, lista;
             lista = tabelaFuncionarios.getItems();
-            itemSelecionado = tabelaFuncionarios.getSelectionModel().getSelectedItems();
-            Funcionario remover = itemSelecionado.get(0);
+            funcionarioSelecionado = tabelaFuncionarios.getSelectionModel().getSelectedItems();
+            Funcionario remover = funcionarioSelecionado.get(0);
 
             this.model = remover;
 
@@ -157,7 +157,7 @@ public class FuncionarioCtrl implements Initializable {
             System.out.println("Deletou: " + remover.getNome());
 
             // Remove da tabela da view
-            itemSelecionado.forEach(lista::remove);
+            funcionarioSelecionado.forEach(lista::remove);
             tabelaFuncionarios.refresh();
 
             // Remove do DB
@@ -172,7 +172,7 @@ public class FuncionarioCtrl implements Initializable {
 
     @FXML
     private void editar() throws SQLException {
-        
+
         // Retorna o item da linha selecionada
         ObservableList<Funcionario> itemSelecionado, lista;
         lista = tabelaFuncionarios.getItems();
@@ -209,21 +209,20 @@ public class FuncionarioCtrl implements Initializable {
         selectionModel.select(1);
     }
 
-    public void limparCampos(){    
+    public void limparCampos() {
         campoNome.setText("");
         campoCPF.setText("");
         campoCTPS.setText("");
-        comboFuncao.getSelectionModel().select("Professor");        
+        comboFuncao.getSelectionModel().select("Professor");
     }
-    
-    
+
     public void desenharTabela() throws SQLException {
         tabelaFuncionarios.getColumns().clear();
-        
+
         colunaMatricula = new TableColumn<>("Matr.");
         colunaMatricula.setMinWidth(50);
         colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
-        
+
         colunaNome = new TableColumn<>("Nome");
         colunaNome.setMinWidth(200);
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -231,11 +230,11 @@ public class FuncionarioCtrl implements Initializable {
         colunaCPF = new TableColumn<>("CPF");
         colunaCPF.setMinWidth(100);
         colunaCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-        
+
         colunaCTPS = new TableColumn<>("CTPS");
         colunaCTPS.setMinWidth(100);
         colunaCTPS.setCellValueFactory(new PropertyValueFactory<>("ctps"));
-        
+
         colunaFuncao = new TableColumn<>("Funcao");
         colunaFuncao.setMinWidth(145);
         colunaFuncao.setCellValueFactory(new PropertyValueFactory<>("funcao"));

@@ -61,16 +61,16 @@ public class AlunoCtrl implements Initializable {
     // TAB PESQUISA
     @FXML
     private TableView<Aluno> tabelaAlunos;
-    
+
     @FXML
     TableColumn<Aluno, String> colunaMatricula;
-    
+
     @FXML
     TableColumn<Aluno, String> colunaNome;
 
     @FXML
     TableColumn<Aluno, String> colunaCPF;
-    
+
     @FXML
     TableColumn<Aluno, String> colunaPlano;
 
@@ -78,13 +78,11 @@ public class AlunoCtrl implements Initializable {
         this.model = new Aluno();
     }
 
-    
     @FXML
     private void teste() {
         System.out.println(this.application.getFuncionarioLogado().getNome());
     }
-    
-    
+
     // DISPARADORES DA VIEW
     @FXML
     private void salvar() throws SQLException, NoSuchAlgorithmException, ParseException {
@@ -113,14 +111,14 @@ public class AlunoCtrl implements Initializable {
                 if (edicao) {
                     mensagem = "Dados atualizados com sucesso.";
                 } else {
-                    mensagem = "Dados incluídos com sucesso. Sua matrícula é "+this.model.getMatricula()+"";
+                    mensagem = "Dados incluídos com sucesso. Sua matrícula é " + this.model.getMatricula() + "";
                 }
             }
         } else {
             mensagem = this.model.validarModelo();
             sucesso = false;
         }
-        
+
         Alerta.informar(mensagem);
 
         if (sucesso) {
@@ -165,6 +163,37 @@ public class AlunoCtrl implements Initializable {
     }
 
     @FXML
+    private void liberarAcessoAcademia() {
+
+        boolean adimplente = this.model.verificarAdimplente();
+        boolean diaPermitido = this.model.verificarDiaModalidade();
+        String mensagem = "";
+        boolean dadosValidos = true;
+
+        if (!adimplente) {
+            mensagem = "Acesso Bloqueado por Inadimplência.";
+            dadosValidos = false;
+            return;
+        }
+
+        if (!diaPermitido) {
+            mensagem = "Acesso não permitido.";
+            dadosValidos = false;
+            return;
+        }
+        
+        if (dadosValidos) {
+            this.model.registrarFrequencia();
+            // Nota: nesse ponto seria enviado o sinal de liberação à catraca
+        } else {
+            Alerta.informar(mensagem);
+        }
+
+    }
+    
+    
+
+    @FXML
     private void editar() throws SQLException {
 
         // Retorna o item da linha selecionada
@@ -201,20 +230,19 @@ public class AlunoCtrl implements Initializable {
         selectionModel.select(1);
     }
 
-    public void limparCampos(){    
+    public void limparCampos() {
         campoNome.setText("");
         campoCPF.setText("");
-        comboPlano.getSelectionModel().select("Mensal");        
+        comboPlano.getSelectionModel().select("Mensal");
     }
-    
-    
+
     public void desenharTabela() throws SQLException {
         tabelaAlunos.getColumns().clear();
-        
+
         colunaMatricula = new TableColumn<>("Matr.");
         colunaMatricula.setMinWidth(50);
         colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
-        
+
         colunaNome = new TableColumn<>("Nome");
         colunaNome.setMinWidth(195);
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -222,7 +250,7 @@ public class AlunoCtrl implements Initializable {
         colunaCPF = new TableColumn<>("CPF");
         colunaCPF.setMinWidth(175);
         colunaCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-        
+
         colunaPlano = new TableColumn<>("Plano");
         colunaPlano.setMinWidth(175);
         colunaPlano.setCellValueFactory(new PropertyValueFactory<>("plano"));
@@ -254,5 +282,6 @@ public class AlunoCtrl implements Initializable {
 
     }
 
+   
+
 }
- 

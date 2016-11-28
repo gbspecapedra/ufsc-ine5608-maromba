@@ -114,4 +114,16 @@ public class AlunoDao extends Dao {
         return itens;
     }
 
+    public boolean verificarAdimplenteDao(Aluno aluno) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean verificarModalidadeDao(Aluno aluno) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void registrarFrequenciaDao(Aluno aluno) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

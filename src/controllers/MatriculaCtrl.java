@@ -143,8 +143,10 @@ public class MatriculaCtrl implements Initializable {
 
         String mensagem = "";
         boolean dadosValidos = true;
-
+        Aluno alunoSelecionado = new Aluno();
         Modalidade modalidadeSelecionada = new Modalidade();
+        
+        
         if (comboModalidade.getSelectionModel().isEmpty()) {
             mensagem = "Selecione uma modalidade.";
             dadosValidos = false;
@@ -152,7 +154,6 @@ public class MatriculaCtrl implements Initializable {
             modalidadeSelecionada = comboModalidade.getSelectionModel().getSelectedItem();
         }
 
-        Aluno alunoSelecionado = new Aluno();
         if (comboAluno.getSelectionModel().isEmpty()) {
             mensagem = "Selecione o Aluno.";
             dadosValidos = false;
@@ -178,7 +179,6 @@ public class MatriculaCtrl implements Initializable {
 
         } else {
             Alerta.informar(mensagem);
-
         }
 
     }

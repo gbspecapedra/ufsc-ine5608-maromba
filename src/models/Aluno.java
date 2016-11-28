@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -59,8 +58,7 @@ public class Aluno extends Pessoa {
         Alerta.informar("Dados excluídos com sucesso.");
         return 0;
     }
-    
-    
+
     public Aluno verificarCredenciais(String matricula) throws SQLException, NoSuchAlgorithmException {
         Aluno alunoAutenticado = new Aluno();
         if (this.verificarCredenciaisBD(Integer.parseInt(matricula))) {
@@ -68,7 +66,7 @@ public class Aluno extends Pessoa {
         }
         return alunoAutenticado;
     }
-    
+
     public Aluno montarAluno(int matricula) throws SQLException {
         ObservableList<Aluno> alunos = this.listarAlunos();
         for (Aluno a : alunos) {
@@ -78,16 +76,16 @@ public class Aluno extends Pessoa {
         }
         return null;
     }
-    
-    
+
     public boolean verificarCredenciaisBD(int matricula) throws SQLException, NoSuchAlgorithmException {
 
         String mensagem = "";
         boolean retorno = false;
         boolean matriculaValida = false;
-
-        // Verifica se a matrícula informada é válida
         ObservableList<Aluno> alunos = this.listarAlunos();
+        
+        
+        // Verifica se a matrícula informada é válida
         for (Aluno a : alunos) {
             if (a.getMatricula() == matricula) {
                 matriculaValida = true;
@@ -99,11 +97,23 @@ public class Aluno extends Pessoa {
             Alerta.informar(mensagem);
             return false;
         } else {
-             return true;
+            return true;
         }
 
-       
+    }
 
+    
+    
+     public boolean verificarAdimplente() {
+        return this.dao.verificarAdimplenteDao(this);
+    }
+
+    public boolean verificarDiaModalidade() {
+        return this.dao.verificarModalidadeDao(this);
+    }
+
+    public void registrarFrequencia() {
+        this.dao.registrarFrequenciaDao(this);
     }
     
     
