@@ -12,19 +12,21 @@ import java.util.Date;
  * @author orlando
  */
 public class Pagamento {
+
+    int matriculaAluno;
+    int idPagamento;
     Date dtPagamento;
     Date dtVencimento;
-    int matriculaAluno;
     Double valor;
-    
+    String situacao;
+
 //    public Pagamento(Date dtVencimento, int matriculaAluno, Double valor){
 //        this.dtVencimento = dtVencimento;
 //        this.matriculaAluno = matriculaAluno;
 //        this.valor = valor;
 //    }
-
     public Pagamento() {
-        
+
     }
 
     public Date getDtPagamento() {
@@ -33,6 +35,11 @@ public class Pagamento {
 
     public void setDtPagamento(Date dtPagamento) {
         this.dtPagamento = dtPagamento;
+        if (this.dtPagamento != null) {
+            this.situacao = "Quitado";
+        } else {
+            this.situacao = "Pendente";
+        }
     }
 
     public Date getDtVencimento() {
@@ -58,6 +65,22 @@ public class Pagamento {
     public void setValor(Double valor) {
         this.valor = valor;
     }
-    
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+
+    public int getIdPagamento() {
+        return idPagamento;
+    }
+
+    public void setIdPagamento(int idPagamento) {
+        this.idPagamento = idPagamento;
+    }
+
     
 }

@@ -27,7 +27,7 @@
                 
                 <Menu mnemonicParsing="false" text="Consultas">
                     <items>
-                        <!--<MenuItem mnemonicParsing="false" onAction="#solicitarViewPagamento" text="Pagamento" />-->
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewPagamento" text="Pagamento" />
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewFrequencia" text="Frequencia" />
                     </items>
                 </Menu>

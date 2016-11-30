@@ -29,6 +29,7 @@ public class AlunoDao extends Dao {
         if (aluno.getMatricula() > 0) {
             // Atualiza um registro
             sql = "UPDATE pessoas SET nome = '" + aluno.getNome() + "', cpf = '" + aluno.getCpf() + "', plano = '" + aluno.getPlano() + "' WHERE id = '" + aluno.getMatricula() + "'";
+            Alerta.log(sql);
             this.execute(sql);
 
             this.atualizarParcelas(aluno);
@@ -38,10 +39,12 @@ public class AlunoDao extends Dao {
         } else {
             // Insere novo registro
             sql = "INSERT into pessoas (nome, cpf, plano, tipo) values ('" + aluno.getNome() + "', '" + aluno.getCpf() + "','" + aluno.getPlano() + "', 'Aluno')";
+            Alerta.log(sql);
             this.execute(sql);
 
             // Retorna o id do novo aluno
             sql = "SELECT id FROM pessoas WHERE cpf = '" + aluno.getCpf() + "'";
+            Alerta.log(sql);
             linhas = this.select(sql);
             if (linhas.next()) {
                 retorno = linhas.getInt("id");
@@ -88,6 +91,7 @@ public class AlunoDao extends Dao {
 
         // VERIFICAR SE NÃO HÁ PAGAMENTOS PENDENTES        
         String sql = "DELETE FROM pessoas WHERE id = " + matricula;
+        Alerta.log(sql);
         try {
             this.execute(sql);
             return matricula;
@@ -98,7 +102,9 @@ public class AlunoDao extends Dao {
     }
 
     public ResultSet listarPagamentos(Aluno aluno) throws SQLException {
-        ResultSet itens = this.select("select * from pagamento where idAluno = " + aluno.getMatricula());
+        String sql = "select * from pagamento where idAluno = " + aluno.getMatricula();
+        ResultSet itens = this.select(sql);
+        Alerta.log(sql);
         return itens;
     }
 
@@ -110,7 +116,9 @@ public class AlunoDao extends Dao {
     }
 
     public ResultSet listar() throws SQLException {
-        ResultSet itens = this.select("select * from pessoas where tipo = 'Aluno'");        
+        String sql = "select * from pessoas where tipo = 'Aluno'";
+        ResultSet itens = this.select(sql);
+        Alerta.log(sql);
         return itens;
     }
 
@@ -139,14 +147,20 @@ public class AlunoDao extends Dao {
     public boolean registrarFrequenciaDao(Aluno aluno) throws SQLException {
         String sql;
         sql = "INSERT into frequencia (idAluno, data) values (" + aluno.getMatricula() + ", NOW())";
-
+        Alerta.log(sql);
         try {
             this.execute(sql);
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
 
+    public void baixarPagamentoDao(Pagamento pagamento) throws SQLException {
+        String sql;
+        sql = "update pagamento set dtPagamento = NOW() where id = "+pagamento.getIdPagamento();
+        Alerta.log(sql);
+        this.execute(sql);
     }
 
     public ResultSet listarFrequencia(Aluno aluno) throws SQLException {

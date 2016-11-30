@@ -8,6 +8,7 @@ import controllers.LoginCtrl;
 import controllers.InicioCtrl;
 import controllers.MatriculaCtrl;
 import controllers.ModalidadeCtrl;
+import controllers.PagamentoCtrl;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -157,10 +158,10 @@ public class Main extends Application {
         try {
             ajustarDimensoes();
             stage.sizeToScene();
-            AlunoCtrl alunoCtrl = (AlunoCtrl) alterarCena("pagamento.fxml");
-            alunoCtrl.setApp(this);
-            alunoCtrl.setMenuApp(this);
-            alunoCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+            PagamentoCtrl pagamentoCtrl = (PagamentoCtrl) alterarCena("pagamento.fxml");
+            pagamentoCtrl.setApp(this);
+            pagamentoCtrl.setMenuApp(this);
+            pagamentoCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -116,6 +116,10 @@ public class Aluno extends Pessoa {
         }
     }
 
+    public void baixarPagamento(Pagamento pagamento) throws SQLException {
+        this.dao.baixarPagamentoDao(pagamento);
+    }
+
     public ObservableList<Aluno> listarAlunos() throws SQLException {
         ObservableList<Aluno> alunos = FXCollections.observableArrayList();
 //        ObservableList<Modalidade> modalidades = FXCollections.observableArrayList();
@@ -123,7 +127,7 @@ public class Aluno extends Pessoa {
 //        ObservableList<Pagamento> pagamentos = FXCollections.observableArrayList();
 //        ObservableList<Aluno> alunos = FXCollections.observableArrayList();
         ResultSet linhas = this.dao.listar();
-       
+
         while (linhas.next()) {
 
             // Inicializa um objeto
@@ -150,7 +154,8 @@ public class Aluno extends Pessoa {
 //            
             ResultSet linhasPagamentos = this.dao.listarPagamentos(aluno);
             while (linhasPagamentos.next()) {
-
+                pagamento = new Pagamento();
+                pagamento.setIdPagamento(linhasPagamentos.getInt("id"));
                 pagamento.setValor(linhasPagamentos.getDouble("valor"));
                 pagamento.setDtPagamento(linhasPagamentos.getDate("dtPagamento"));
                 pagamento.setDtVencimento(linhasPagamentos.getDate("dtVencimento"));
@@ -162,6 +167,7 @@ public class Aluno extends Pessoa {
             // implementar            
             ResultSet linhasFrequencia = this.dao.listarFrequencia(aluno);
             while (linhasFrequencia.next()) {
+                freq = new Frequencia();
                 freq.setData(linhasFrequencia.getDate("data"));
                 aluno.getFrequencia().add(freq);
             }

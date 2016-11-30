@@ -5,6 +5,7 @@
  */
 package dao;
 
+import helpers.Alerta;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import libs.Dao;
@@ -36,6 +37,7 @@ public class ModalidadeDao extends Dao {
 
             // Retorna o id do novo modalidade
             sql = "SELECT id FROM modalidades ORDER by id DESC LIMIT 1";
+            Alerta.log(sql);
             linhas = this.select(sql);
             if (linhas.next()) {
                 retorno = linhas.getInt("id");
@@ -48,6 +50,7 @@ public class ModalidadeDao extends Dao {
 
         // VERIFICAR SE NÃO HÁ PAGAMENTOS PENDENTES        
         String sql = "DELETE FROM modalidades WHERE id = " + matricula;
+        Alerta.log(sql);
         try {
             this.execute(sql);
             return matricula;
@@ -58,7 +61,9 @@ public class ModalidadeDao extends Dao {
     }
 
     public ResultSet listar() throws SQLException {
-        ResultSet itens = this.select("select * from modalidades");
+        String sql = "select * from modalidades";
+        ResultSet itens = this.select(sql);
+        Alerta.log(sql);
         return itens;
     }
 
