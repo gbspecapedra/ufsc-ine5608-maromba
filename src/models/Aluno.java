@@ -83,8 +83,7 @@ public class Aluno extends Pessoa {
         boolean retorno = false;
         boolean matriculaValida = false;
         ObservableList<Aluno> alunos = this.listarAlunos();
-        
-        
+
         // Verifica se a matrícula informada é válida
         for (Aluno a : alunos) {
             if (a.getMatricula() == matricula) {
@@ -102,22 +101,21 @@ public class Aluno extends Pessoa {
 
     }
 
-    
-    
-     public boolean verificarAdimplente() {
+    public boolean verificarAdimplente() throws SQLException {
         return this.dao.verificarAdimplenteDao(this);
     }
 
-    public boolean verificarDiaModalidade() {
+    public boolean verificarDiaModalidade() throws SQLException {
+        // retornar dia da semana
         return this.dao.verificarModalidadeDao(this);
     }
 
-    public void registrarFrequencia() {
-        this.dao.registrarFrequenciaDao(this);
+    public void registrarFrequencia() throws SQLException {
+        if (this.dao.registrarFrequenciaDao(this)) {
+            Alerta.informar("Acesso Liberado!");
+        }
     }
-    
-    
-    
+
     public ObservableList<Aluno> listarAlunos() throws SQLException {
         ObservableList<Aluno> alunos = FXCollections.observableArrayList();
 //        ObservableList<Modalidade> modalidades = FXCollections.observableArrayList();
@@ -125,12 +123,14 @@ public class Aluno extends Pessoa {
 //        ObservableList<Pagamento> pagamentos = FXCollections.observableArrayList();
 //        ObservableList<Aluno> alunos = FXCollections.observableArrayList();
         ResultSet linhas = this.dao.listar();
+       
         while (linhas.next()) {
 
             // Inicializa um objeto
             Aluno aluno = new Aluno();
             Modalidade modalidade = new Modalidade();
             Pagamento pagamento = new Pagamento();
+            Frequencia freq = new Frequencia();
 
             aluno.setNome(linhas.getString("nome"));
             aluno.setMatricula(linhas.getInt("id"));
@@ -160,7 +160,11 @@ public class Aluno extends Pessoa {
             }
 
             // implementar            
-            aluno.setFrequencia(new ArrayList<>());
+            ResultSet linhasFrequencia = this.dao.listarFrequencia(aluno);
+            while (linhasFrequencia.next()) {
+                freq.setData(linhasFrequencia.getDate("data"));
+                aluno.getFrequencia().add(freq);
+            }
 
             // Adiciona o objeto ao retorno
             alunos.add(aluno);

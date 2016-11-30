@@ -13,6 +13,30 @@ import java.util.Date;
  */
 public class Frequencia {
     int matriculaAluno;
-    int idModalidade;
     Date data;
+
+    public int getMatriculaAluno() {
+        return matriculaAluno;
+    }
+
+    public void setMatriculaAluno(int matriculaAluno) {
+        this.matriculaAluno = matriculaAluno;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
+    
+    
+    
+    
+    
 }
+
+
+

@@ -17,6 +17,7 @@ public class Dao {
     //  static final String DB_URL = "jdbc:mysql://150.162.79.1:1404/cellfix?useSSL=false";
 //    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/cellfix?useSSL=false";
     static final String DB_URL = "jdbc:mysql://msxacademic.mysql.dbaas.com.br:3306/msxacademic?useSSL=false";
+//    static final String DB_URL = "jdbc:mysql://192.168.79.32:3306/s02?useSSL=false";
     
             
 //    static final String USER = "root";
@@ -24,6 +25,9 @@ public class Dao {
     
     static final String USER = "msxacademic";
     static final String PASS = "underwood";
+    
+//     static final String USER = "sa";
+//    static final String PASS = "fithos0932";
     
 
     private void conecta() throws SQLException {
@@ -35,8 +39,9 @@ public class Dao {
 
     public ResultSet select(String query) throws SQLException {
         this.conecta();
-        ResultSet resultados = statement.executeQuery(query);
+        ResultSet resultados = statement.executeQuery(query);        
         return resultados;
+        
     }
 
     public void execute(String query) throws SQLException {
@@ -44,4 +49,23 @@ public class Dao {
         this.statement.execute(query);
         this.conexao.close();
     }
+
+    public Connection getConexao() {
+        return conexao;
+    }
+
+    public void setConexao(Connection conexao) {
+        this.conexao = conexao;
+    }
+
+    public Statement getStatement() {
+        return statement;
+    }
+
+    public void setStatement(Statement statement) {
+        this.statement = statement;
+    }
+    
+    
+    
 }

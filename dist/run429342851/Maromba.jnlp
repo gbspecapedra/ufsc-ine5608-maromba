@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Maromba.jnlp">
+  <information>
+    <title>Maromba</title>
+    <vendor>orlando</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Maromba.jar" size="117587" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.39-bin.jar" size="989497" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Maromba" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="main.Main"  name="Maromba" />
+  <update check="always"/>
+</jnlp>

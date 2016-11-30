@@ -110,20 +110,51 @@ public class AlunoDao extends Dao {
     }
 
     public ResultSet listar() throws SQLException {
-        ResultSet itens = this.select("select * from pessoas where tipo = 'Aluno'");
+        ResultSet itens = this.select("select * from pessoas where tipo = 'Aluno'");        
         return itens;
     }
 
-    public boolean verificarAdimplenteDao(Aluno aluno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean verificarAdimplenteDao(Aluno aluno) throws SQLException {
+        String sql = "select * from pagamento where idAluno = " + aluno.getMatricula() + " and dtPagamento > (MONTH(CURRENT_DATE - INTERVAL 1 MONTH))";
+        Alerta.log(sql);
+        ResultSet itens = this.select(sql);
+        return itens.next();
     }
 
-    public boolean verificarModalidadeDao(Aluno aluno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean verificarModalidadeDao(Aluno aluno) throws SQLException {
+        String diaSemana = "";
+        diaSemana = Data.diaDaSemana();
+
+        String sql = "select p.nome from pessoas p \n"
+                + "join aluno_modalidade am on p.id = am.idAluno\n"
+                + "join modalidades m on am.idModalidade = m.id\n"
+                + "where p.tipo = 'Aluno'\n"
+                + "and p.id = " + aluno.getMatricula() + "\n"
+                + "and m.diasSemana like '%" + diaSemana + "%'";
+        Alerta.log(sql);
+        ResultSet itens = this.select(sql);
+        return itens.next();
     }
 
-    public void registrarFrequenciaDao(Aluno aluno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean registrarFrequenciaDao(Aluno aluno) throws SQLException {
+        String sql;
+        sql = "INSERT into frequencia (idAluno, data) values (" + aluno.getMatricula() + ", NOW())";
+
+        try {
+            this.execute(sql);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    public ResultSet listarFrequencia(Aluno aluno) throws SQLException {
+        String sql;
+        sql = "select * from frequencia where idAluno = " + aluno.getMatricula();
+        Alerta.log(sql);
+        ResultSet itens = this.select(sql);
+        return itens;
     }
 
 }

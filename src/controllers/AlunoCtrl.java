@@ -163,35 +163,35 @@ public class AlunoCtrl implements Initializable {
     }
 
     @FXML
-    private void liberarAcessoAcademia() {
+    public void liberarAcessoAcademia(Aluno aluno) throws SQLException {
 
+//        Alerta.informar("AlunoCtrl");
+        this.model = aluno;
+        String mensagem = "";
         boolean adimplente = this.model.verificarAdimplente();
         boolean diaPermitido = this.model.verificarDiaModalidade();
-        String mensagem = "";
+
         boolean dadosValidos = true;
 
         if (!adimplente) {
             mensagem = "Acesso Bloqueado por Inadimplência.";
-            dadosValidos = false;
+            Alerta.informar(mensagem);
             return;
         }
 
+        // Alerta.informar(Data.diaDaSemana());
         if (!diaPermitido) {
             mensagem = "Acesso não permitido.";
-            dadosValidos = false;
+            Alerta.informar(mensagem);
             return;
         }
-        
+
         if (dadosValidos) {
             this.model.registrarFrequencia();
             // Nota: nesse ponto seria enviado o sinal de liberação à catraca
-        } else {
-            Alerta.informar(mensagem);
         }
 
     }
-    
-    
 
     @FXML
     private void editar() throws SQLException {
@@ -268,6 +268,12 @@ public class AlunoCtrl implements Initializable {
         this.menuController = menuController;
     }
 
+    public Aluno getModel() {
+        return model;
+    }
+    
+    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -281,7 +287,5 @@ public class AlunoCtrl implements Initializable {
         }
 
     }
-
-   
 
 }

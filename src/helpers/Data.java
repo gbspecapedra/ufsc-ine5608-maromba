@@ -44,4 +44,43 @@ public class Data {
         return data;
     }
 
+    public static String diaDaSemana() {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        int day_of_week = c.get(Calendar.DAY_OF_WEEK);
+        String retorno = "";
+
+        switch (day_of_week) {
+            case 1:
+                retorno = "Dom";
+                break;
+
+            case 2:
+                retorno = "Seg";
+                break;
+
+            case 3:
+                retorno = "Ter";
+                break;
+
+            case 4:
+                retorno = "Qua";
+                break;
+
+            case 5:
+                retorno = "Qui";
+                break;
+
+            case 6:
+                retorno = "Sex";
+                break;
+
+            case 7:
+                retorno = "Sab";
+                break;
+        }
+
+        return retorno;
+    }
+
 }

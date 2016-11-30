@@ -24,6 +24,24 @@
                         <MenuItem fx:id="itemModalidade" mnemonicParsing="false" onAction="#solicitarViewModalidade" text="Cadastrar Modalidade" />
                     </items>
                 </Menu>
+                
+                <Menu mnemonicParsing="false" text="Consultas">
+                    <items>
+                        <!--<MenuItem mnemonicParsing="false" onAction="#solicitarViewPagamento" text="Pagamento" />-->
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewFrequencia" text="Frequencia" />
+                    </items>
+                </Menu>
+                
+                
+                <Menu mnemonicParsing="false" text="Conta">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarLogoff" text="Sair" />
+                    </items>
+                </Menu>
+                
+                
+                
+                
 <!--                
                 <Menu mnemonicParsing="false" text="Equipamentos">
                     <items>
@@ -41,11 +59,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Relatórios de Manutenções" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Conta">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarLogoff" text="Logoff" />
-                    </items>
-                </Menu>-->
+                -->
             </menus>
         </MenuBar>
     </children>
