@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="Menu" stylesheets="css/estilos.css" prefHeight="30.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuCtrl">
+    <children>
+        <MenuBar prefHeight="30.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Inicío">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Início" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Cadastros">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewAluno" text="Cadastrar Aluno" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewMatricula" text="Cadastrar Aluno em Modalidades" />
+                        <MenuItem fx:id="itemFuncionario" mnemonicParsing="false" onAction="#solicitarViewFuncionario" text="Cadastrar Funcionário" />
+                        <MenuItem fx:id="itemModalidade" mnemonicParsing="false" onAction="#solicitarViewModalidade" text="Cadastrar Modalidade" />
+                    </items>
+                </Menu>
+                
+                <Menu mnemonicParsing="false" text="Consultas">
+                    <items>
+                        <!--<MenuItem mnemonicParsing="false" onAction="#solicitarViewPagamento" text="Pagamento" />-->
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewFrequencia" text="Frequencia" />
+                    </items>
+                </Menu>
+                
+                
+                <Menu mnemonicParsing="false" text="Conta">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarLogoff" text="Sair" />
+                    </items>
+                </Menu>
+                
+                
+                
+                
+<!--                
+                <Menu mnemonicParsing="false" text="Equipamentos">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Marcas" />
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Modelos" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Manutenções">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Gerenciar Manutenções" />
+                    </items>
+                </Menu>
+                <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatórios">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Relatórios de Manutenções" />
+                    </items>
+                </Menu>
+                -->
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>

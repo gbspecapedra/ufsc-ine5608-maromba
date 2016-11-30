@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="css/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FuncionarioCtrl">
+    <children>
+        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <top>
+                        <fx:include fx:id="menu" source="/views/menu.fxml" />
+                    </top>
+                    <center>
+                        <TabPane fx:id="painelAbas">
+                            <tabs>
+                                <Tab closable="false" text="Ver Funcionarios Cadastrados">
+                                    <content>
+                                        <VBox>
+                                            <children>
+                                                <TableView fx:id="tabelaFuncionarios" BorderPane.alignment="CENTER">
+                                                </TableView>
+                                                <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="8.0">
+                                                    <children>
+                                                        <Button mnemonicParsing="false" onAction="#novo" text="+" />
+                                                        <Button mnemonicParsing="false" onAction="#deletar" text="Deletar" />                                                        
+                                                        <Button mnemonicParsing="false" onAction="#editar" text="Editar" />
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </content>
+                                </Tab>
+                                <Tab closable="false" text="Novo Funcionario">
+                                    
+                                    <content>
+                                        <VBox>
+                                            <children>
+                                                <GridPane hgap="8.0" vgap="2.0" BorderPane.alignment="CENTER">
+                                                    <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="133.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="135.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="162.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                          <RowConstraints maxHeight="47.0" minHeight="2.0" percentHeight="0.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="92.0" minHeight="11.0" percentHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                          <ComboBox fx:id="comboFuncao" prefHeight="25.0" prefWidth="242.0" promptText="Selecione" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                                          </ComboBox>
+                                                          <TextField fx:id="campoCPF" promptText="CPF" style="-fx-border-color: #D84A38;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </GridPane.margin>
+                                                          </TextField>
+                                          <Label text="CPF" GridPane.columnIndex="1" />
+                                                          <TextField fx:id="campoNome" promptText="Nome" style="-fx-border-color: #D84A38;" GridPane.rowIndex="1" />
+                                          <Label layoutX="159.0" layoutY="21.0" text="Nome" />
+                                          <Label layoutX="18.0" layoutY="21.0" text="Funcao" GridPane.columnIndex="3" />
+                                          <TextField fx:id="campoCTPS" layoutX="159.0" layoutY="44.0" promptText="CTPS" style="-fx-border-color: #D84A38;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                          <Label layoutX="159.0" layoutY="21.0" text="CTPS" GridPane.columnIndex="2" />
+                                                    </children>
+                                                    <BorderPane.margin>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </BorderPane.margin>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </GridPane>
+                                                <HBox nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
+                                                    <children>
+<!--                                                        <Label alignment="BASELINE_LEFT" text="." />-->
+                                                        <FlowPane HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Os campos marcados em vermelho são de preenchimento obrigatório" />
+                                             </children></FlowPane>
+                                                        <Button fx:id="salvar" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
+                                                        <Button mnemonicParsing="false" onAction="#teste" text="Logado" />
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </center>
+                </BorderPane>
+            </children>
+        </StackPane>
+    </children>
+    <padding>
+    </padding>
+</AnchorPane>
