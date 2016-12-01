@@ -61,6 +61,10 @@ public class AlunoCtrl implements Initializable {
     // TAB PESQUISA
     @FXML
     private TableView<Aluno> tabelaAlunos;
+    
+    @FXML
+    private TableView<Aluno> tabelaAlunosInadimplentes;
+    
 
     @FXML
     TableColumn<Aluno, String> colunaMatricula;
@@ -73,6 +77,20 @@ public class AlunoCtrl implements Initializable {
 
     @FXML
     TableColumn<Aluno, String> colunaPlano;
+    
+    @FXML
+    TableColumn<Aluno, String> colunaMatriculaInadimplente;
+
+    @FXML
+    TableColumn<Aluno, String> colunaNomeInadimplente;
+
+    @FXML
+    TableColumn<Aluno, String> colunaCPFInadimplente;
+
+    @FXML
+    TableColumn<Aluno, String> colunaPlanoInadimplente;
+    
+    
 
     public AlunoCtrl() throws SQLException {
         this.model = new Aluno();
@@ -260,6 +278,33 @@ public class AlunoCtrl implements Initializable {
         tabelaAlunos.getColumns().addAll(colunaMatricula, colunaNome, colunaCPF, colunaPlano);
     }
 
+    
+    
+    public void desenharTabelaInadimplentes() throws SQLException {
+        tabelaAlunosInadimplentes.getColumns().clear();
+
+        colunaMatriculaInadimplente = new TableColumn<>("Matr.");
+        colunaMatriculaInadimplente.setMinWidth(50);
+        colunaMatriculaInadimplente.setCellValueFactory(new PropertyValueFactory<>("matricula"));
+
+        colunaNomeInadimplente = new TableColumn<>("Nome");
+        colunaNomeInadimplente.setMinWidth(195);
+        colunaNomeInadimplente.setCellValueFactory(new PropertyValueFactory<>("nome"));
+
+        colunaCPFInadimplente = new TableColumn<>("CPF");
+        colunaCPFInadimplente.setMinWidth(175);
+        colunaCPFInadimplente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+
+        colunaPlanoInadimplente = new TableColumn<>("Plano");
+        colunaPlanoInadimplente.setMinWidth(175);
+        colunaPlanoInadimplente.setCellValueFactory(new PropertyValueFactory<>("plano"));
+
+        ObservableList<Aluno> lista = model.listarAlunosInadimplentes();
+        tabelaAlunosInadimplentes.setItems(lista);
+        tabelaAlunosInadimplentes.getColumns().addAll(colunaMatriculaInadimplente, colunaNomeInadimplente, colunaCPFInadimplente, colunaPlanoInadimplente);
+    }
+    
+    
     public MenuCtrl getMenuController() {
         return menuController;
     }
@@ -278,6 +323,7 @@ public class AlunoCtrl implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             this.desenharTabela();
+            this.desenharTabelaInadimplentes();
             // INICIALIZA O COMBOBOX
             comboPlano.getItems().addAll("Mensal", "Trimestral", "Semestral", "Anual");
             comboPlano.getSelectionModel().select("Mensal");

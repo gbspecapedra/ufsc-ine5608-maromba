@@ -8,6 +8,7 @@ package models;
 import dao.PagamentoDao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -35,7 +36,7 @@ public class Pagamento {
         this.dao = new PagamentoDao();
     }
 
-    public ArrayList<Pagamento> listarPagamentosPorPeriodo(String dtIni, String dtFim) throws SQLException {
+    public ArrayList<Pagamento> listarPagamentosPorPeriodo(String dtIni, String dtFim) throws SQLException, ParseException {
         ResultSet linhas = this.dao.listarPagamentosPorPeriodoDao(dtIni, dtFim);
         ArrayList<Pagamento> retorno = new ArrayList<>();
         Pagamento pagamento = new Pagamento();

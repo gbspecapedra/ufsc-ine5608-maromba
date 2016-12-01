@@ -4,6 +4,7 @@ import helpers.Alerta;
 import main.Main;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -124,7 +125,7 @@ public class PagamentoCtrl implements Initializable {
     
     
      @FXML
-    private void pesquisarPeriodo() throws SQLException {
+    private void pesquisarPeriodo() throws SQLException, ParseException {
         String dtIni;
         String dtFim;
         

@@ -122,11 +122,62 @@ public class Aluno extends Pessoa {
 
     public ObservableList<Aluno> listarAlunos() throws SQLException {
         ObservableList<Aluno> alunos = FXCollections.observableArrayList();
-//        ObservableList<Modalidade> modalidades = FXCollections.observableArrayList();
-//        ArrayList<Modalidade> modalidadesBase = new ArrayList<>();
-//        ObservableList<Pagamento> pagamentos = FXCollections.observableArrayList();
-//        ObservableList<Aluno> alunos = FXCollections.observableArrayList();
         ResultSet linhas = this.dao.listar();
+
+        while (linhas.next()) {
+
+            // Inicializa um objeto
+            Aluno aluno = new Aluno();
+            Modalidade modalidade = new Modalidade();
+            Pagamento pagamento = new Pagamento();
+            Frequencia freq = new Frequencia();
+
+            aluno.setNome(linhas.getString("nome"));
+            aluno.setMatricula(linhas.getInt("id"));
+            aluno.setPlano(linhas.getString("plano"));
+            aluno.setCpf(linhas.getString("cpf"));
+
+            // Modalidades
+            ResultSet linhasModalidades = this.dao.listarModalidades(aluno);
+            while (linhasModalidades.next()) {
+                modalidade.setId(linhasModalidades.getInt("id"));
+                modalidade.setNome(linhasModalidades.getString("nome"));
+                modalidade.setValor(linhasModalidades.getDouble("valor"));
+                modalidade.setDiasSemana(linhasModalidades.getString("diasSemana"));
+                aluno.getModalidades().add(modalidade);
+            }
+
+//            
+            ResultSet linhasPagamentos = this.dao.listarPagamentos(aluno);
+            while (linhasPagamentos.next()) {
+                pagamento = new Pagamento();
+                pagamento.setIdPagamento(linhasPagamentos.getInt("id"));
+                pagamento.setValor(linhasPagamentos.getDouble("valor"));
+                pagamento.setDtPagamento(linhasPagamentos.getDate("dtPagamento"));
+                pagamento.setDtVencimento(linhasPagamentos.getDate("dtVencimento"));
+                pagamento.setMatriculaAluno(linhasPagamentos.getInt("idAluno"));
+
+                aluno.getPagamentos().add(pagamento);
+            }
+
+            // implementar            
+            ResultSet linhasFrequencia = this.dao.listarFrequencia(aluno);
+            while (linhasFrequencia.next()) {
+                freq = new Frequencia();
+                freq.setData(linhasFrequencia.getDate("data"));
+                aluno.getFrequencia().add(freq);
+            }
+
+            // Adiciona o objeto ao retorno
+            alunos.add(aluno);
+        }
+        return alunos;
+    }
+    
+    
+    public ObservableList<Aluno> listarAlunosInadimplentes() throws SQLException {
+        ObservableList<Aluno> alunos = FXCollections.observableArrayList();
+        ResultSet linhas = this.dao.listarInadimplentes();
 
         while (linhas.next()) {
 

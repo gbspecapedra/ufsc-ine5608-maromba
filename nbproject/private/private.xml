@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/libs/Dao.java</file>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/controllers/AlunoCtrl.java</file>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/models/Aluno.java</file>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/controllers/FrequenciaCtrl.java</file>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/controllers/MatriculaCtrl.java</file>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/dao/AlunoDao.java</file>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/models/Frequencia.java</file>
-            <file>file:/C:/Users/orlando/Documents/GitHub/MAROMBA/src/views/frequencia.fxml</file>
+            <file>file:/C:/Users/Orlando/Documents/GitHub/MAROMBA/src/controllers/AlunoCtrl.java</file>
+            <file>file:/C:/Users/Orlando/Documents/GitHub/MAROMBA/src/models/Aluno.java</file>
+            <file>file:/C:/Users/Orlando/Documents/GitHub/MAROMBA/src/libs/Dao.java</file>
+            <file>file:/C:/Users/Orlando/Documents/GitHub/MAROMBA/src/dao/AlunoDao.java</file>
+            <file>file:/C:/Users/Orlando/Documents/GitHub/MAROMBA/src/views/aluno.fxml</file>
+            <file>file:/C:/Users/Orlando/Documents/GitHub/MAROMBA/src/controllers/LoginCtrl.java</file>
         </group>
     </open-files>
 </project-private>

@@ -73,7 +73,7 @@
                                             <Insets />
                                         </VBox.margin>
                                     </Label>
-                                    <TextField id="textField1" fx:id="campoLoginDoFuncionario" text="89">
+                                    <TextField id="textField1" fx:id="campoLoginDoFuncionario" text="1">
                                         <VBox.margin>
                                             <Insets bottom="8.0" top="-5.0" />
                                         </VBox.margin>

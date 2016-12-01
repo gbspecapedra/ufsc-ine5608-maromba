@@ -158,7 +158,7 @@ public class AlunoDao extends Dao {
 
     public void baixarPagamentoDao(Pagamento pagamento) throws SQLException {
         String sql;
-        sql = "update pagamento set dtPagamento = NOW() where id = "+pagamento.getIdPagamento();
+        sql = "update pagamento set dtPagamento = NOW() where id = " + pagamento.getIdPagamento();
         Alerta.log(sql);
         this.execute(sql);
     }
@@ -168,6 +168,13 @@ public class AlunoDao extends Dao {
         sql = "select * from frequencia where idAluno = " + aluno.getMatricula();
         Alerta.log(sql);
         ResultSet itens = this.select(sql);
+        return itens;
+    }
+
+    public ResultSet listarInadimplentes() throws SQLException {
+        String sql = "select distinct (a.id), a.nome, a.plano, a.cpf from pessoas a join pagamento p on p.idAluno = a.id where tipo = 'Aluno' and  a.id not in (SELECT idAluno FROM pagamento WHERE dtPagamento BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW())";
+        ResultSet itens = this.select(sql);
+        Alerta.log(sql);
         return itens;
     }
 
