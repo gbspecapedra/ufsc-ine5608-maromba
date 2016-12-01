@@ -109,7 +109,7 @@
                                        <children>
                                           <FlowPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <TableView fx:id="tabelaPagamentos" prefHeight="152.0" prefWidth="583.0">
+                                                <TableView fx:id="tabelaPagamentos" prefHeight="192.0" prefWidth="583.0">
                                                    <columns>
                                                       <TableColumn prefWidth="62.0" text="Parcela" />
                                                       <TableColumn minWidth="0.0" prefWidth="106.0" text="Status" />
@@ -127,7 +127,7 @@
                                     <HBox layoutX="10.0" layoutY="191.0" nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
                                        <children>
                                           <FlowPane HBox.hgrow="ALWAYS" />
-                                          <Button fx:id="salvar2" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
+                                          <!--<Button fx:id="salvar2" mnemonicParsing="false" onAction="#salvar" text="Salvar" />-->
                                        </children>
                                        <padding>
                                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

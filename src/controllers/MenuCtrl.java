@@ -51,6 +51,11 @@ public class MenuCtrl implements Initializable {
     public void solicitarViewInicio(ActionEvent event) {
         application.exibirViewInicioFuncionario();
     }
+    
+    @FXML
+    public void solicitarViewInicioAluno() {
+        application.exibirViewAluno();
+    }
 
     @FXML
     public void solicitarViewAluno(ActionEvent event) {

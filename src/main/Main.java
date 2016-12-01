@@ -9,6 +9,7 @@ import controllers.InicioCtrl;
 import controllers.MatriculaCtrl;
 import controllers.ModalidadeCtrl;
 import controllers.PagamentoCtrl;
+import helpers.Alerta;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -158,11 +159,15 @@ public class Main extends Application {
             pagamentoCtrl.setMenuApp(this);
             pagamentoCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             pagamentoCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
-            if(Main.alunoLogado.getPlano() != null){
+            
+            
+            if(Main.alunoLogado.getPlano() != ""){
                 pagamentoCtrl.setPerfilAluno();
                 pagamentoCtrl.desenharTabela(Main.alunoLogado);
                 
             }
+            
+            
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -202,6 +207,14 @@ public class Main extends Application {
             frequenciaCtrl.setMenuApp(this);
             frequenciaCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             frequenciaCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
+            
+            if(Main.alunoLogado.getPlano() != ""){
+                frequenciaCtrl.setPerfilAluno();
+                frequenciaCtrl.desenharTabela(Main.alunoLogado);
+                
+            }
+            
+            
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

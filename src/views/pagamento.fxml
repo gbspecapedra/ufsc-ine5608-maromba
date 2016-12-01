@@ -24,7 +24,7 @@
                                     <content>
                                         <VBox>
                                             <children>
-                                    <HBox prefHeight="81.0" prefWidth="600.0" fx:id="topo">
+                                    <HBox fx:id="topo" prefHeight="81.0" prefWidth="600.0">
                                        <children>
                                           <FlowPane prefHeight="200.0" prefWidth="200.0">
                                              <children>
@@ -74,6 +74,7 @@
 <!--                                                        <Label alignment="BASELINE_LEFT" text="." />-->
                                                         <FlowPane prefHeight="25.0" prefWidth="289.0" HBox.hgrow="ALWAYS">
                                              <children>
+                                                <Button fx:id="botaoInicio" mnemonicParsing="false" onAction="#exibirMenuPrincipal" prefHeight="25.0" prefWidth="98.0" text="Voltar" />
                                                 <Label fx:id="plano" style="-fx-font-weight: bold;" text="" textFill="#616161" />
                                              </children></FlowPane>
                                           <!--<Button fx:id="salvar3" layoutX="488.0" layoutY="18.0" mnemonicParsing="false" onAction="#gerarPagamentos" text="Gerar Pagamentos" />-->
@@ -106,7 +107,7 @@
                                 
                                 
                                 
-                                <Tab closable="false" text="Pagamento por Período" fx:id="abaPeriodo">
+                                <Tab fx:id="abaPeriodo" closable="false" text="Pagamento por Período">
                                     
                                     <content>
                                         <VBox>

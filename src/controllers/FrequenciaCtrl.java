@@ -12,12 +12,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import models.Aluno;
 import models.Frequencia;
 
@@ -39,6 +41,12 @@ public class FrequenciaCtrl implements Initializable {
     public void setMenuApp(Main application) {
         this.menuController.setApp(application);
     }
+
+    @FXML
+    private Button botaoInicio;
+
+    @FXML
+    HBox topo;
 
     // MAPEAMENTOS JAVAFX FXML
     @FXML
@@ -63,6 +71,12 @@ public class FrequenciaCtrl implements Initializable {
 
     public FrequenciaCtrl() throws SQLException {
         this.model = new Frequencia();
+    }
+
+    @FXML
+    private void exibirMenuPrincipal() throws SQLException {
+        this.application.exibirViewInicioAluno();
+
     }
 
     @FXML
@@ -93,25 +107,14 @@ public class FrequenciaCtrl implements Initializable {
     }
 
     public void desenharTabela(Aluno aluno) throws SQLException {
+        
+        aluno = aluno.montarAluno(aluno.getMatricula());
         tabelaFrequencias.getColumns().clear();
         ObservableList<Frequencia> lista = FXCollections.observableArrayList(aluno.getFrequencia());
 
-//        colunaData = new TableColumn<>("Matr.");
-//        colunaData.setMinWidth(50);
-//        colunaData.setCellValueFactory(new PropertyValueFactory<>("matricula"));
-//
         colunaData = new TableColumn<>("Data");
         colunaData.setMinWidth(195);
         colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
-//
-//        colunaCPF = new TableColumn<>("CPF");
-//        colunaCPF.setMinWidth(175);
-//        colunaCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-//
-//        colunaPlano = new TableColumn<>("Plano");
-//        colunaPlano.setMinWidth(175);
-//        colunaPlano.setCellValueFactory(new PropertyValueFactory<>("plano"));
-//
 
         tabelaFrequencias.setItems(lista);
         tabelaFrequencias.getColumns().addAll(colunaData);
@@ -125,9 +128,17 @@ public class FrequenciaCtrl implements Initializable {
         this.menuController = menuController;
     }
 
+    public void setPerfilAluno() {
+        topo.setVisible(false);
+        tabelaFrequencias.setTranslateY(-75);
+        botaoInicio.setVisible(true);
+        botaoInicio.setTranslateY(-75);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            botaoInicio.setVisible(false);
             this.alunoCtrl = new AlunoCtrl();
         } catch (SQLException ex) {
             Logger.getLogger(FrequenciaCtrl.class.getName()).log(Level.SEVERE, null, ex);

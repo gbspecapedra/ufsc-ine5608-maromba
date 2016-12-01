@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -31,7 +32,7 @@ public class PagamentoCtrl implements Initializable {
     private Main application;
     private Pagamento model;
     private AlunoCtrl alunoCtrl;
-    
+
     @FXML
     private MenuCtrl menuController;
 
@@ -39,7 +40,7 @@ public class PagamentoCtrl implements Initializable {
     public void setApp(Main application) {
         this.application = application;
     }
-    
+
     public void setMenuApp(Main application) {
         this.menuController.setApp(application);
     }
@@ -51,71 +52,69 @@ public class PagamentoCtrl implements Initializable {
     // TAB CADASTRO
     @FXML
     private TextField campoMatricula;
-    
+
     @FXML
     private TextField campoDtIni;
-    
+
     @FXML
     private TextField campoDtFim;
-    
+
     @FXML
     private Label labelNome;
-    
+
     @FXML
     private Label labelTotal;
-    
+
     @FXML
     private ObservableList<Pagamento> listaPagamentos = FXCollections.observableArrayList();
 
     // TAB PESQUISA
-    
     @FXML
     Tab abaPeriodo;
-            
-            
+
     @FXML
     private TableView<Pagamento> tabelaPagamentos;
-    
+
     @FXML
     HBox topo;
-    
+
     @FXML
     private TableView<Pagamento> tabelaPagamentosPeriodo;
-    
+
     @FXML
     TableColumn<Pagamento, Date> colunaDataV;
-    
+
     @FXML
     TableColumn<Pagamento, Date> colunaDataP;
-    
+
     @FXML
     TableColumn<Pagamento, Date> colunaSituacao;
-    
+
     @FXML
     TableColumn<Pagamento, Date> colunaValor;
-    
+
     @FXML
     TableColumn<Pagamento, Date> colunaDataVP;
-    
+
     @FXML
     TableColumn<Pagamento, Date> colunaDataPP;
-    
+
     @FXML
     TableColumn<Pagamento, Date> colunaSituacaoP;
-    
+
     @FXML
     TableColumn<Pagamento, Date> colunaValorP;
-    
+
     public PagamentoCtrl() throws SQLException {
         this.model = new Pagamento();
     }
-    
+
     @FXML
     private void pesquisar() throws SQLException {
         int matricula;
         Aluno alunoSelecionado = new Aluno();
         matricula = Integer.parseInt(campoMatricula.getText());
-        
+
         if (matricula > 0) {
             alunoSelecionado = this.alunoCtrl.getModel().montarAluno(matricula);
             if (alunoSelecionado == null) {
@@ -129,44 +128,46 @@ public class PagamentoCtrl implements Initializable {
         } else {
             Alerta.informar("Informe a matrícula do aluno.");
         }
-        
+
     }
-    
-    
-    
-     @FXML
+
+    @FXML
+    private Button botaoInicio;
+
+    @FXML
     private void pesquisarPeriodo() throws SQLException, ParseException {
         String dtIni;
         String dtFim;
-        
+
         dtIni = campoDtIni.getText();
         dtFim = campoDtFim.getText();
         Double total = 0.0;
-        
+
         ArrayList<Pagamento> pagamentos = new ArrayList<>();
         pagamentos = this.model.listarPagamentosPorPeriodo(dtIni, dtFim);
-        
+
         this.desenharTabelaPeriodo(pagamentos);
-        
-        
-        for(Pagamento p:pagamentos){
+
+        for (Pagamento p : pagamentos) {
             total = total + p.getValor();
         }
-        
-        labelTotal.setText("Total: "+total);
-        
+
+        labelTotal.setText("Total: " + total);
+
     }
-    
-    
-    
-    
+
+    @FXML
+    private void exibirMenuPrincipal() throws SQLException {
+        this.application.exibirViewInicioAluno();
+    }
+
     @FXML
     private void darBaixa() throws SQLException {
-        
+
         Pagamento pagamentoSelecionado = new Pagamento();
         pagamentoSelecionado = tabelaPagamentos.getSelectionModel().getSelectedItem();
-        
-        if("Quitado".equals(pagamentoSelecionado.getSituacao())){
+
+        if ("Quitado".equals(pagamentoSelecionado.getSituacao())) {
             Alerta.informar("O pagamento selecionado já está quitado.");
         } else {
             Aluno aluno = new Aluno();
@@ -180,7 +181,7 @@ public class PagamentoCtrl implements Initializable {
     public void limparCampos() {
         campoMatricula.setText("");
     }
-    
+
     public void desenharTabela(Aluno aluno) throws SQLException {
         tabelaPagamentos.getColumns().clear();
         ObservableList<Pagamento> lista = FXCollections.observableArrayList(aluno.getPagamentos());
@@ -188,15 +189,15 @@ public class PagamentoCtrl implements Initializable {
         colunaDataV = new TableColumn<>("Vencimento");
         colunaDataV.setMinWidth(100);
         colunaDataV.setCellValueFactory(new PropertyValueFactory<>("dtVencimento"));
-        
+
         colunaDataP = new TableColumn<>("Pagamento");
         colunaDataP.setMinWidth(100);
         colunaDataP.setCellValueFactory(new PropertyValueFactory<>("dtPagamento"));
-        
+
         colunaValor = new TableColumn<>("Valor");
         colunaValor.setMinWidth(80);
         colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-        
+
         colunaSituacao = new TableColumn<>("Situação");
         colunaSituacao.setMinWidth(195);
         colunaSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
@@ -204,8 +205,7 @@ public class PagamentoCtrl implements Initializable {
         tabelaPagamentos.setItems(lista);
         tabelaPagamentos.getColumns().addAll(colunaDataV, colunaDataP, colunaValor, colunaSituacao);
     }
-    
-    
+
     public void desenharTabelaPeriodo(ArrayList<Pagamento> pagamentos) throws SQLException {
         tabelaPagamentosPeriodo.getColumns().clear();
         ObservableList<Pagamento> lista = FXCollections.observableArrayList(pagamentos);
@@ -213,15 +213,15 @@ public class PagamentoCtrl implements Initializable {
         colunaDataVP = new TableColumn<>("Vencimento");
         colunaDataVP.setMinWidth(100);
         colunaDataVP.setCellValueFactory(new PropertyValueFactory<>("dtVencimento"));
-        
+
         colunaDataPP = new TableColumn<>("Pagamento");
         colunaDataPP.setMinWidth(100);
         colunaDataPP.setCellValueFactory(new PropertyValueFactory<>("dtPagamento"));
-        
+
         colunaValorP = new TableColumn<>("Valor");
         colunaValorP.setMinWidth(80);
         colunaValorP.setCellValueFactory(new PropertyValueFactory<>("valor"));
-        
+
         colunaSituacaoP = new TableColumn<>("Situação");
         colunaSituacaoP.setMinWidth(195);
         colunaSituacaoP.setCellValueFactory(new PropertyValueFactory<>("situacao"));
@@ -229,38 +229,36 @@ public class PagamentoCtrl implements Initializable {
         tabelaPagamentosPeriodo.setItems(lista);
         tabelaPagamentosPeriodo.getColumns().addAll(colunaDataVP, colunaDataPP, colunaValorP, colunaSituacaoP);
     }
-    
+
     public MenuCtrl getMenuController() {
         return menuController;
     }
-    
+
     public void setMenuController(MenuCtrl menuController) {
         this.menuController = menuController;
     }
-    
-    
-    public void setPerfilAluno(){
+
+    public void setPerfilAluno() {
         abaPeriodo.setDisable(true);
         abaPeriodo.setText("");
         topo.setVisible(false);
         tabelaPagamentos.setTranslateY(-75);
+        botaoInicio.setVisible(true);
+        botaoInicio.setTranslateY(-75);
     }
-            
-            
-            
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            
-        
+
 //            if(this.application.getAlunoLogado() != null){
 //                abaPeriodo.setDisable(true);
 //            }
-            
+            botaoInicio.setVisible(false);
             this.alunoCtrl = new AlunoCtrl();
         } catch (SQLException ex) {
             Logger.getLogger(PagamentoCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 }
