@@ -25,7 +25,7 @@
                                             <Insets />
                                         </VBox.margin>
                                     </Label>
-                                    <TextField id="campoMatriculaDoAluno" fx:id="campoMatriculaDoAluno" text="88">
+                                    <TextField id="campoMatriculaDoAluno" fx:id="campoMatriculaDoAluno" text="4">
                                         <VBox.margin>
                                             <Insets bottom="8.0" top="-5.0" />
                                         </VBox.margin>

@@ -44,22 +44,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Main.funcionarioLogado = new Funcionario(); 
+            Main.funcionarioLogado = new Funcionario();
+            funcionarioLogado.setFuncao("");
+            
             Main.alunoLogado = new Aluno();
+            alunoLogado.setPlano("");
 
-            // TESTES
-//            if(Validador.validarCPF("04817039930")){
-//                Alerta.log("CPF valido");
-//            } else {
-//                Alerta.log("CPF invalido");
-//            }
-//            Alerta.log(Validador.converterMD5("123"));
             this.stage = primaryStage;
             this.stage.setTitle("MAROMBA");
 
-//            primaryStage.initStyle(StageStyle.UNDECORATED);
-//            stage.setMinWidth(MINIMUM_WINDOW_WIDTH);
-//            stage.setMinHeight(MINIMUM_WINDOW_HEIGHT);
             exibirViewLogin();
             primaryStage.show();
         } catch (SQLException ex) {
@@ -80,7 +73,7 @@ public class Main extends Application {
         } else {
             return false;
         }
-        
+
     }
 
     public boolean loginDoAluno(String matricula) throws SQLException, NoSuchAlgorithmException {
@@ -91,7 +84,7 @@ public class Main extends Application {
             return true;
         } else {
             return false;
-        }        
+        }
     }
 
     public void logoffDoFuncionario() throws SQLException {
@@ -107,12 +100,13 @@ public class Main extends Application {
             InicioCtrl inicio = (InicioCtrl) alterarCena("inicio.fxml");
             inicio.setApp(this);
             inicio.setMenuApp(this);
-            inicio.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+            inicio.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
+            inicio.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void exibirViewInicioAluno() {
         try {
             ajustarDimensoes();
@@ -120,13 +114,12 @@ public class Main extends Application {
             InicioAlunoCtrl inicio = (InicioAlunoCtrl) alterarCena("inicio_aluno.fxml");
             inicio.setApp(this);
             inicio.setMenuApp(this);
-            inicio.getMenuController().setPerfil("Aluno");
+            inicio.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
+            inicio.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 
     public void exibirViewModalidade() {
         try {
@@ -135,7 +128,8 @@ public class Main extends Application {
             ModalidadeCtrl modalidade = (ModalidadeCtrl) alterarCena("modalidade.fxml");
             modalidade.setApp(this);
             modalidade.setMenuApp(this);
-            modalidade.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+            modalidade.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
+            modalidade.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -148,12 +142,13 @@ public class Main extends Application {
             AlunoCtrl alunoCtrl = (AlunoCtrl) alterarCena("aluno.fxml");
             alunoCtrl.setApp(this);
             alunoCtrl.setMenuApp(this);
-            alunoCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+            alunoCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
+            alunoCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void exibirViewPagamento() {
         try {
             ajustarDimensoes();
@@ -161,7 +156,13 @@ public class Main extends Application {
             PagamentoCtrl pagamentoCtrl = (PagamentoCtrl) alterarCena("pagamento.fxml");
             pagamentoCtrl.setApp(this);
             pagamentoCtrl.setMenuApp(this);
-            pagamentoCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+            pagamentoCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
+            pagamentoCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
+            if(Main.alunoLogado.getPlano() != null){
+                pagamentoCtrl.setPerfilAluno();
+                pagamentoCtrl.desenharTabela(Main.alunoLogado);
+                
+            }
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -185,12 +186,13 @@ public class Main extends Application {
             FuncionarioCtrl funcionarioCtrl = (FuncionarioCtrl) alterarCena("funcionario.fxml");
             funcionarioCtrl.setApp(this);
             funcionarioCtrl.setMenuApp(this);
-            funcionarioCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+            funcionarioCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
+            funcionarioCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void exibirViewFrequencia() {
         try {
             ajustarDimensoes();
@@ -198,7 +200,8 @@ public class Main extends Application {
             FrequenciaCtrl frequenciaCtrl = (FrequenciaCtrl) alterarCena("frequencia.fxml");
             frequenciaCtrl.setApp(this);
             frequenciaCtrl.setMenuApp(this);
-            frequenciaCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+            frequenciaCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
+            frequenciaCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -211,7 +214,8 @@ public class Main extends Application {
             MatriculaCtrl matriculaCtrl = (MatriculaCtrl) alterarCena("matricula.fxml");
             matriculaCtrl.setApp(this);
             matriculaCtrl.setMenuApp(this);
-            matriculaCtrl.getMenuController().setPerfil(Main.funcionarioLogado.getFuncao());
+            matriculaCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
+            matriculaCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -234,12 +238,10 @@ public class Main extends Application {
     }
 
     // GETTERS E SETTERS
-
     public static void setFuncionarioLogado(Funcionario funcionarioLogado) {
         Main.funcionarioLogado = funcionarioLogado;
     }
-    
-    
+
     public Funcionario getFuncionarioLogado() {
         return Main.funcionarioLogado;
     }
@@ -251,7 +253,5 @@ public class Main extends Application {
     public static void setAlunoLogado(Aluno alunoLogado) {
         Main.alunoLogado = alunoLogado;
     }
-    
-    
-    
+
 }

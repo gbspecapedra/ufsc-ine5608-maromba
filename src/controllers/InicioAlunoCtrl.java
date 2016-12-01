@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -28,15 +29,24 @@ public class InicioAlunoCtrl implements Initializable {
     @FXML
     private MenuCtrl menuController;
 
-    @FXML Button liberarAcesso;
-    
-    
+    @FXML
+    Button liberarAcesso;
+
     @FXML
     private void liberarAcessoAcademia() throws SQLException {
         this.alunoCtrl.liberarAcessoAcademia(this.application.getAlunoLogado());
     }
-    
-    
+
+    @FXML
+    public void solicitarViewFrequencia(ActionEvent event) {
+        application.exibirViewFrequencia();
+    }
+
+    @FXML
+    public void solicitarViewPagamento(ActionEvent event) {
+        application.exibirViewPagamento();
+    }
+
     public void setApp(Main application) {
         this.application = application;
     }

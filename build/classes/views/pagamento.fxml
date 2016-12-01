@@ -24,7 +24,7 @@
                                     <content>
                                         <VBox>
                                             <children>
-                                    <HBox prefHeight="81.0" prefWidth="600.0">
+                                    <HBox prefHeight="81.0" prefWidth="600.0" fx:id="topo">
                                        <children>
                                           <FlowPane prefHeight="200.0" prefWidth="200.0">
                                              <children>
@@ -106,7 +106,7 @@
                                 
                                 
                                 
-                                <Tab closable="false" text="Pagamento por Período">
+                                <Tab closable="false" text="Pagamento por Período" fx:id="abaPeriodo">
                                     
                                     <content>
                                         <VBox>

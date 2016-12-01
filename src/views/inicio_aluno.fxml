@@ -38,12 +38,12 @@
                                     <Insets left="75.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button fx:id="verFrequencia" mnemonicParsing="false" text="Pagamentos" GridPane.columnIndex="1">
+                              <Button fx:id="verPagamento" mnemonicParsing="false" onAction="#solicitarViewPagamento" text="Pagamentos" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="75.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button layoutX="110.0" layoutY="68.0" mnemonicParsing="false" text="Frequência" GridPane.columnIndex="2">
+                              <Button fx:id="verFrequencia" layoutX="110.0" onAction="#solicitarViewFrequencia" layoutY="68.0" mnemonicParsing="false" text="Frequência" GridPane.columnIndex="2">
                                  <GridPane.margin>
                                     <Insets left="75.0" />
                                  </GridPane.margin>

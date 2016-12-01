@@ -15,11 +15,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import models.Aluno;
 import models.Pagamento;
 
@@ -66,8 +68,16 @@ public class PagamentoCtrl implements Initializable {
     private ObservableList<Pagamento> listaPagamentos = FXCollections.observableArrayList();
 
     // TAB PESQUISA
+    
+    @FXML
+    Tab abaPeriodo;
+            
+            
     @FXML
     private TableView<Pagamento> tabelaPagamentos;
+    
+    @FXML
+    HBox topo;
     
     @FXML
     private TableView<Pagamento> tabelaPagamentosPeriodo;
@@ -228,9 +238,25 @@ public class PagamentoCtrl implements Initializable {
         this.menuController = menuController;
     }
     
+    
+    public void setPerfilAluno(){
+        abaPeriodo.setDisable(true);
+        abaPeriodo.setText("");
+        topo.setVisible(false);
+        tabelaPagamentos.setTranslateY(-75);
+    }
+            
+            
+            
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            
+        
+//            if(this.application.getAlunoLogado() != null){
+//                abaPeriodo.setDisable(true);
+//            }
+            
             this.alunoCtrl = new AlunoCtrl();
         } catch (SQLException ex) {
             Logger.getLogger(PagamentoCtrl.class.getName()).log(Level.SEVERE, null, ex);

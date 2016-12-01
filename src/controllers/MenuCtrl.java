@@ -74,17 +74,29 @@ public class MenuCtrl implements Initializable {
 
     @FXML
     MenuItem itemFuncionario;
+    
+    @FXML
+    MenuItem menuCadastros;
 
     @FXML
     Menu menuRelatorios;
 
-    public void setPerfil(String funcao) {
-//        if (funcao.equals("t")) {
-//            itemFuncionario.setVisible(false);
-//            menuRelatorios.setVisible(false);
-//        }
+    public void setPerfilFuncionario(String funcao) {
+        if (funcao.equals("Gerente")) {
+            itemFuncionario.setVisible(false);
+            menuRelatorios.setVisible(false);
+            
+        }
+    }
+    
+    public void setPerfilAluno(String plano) {
+        if (!plano.isEmpty()) {
+            menuCadastros.setVisible(false);
+            menuRelatorios.setVisible(false);
+        }
     }
 
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

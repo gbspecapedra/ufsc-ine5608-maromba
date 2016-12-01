@@ -11,12 +11,12 @@
     <children>
         <MenuBar prefHeight="30.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
             <menus>
-                <Menu mnemonicParsing="false" text="Inicío">
+<!--                <Menu mnemonicParsing="false" text="Inicío">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewInicio" text="Início" />
                     </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Cadastros">
+                </Menu>-->
+                <Menu mnemonicParsing="false" text="Cadastros" fx:id="menuCadastros">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewAluno" text="Cadastrar Aluno" />
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewMatricula" text="Cadastrar Aluno em Modalidades" />
@@ -25,7 +25,7 @@
                     </items>
                 </Menu>
                 
-                <Menu mnemonicParsing="false" text="Consultas">
+                <Menu mnemonicParsing="false" text="Consultas" fx:id="menuRelatorios">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewPagamento" text="Pagamento" />
                         <MenuItem mnemonicParsing="false" onAction="#solicitarViewFrequencia" text="Frequencia" />
