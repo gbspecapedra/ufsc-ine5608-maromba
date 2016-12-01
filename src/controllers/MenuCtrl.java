@@ -103,14 +103,29 @@ public class MenuCtrl implements Initializable {
 
     public void setPerfilFuncionario(String funcao) {
         Alerta.log(funcao);
+        
+        if (funcao.equals("Gerente")) {
+            menuCadastros.setVisible(true);
+            menuRelatorios.setVisible(true);
+            itemPagamento.setVisible(true);
+            itemModalidade.setVisible(true);
+        }
+        
+        
         if (funcao.equals("Professor")) {
+            menuRelatorios.setVisible(true);
+            itemModalidade.setVisible(false);
             menuCadastros.setVisible(false);
             itemPagamento.setVisible(false);
+            itemFrequencia.setVisible(true);
         }
 
         if (funcao.equals("Recepcionista")) {
             itemModalidade.setVisible(false);
             itemFuncionario.setVisible(false);
+            
+             menuCadastros.setVisible(true);
+            itemPagamento.setVisible(true);
         }
     }
 

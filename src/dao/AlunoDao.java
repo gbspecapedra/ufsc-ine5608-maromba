@@ -132,7 +132,11 @@ public class AlunoDao extends Dao {
     public boolean verificarModalidadeDao(Aluno aluno) throws SQLException {
         String diaSemana = "";
         diaSemana = Data.diaDaSemana();
-
+        
+        if(diaSemana.equals("Dom")){
+            return false;
+        }
+        
         String sql = "select p.nome from pessoas p \n"
                 + "join aluno_modalidade am on p.id = am.idAluno\n"
                 + "join modalidades m on am.idModalidade = m.id\n"

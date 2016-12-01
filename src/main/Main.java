@@ -7,6 +7,7 @@ import controllers.InicioAlunoCtrl;
 import controllers.LoginCtrl;
 import controllers.InicioCtrl;
 import controllers.MatriculaCtrl;
+import controllers.MenuCtrl;
 import controllers.ModalidadeCtrl;
 import controllers.PagamentoCtrl;
 import helpers.Alerta;
@@ -47,7 +48,7 @@ public class Main extends Application {
         try {
             Main.funcionarioLogado = new Funcionario();
             funcionarioLogado.setFuncao("");
-            
+
             Main.alunoLogado = new Aluno();
             alunoLogado.setPlano("");
 
@@ -101,8 +102,8 @@ public class Main extends Application {
             InicioCtrl inicio = (InicioCtrl) alterarCena("inicio.fxml");
             inicio.setApp(this);
             inicio.setMenuApp(this);
-            inicio.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             inicio.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
+            inicio.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -117,8 +118,7 @@ public class Main extends Application {
             inicio.setMenuApp(this);
             inicio.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             inicio.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
-            
-             
+
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -147,14 +147,11 @@ public class Main extends Application {
             alunoCtrl.setMenuApp(this);
             alunoCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             alunoCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
-            
-            
-            
-            if(Main.funcionarioLogado.getFuncao().equals("Recepcionista")){
-                alunoCtrl.setPerfilReepcao();                
+
+            if (Main.funcionarioLogado.getFuncao().equals("Recepcionista")) {
+                alunoCtrl.setPerfilReepcao();
             }
-            
-            
+
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -169,19 +166,17 @@ public class Main extends Application {
             pagamentoCtrl.setMenuApp(this);
             pagamentoCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             pagamentoCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
-            
-             if(Main.funcionarioLogado.getFuncao().equals("Recepcionista")){
-                pagamentoCtrl.setPerfilRecepcao();                
+
+            if (Main.funcionarioLogado.getFuncao().equals("Recepcionista")) {
+                pagamentoCtrl.setPerfilRecepcao();
             }
-             
-             
-            if(Main.alunoLogado.getPlano() != ""){
+
+            if (Main.alunoLogado.getPlano() != "") {
                 pagamentoCtrl.setPerfilAluno();
                 pagamentoCtrl.desenharTabela(Main.alunoLogado);
-                
+
             }
-            
-            
+
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -221,14 +216,13 @@ public class Main extends Application {
             frequenciaCtrl.setMenuApp(this);
             frequenciaCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             frequenciaCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
-            
-            if(Main.alunoLogado.getPlano() != ""){
+
+            if (Main.alunoLogado.getPlano() != "") {
                 frequenciaCtrl.setPerfilAluno();
                 frequenciaCtrl.desenharTabela(Main.alunoLogado);
-                
+
             }
-            
-            
+
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

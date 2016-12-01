@@ -19,18 +19,18 @@ public class Dao {
     // static final String PASS = "underwood";
     
     
-        static final String DB_URL = "jdbc:mysql://192.168.79.32:3306/s02?useSSL=false";
-    static final String USER = "sa";
-    static final String PASS = "fithos0932";
+//        static final String DB_URL = "jdbc:mysql://192.168.79.32:3306/s02?useSSL=false";
+//    static final String USER = "sa";
+//    static final String PASS = "fithos0932";
     
     
 //    static final String DB_URL = "jdbc:mysql://150.162.79.1:3306/s02?useSSL=false";
 //    static final String USER = "sa";
 //    static final String PASS = "fithos0932";
     
-//    static final String DB_URL = "jdbc:mysql://localhost:3306/cellfix?useSSL=false";
-//    static final String USER = "root";
-//    static final String PASS = "zorariver";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/cellfix?useSSL=false";
+    static final String USER = "root";
+    static final String PASS = "zorariver";
 
     private void conecta() throws SQLException {
         // System.out.println("Conectando...");
