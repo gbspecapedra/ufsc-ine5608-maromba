@@ -117,6 +117,8 @@ public class Main extends Application {
             inicio.setMenuApp(this);
             inicio.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             inicio.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
+            
+             
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -145,6 +147,14 @@ public class Main extends Application {
             alunoCtrl.setMenuApp(this);
             alunoCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             alunoCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
+            
+            
+            
+            if(Main.funcionarioLogado.getFuncao().equals("Recepcionista")){
+                alunoCtrl.setPerfilReepcao();                
+            }
+            
+            
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -160,7 +170,11 @@ public class Main extends Application {
             pagamentoCtrl.getMenuController().setPerfilFuncionario(Main.funcionarioLogado.getFuncao());
             pagamentoCtrl.getMenuController().setPerfilAluno(Main.alunoLogado.getPlano());
             
-            
+             if(Main.funcionarioLogado.getFuncao().equals("Recepcionista")){
+                pagamentoCtrl.setPerfilRecepcao();                
+            }
+             
+             
             if(Main.alunoLogado.getPlano() != ""){
                 pagamentoCtrl.setPerfilAluno();
                 pagamentoCtrl.desenharTabela(Main.alunoLogado);

@@ -46,32 +46,32 @@
                                             <children>
                                                 <GridPane hgap="8.0" vgap="2.0" BorderPane.alignment="CENTER">
                                                     <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="133.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="133.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="133.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="133.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                     </columnConstraints>
                                                     <rowConstraints>
-                                          <RowConstraints maxHeight="47.0" minHeight="2.0" percentHeight="0.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints maxHeight="47.0" minHeight="2.0" percentHeight="0.0" prefHeight="22.0" vgrow="SOMETIMES" />
                                                         <RowConstraints maxHeight="92.0" minHeight="11.0" percentHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
                                                         <RowConstraints maxHeight="241.0" minHeight="15.0" percentHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
                                                         <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="207.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                                          <ComboBox fx:id="comboPlano" prefHeight="25.0" prefWidth="242.0" promptText="Selecione" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
-                                             <GridPane.margin>
-                                                <Insets />
-                                             </GridPane.margin>
-                                                          </ComboBox>
-                                                          <TextField fx:id="campoCPF" promptText="CPF" style="-fx-border-color: #D84A38;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
-                                             <GridPane.margin>
-                                                <Insets bottom="10.0" top="10.0" />
-                                             </GridPane.margin>
-                                                          </TextField>
-                                          <Label text="CPF" GridPane.columnIndex="1" />
-                                                          <TextField fx:id="campoNome" promptText="Nome" style="-fx-border-color: #D84A38;" GridPane.rowIndex="1" />
-                                          <Label layoutX="159.0" layoutY="21.0" text="Nome" />
-                                          <Label layoutX="18.0" layoutY="21.0" text="Plano" GridPane.columnIndex="2" />
+                                                        <ComboBox fx:id="comboPlano" prefHeight="25.0" prefWidth="242.0" promptText="Selecione" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                                            <GridPane.margin>
+                                                                <Insets />
+                                                            </GridPane.margin>
+                                                        </ComboBox>
+                                                        <TextField fx:id="campoCPF" promptText="CPF" style="-fx-border-color: #D84A38;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                                            <GridPane.margin>
+                                                                <Insets bottom="10.0" top="10.0" />
+                                                            </GridPane.margin>
+                                                        </TextField>
+                                                        <Label text="CPF" GridPane.columnIndex="1" />
+                                                        <TextField fx:id="campoNome" promptText="Nome" style="-fx-border-color: #D84A38;" GridPane.rowIndex="1" />
+                                                        <Label layoutX="159.0" layoutY="21.0" text="Nome" />
+                                                        <Label layoutX="18.0" layoutY="21.0" text="Plano" GridPane.columnIndex="2" />
                                                     </children>
                                                     <BorderPane.margin>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -82,13 +82,14 @@
                                                 </GridPane>
                                                 <HBox nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
                                                     <children>
-<!--                                                        <Label alignment="BASELINE_LEFT" text="." />-->
+                                                        <!--                                                        <Label alignment="BASELINE_LEFT" text="." />-->
                                                         <FlowPane HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <Label text="Os campos marcados em vermelho são de preenchimento obrigatório" />
-                                             </children></FlowPane>
+                                                            <children>
+                                                                <Label text="Os campos marcados em vermelho são de preenchimento obrigatório" />
+                                                            </children>
+                                                        </FlowPane>
                                                         <Button fx:id="salvar" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
-                                                        <Button mnemonicParsing="false" onAction="#teste" text="Logado" />
+                                                        <!--<Button mnemonicParsing="false" onAction="#teste" text="Logado" />-->
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -100,7 +101,7 @@
                                 </Tab>
                                 
                                 
-                                <Tab closable="false" text="Listar Alunos Inadimplentes">
+                                <Tab closable="false" text="Listar Alunos Inadimplentes" fx:id="tabInadimplente">
                                     <content>
                                         <VBox>
                                             <children>

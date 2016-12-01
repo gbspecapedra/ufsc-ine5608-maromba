@@ -18,8 +18,8 @@
                 </Menu>-->
                 <Menu mnemonicParsing="false" text="Cadastros" fx:id="menuCadastros">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewAluno" text="Cadastrar Aluno" />
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewMatricula" text="Cadastrar Aluno em Modalidades" />
+                        <MenuItem fx:id="itemAluno" mnemonicParsing="false" onAction="#solicitarViewAluno" text="Cadastrar Aluno" />
+                        <MenuItem fx:id="itemMatricula" mnemonicParsing="false" onAction="#solicitarViewMatricula" text="Cadastrar Aluno em Modalidades" />
                         <MenuItem fx:id="itemFuncionario" mnemonicParsing="false" onAction="#solicitarViewFuncionario" text="Cadastrar Funcionário" />
                         <MenuItem fx:id="itemModalidade" mnemonicParsing="false" onAction="#solicitarViewModalidade" text="Cadastrar Modalidade" />
                     </items>
@@ -27,8 +27,8 @@
                 
                 <Menu mnemonicParsing="false" text="Consultas" fx:id="menuRelatorios">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewPagamento" text="Pagamento" />
-                        <MenuItem mnemonicParsing="false" onAction="#solicitarViewFrequencia" text="Frequencia" />
+                        <MenuItem fx:id="itemPagamento" mnemonicParsing="false" onAction="#solicitarViewPagamento" text="Pagamento" />
+                        <MenuItem fx:id="itemFrequencia" mnemonicParsing="false" onAction="#solicitarViewFrequencia" text="Frequencia" />
                     </items>
                 </Menu>
                 

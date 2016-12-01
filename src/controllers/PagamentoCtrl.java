@@ -247,13 +247,15 @@ public class PagamentoCtrl implements Initializable {
         botaoInicio.setTranslateY(-75);
     }
 
+    public void setPerfilRecepcao() {
+        abaPeriodo.setDisable(true);
+        abaPeriodo.setText("");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
 
-//            if(this.application.getAlunoLogado() != null){
-//                abaPeriodo.setDisable(true);
-//            }
             botaoInicio.setVisible(false);
             this.alunoCtrl = new AlunoCtrl();
         } catch (SQLException ex) {

@@ -45,6 +45,9 @@ public class AlunoCtrl implements Initializable {
     @FXML
     private TabPane painelAbas;
 
+    @FXML
+    private Tab tabInadimplente;
+
     // TAB CADASTRO
     @FXML
     private TextField campoNome;
@@ -61,10 +64,9 @@ public class AlunoCtrl implements Initializable {
     // TAB PESQUISA
     @FXML
     private TableView<Aluno> tabelaAlunos;
-    
+
     @FXML
     private TableView<Aluno> tabelaAlunosInadimplentes;
-    
 
     @FXML
     TableColumn<Aluno, String> colunaMatricula;
@@ -77,7 +79,7 @@ public class AlunoCtrl implements Initializable {
 
     @FXML
     TableColumn<Aluno, String> colunaPlano;
-    
+
     @FXML
     TableColumn<Aluno, String> colunaMatriculaInadimplente;
 
@@ -89,8 +91,6 @@ public class AlunoCtrl implements Initializable {
 
     @FXML
     TableColumn<Aluno, String> colunaPlanoInadimplente;
-    
-    
 
     public AlunoCtrl() throws SQLException {
         this.model = new Aluno();
@@ -178,6 +178,11 @@ public class AlunoCtrl implements Initializable {
 
         }
 
+    }
+
+    public void setPerfilReepcao() {
+        tabInadimplente.setDisable(true);
+        tabInadimplente.setText("");
     }
 
     @FXML
@@ -278,8 +283,6 @@ public class AlunoCtrl implements Initializable {
         tabelaAlunos.getColumns().addAll(colunaMatricula, colunaNome, colunaCPF, colunaPlano);
     }
 
-    
-    
     public void desenharTabelaInadimplentes() throws SQLException {
         tabelaAlunosInadimplentes.getColumns().clear();
 
@@ -303,8 +306,7 @@ public class AlunoCtrl implements Initializable {
         tabelaAlunosInadimplentes.setItems(lista);
         tabelaAlunosInadimplentes.getColumns().addAll(colunaMatriculaInadimplente, colunaNomeInadimplente, colunaCPFInadimplente, colunaPlanoInadimplente);
     }
-    
-    
+
     public MenuCtrl getMenuController() {
         return menuController;
     }
@@ -316,8 +318,6 @@ public class AlunoCtrl implements Initializable {
     public Aluno getModel() {
         return model;
     }
-    
-    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import helpers.Alerta;
 import main.Main;
 import java.net.URL;
 import java.sql.SQLException;
@@ -25,33 +26,32 @@ public class MenuCtrl implements Initializable {
     public void setApp(Main application) {
         this.application = application;
     }
-    
 
     @FXML
     public void solicitarViewModalidades(ActionEvent event) {
         application.exibirViewModalidade();
     }
-    
+
     @FXML
     public void solicitarViewMatricula(ActionEvent event) {
         application.exibirViewMatricula();
     }
-    
+
     @FXML
     public void solicitarViewFrequencia(ActionEvent event) {
         application.exibirViewFrequencia();
     }
-    
+
     @FXML
     public void solicitarViewPagamento(ActionEvent event) {
         application.exibirViewPagamento();
     }
-            
+
     @FXML
     public void solicitarViewInicio(ActionEvent event) {
         application.exibirViewInicioFuncionario();
     }
-    
+
     @FXML
     public void solicitarViewInicioAluno() {
         application.exibirViewAluno();
@@ -61,12 +61,12 @@ public class MenuCtrl implements Initializable {
     public void solicitarViewAluno(ActionEvent event) {
         application.exibirViewAluno();
     }
-    
+
     @FXML
     public void solicitarViewFuncionario(ActionEvent event) {
         application.exibirViewFuncionario();
     }
-    
+
     @FXML
     public void solicitarViewModalidade(ActionEvent event) {
         application.exibirViewModalidade();
@@ -78,8 +78,23 @@ public class MenuCtrl implements Initializable {
     }
 
     @FXML
+    MenuItem itemPagamento;
+
+    @FXML
+    MenuItem itemFrequencia;
+
+    @FXML
     MenuItem itemFuncionario;
-    
+
+    @FXML
+    MenuItem itemModalidade;
+
+    @FXML
+    MenuItem itemMatricula;
+
+    @FXML
+    MenuItem itemAluno;
+
     @FXML
     MenuItem menuCadastros;
 
@@ -87,13 +102,18 @@ public class MenuCtrl implements Initializable {
     Menu menuRelatorios;
 
     public void setPerfilFuncionario(String funcao) {
-        if (funcao.equals("Gerente")) {
+        Alerta.log(funcao);
+        if (funcao.equals("Professor")) {
+            menuCadastros.setVisible(false);
+            itemPagamento.setVisible(false);
+        }
+
+        if (funcao.equals("Recepcionista")) {
+            itemModalidade.setVisible(false);
             itemFuncionario.setVisible(false);
-            menuRelatorios.setVisible(false);
-            
         }
     }
-    
+
     public void setPerfilAluno(String plano) {
         if (!plano.isEmpty()) {
             menuCadastros.setVisible(false);
@@ -101,7 +121,6 @@ public class MenuCtrl implements Initializable {
         }
     }
 
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
