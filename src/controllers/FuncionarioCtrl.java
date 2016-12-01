@@ -108,8 +108,6 @@ public class FuncionarioCtrl implements Initializable {
         this.model.setCtps(campoCTPS.getText());
         this.model.setFuncao(comboFuncao.getSelectionModel().getSelectedItem().toString());
 
-        // Alerta.informar(this.model.getFuncao());
-        // Valida e persiste o modelo
         modeloValido = this.model.validarModelo();
 
         if (modeloValido.equals("0")) {
@@ -132,7 +130,6 @@ public class FuncionarioCtrl implements Initializable {
         Alerta.informar(mensagem);
 
         if (sucesso) {
-
             this.desenharTabela();
             // Altera para a aba de inserção/edição
             modeloSelecionado = painelAbas.getSelectionModel();

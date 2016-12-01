@@ -188,30 +188,30 @@ public class AlunoCtrl implements Initializable {
     @FXML
     public void liberarAcessoAcademia(Aluno aluno) throws SQLException {
 
-//        Alerta.informar("AlunoCtrl");
         this.model = aluno;
-        String mensagem = "";
         boolean adimplente = this.model.verificarAdimplente();
         boolean diaPermitido = this.model.verificarDiaModalidade();
-
+        String mensagem = "";
         boolean dadosValidos = true;
 
-        if (!adimplente) {
+        if (adimplente == false) {
             mensagem = "Acesso Bloqueado por Inadimplência.";
-            Alerta.informar(mensagem);
-            return;
+            dadosValidos = false;
         }
 
         // Alerta.informar(Data.diaDaSemana());
-        if (!diaPermitido) {
+        if (diaPermitido == false) {
             mensagem = "Acesso não permitido.";
-            Alerta.informar(mensagem);
-            return;
+            dadosValidos = false;
         }
 
         if (dadosValidos) {
             this.model.registrarFrequencia();
+            mensagem = "Acesso Liberado!";
+            Alerta.informar(mensagem);
             // Nota: nesse ponto seria enviado o sinal de liberação à catraca
+        } else {
+            Alerta.informar(mensagem);
         }
 
     }

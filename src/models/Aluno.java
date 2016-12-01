@@ -112,7 +112,7 @@ public class Aluno extends Pessoa {
 
     public void registrarFrequencia() throws SQLException {
         if (this.dao.registrarFrequenciaDao(this)) {
-            Alerta.informar("Acesso Liberado!");
+           
         }
     }
 

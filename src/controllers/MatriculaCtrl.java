@@ -132,7 +132,6 @@ public class MatriculaCtrl implements Initializable {
 
     @FXML
     private void novo() throws SQLException {
-//        this.model = new Modalidade();
         this.limparCampos();
         SingleSelectionModel<Tab> selectionModel = painelAbas.getSelectionModel();
         selectionModel.select(1);
@@ -170,7 +169,6 @@ public class MatriculaCtrl implements Initializable {
         }
 
         if (dadosValidos) {
-            // comboAluno.setDisable(true);
             this.listaModalidadeTabela.add(modalidadeSelecionada);
             this.desenharTabelaModalidades();
             this.gerarPagamentos();
