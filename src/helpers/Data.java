@@ -83,4 +83,11 @@ public class Data {
         return retorno;
     }
 
+    public static String formatoSql(String s) throws ParseException {
+        SimpleDateFormat newformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat oldformat = new SimpleDateFormat("MM/dd/yyyy");
+        String reformattedStr = newformat.format(oldformat.parse(s));
+        return reformattedStr;
+    }
+
 }

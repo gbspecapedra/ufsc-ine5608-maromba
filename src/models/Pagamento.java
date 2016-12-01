@@ -5,6 +5,10 @@
  */
 package models;
 
+import dao.PagamentoDao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -20,12 +24,32 @@ public class Pagamento {
     Double valor;
     String situacao;
 
+    private PagamentoDao dao;
+
 //    public Pagamento(Date dtVencimento, int matriculaAluno, Double valor){
 //        this.dtVencimento = dtVencimento;
 //        this.matriculaAluno = matriculaAluno;
 //        this.valor = valor;
 //    }
     public Pagamento() {
+        this.dao = new PagamentoDao();
+    }
+
+    public ArrayList<Pagamento> listarPagamentosPorPeriodo(String dtIni, String dtFim) throws SQLException {
+        ResultSet linhas = this.dao.listarPagamentosPorPeriodoDao(dtIni, dtFim);
+        ArrayList<Pagamento> retorno = new ArrayList<>();
+        Pagamento pagamento = new Pagamento();
+
+        while (linhas.next()) {
+            pagamento = new Pagamento();
+            pagamento.setIdPagamento(linhas.getInt("id"));
+            pagamento.setValor(linhas.getDouble("valor"));
+            pagamento.setDtPagamento(linhas.getDate("dtPagamento"));
+            pagamento.setDtVencimento(linhas.getDate("dtVencimento"));
+            pagamento.setMatriculaAluno(linhas.getInt("idAluno"));
+            retorno.add(pagamento);
+        }
+        return retorno;
 
     }
 
@@ -82,5 +106,4 @@ public class Pagamento {
         this.idPagamento = idPagamento;
     }
 
-    
 }

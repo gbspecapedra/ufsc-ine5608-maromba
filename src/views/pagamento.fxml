@@ -102,6 +102,96 @@
                                         </VBox>
                                     </content>
                                 </Tab>
+                                
+                                
+                                
+                                
+                                <Tab closable="false" text="Pagamento por Período">
+                                    
+                                    <content>
+                                        <VBox>
+                                            <children>
+                                    <HBox prefHeight="81.0" prefWidth="600.0">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <GridPane hgap="8.0" prefHeight="76.0" prefWidth="593.0" vgap="2.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.0" minWidth="10.0" prefWidth="121.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="461.0" minWidth="10.0" prefWidth="113.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="461.0" minWidth="10.0" prefWidth="345.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints maxHeight="36.0" minHeight="0.0" prefHeight="34.0" />
+                                                    <RowConstraints maxHeight="50.0" minHeight="30.0" prefHeight="20.0" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Label text="Data Inicial" />
+                                                      <Button fx:id="pesquisarPeriodo" mnemonicParsing="false" onAction="#pesquisarPeriodo" prefHeight="25.0" prefWidth="98.0" text="Pesquisar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="campoDtIni" prefHeight="25.0" prefWidth="182.0" text="01/01/2016" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="campoDtFim" layoutX="18.0" layoutY="51.0" prefHeight="25.0" prefWidth="182.0" promptText="01/01/2017" text="01/01/2017" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Label layoutX="18.0" layoutY="24.0" text="Data Final" GridPane.columnIndex="1" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                   </padding>
+                                                </GridPane>
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <TableView fx:id="tabelaPagamentosPeriodo" prefHeight="188.0" prefWidth="583.0">
+                                                  <columns>
+                                                   
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </padding>
+                                    </HBox>
+                                                <HBox nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
+                                                    <children>
+<!--                                                        <Label alignment="BASELINE_LEFT" text="." />-->
+                                                        <FlowPane prefHeight="25.0" prefWidth="289.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <!--<Label fx:id="plano" style="-fx-font-weight: bold;" text="" textFill="#616161" />-->
+                                             </children></FlowPane>
+                                          <!--<Button fx:id="salvar3" layoutX="488.0" layoutY="18.0" mnemonicParsing="false" onAction="#gerarPagamentos" text="Gerar Pagamentos" />-->
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                    </padding>
+                                                </HBox>
+                                    <HBox layoutX="10.0" layoutY="91.0" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="labelTotal" prefHeight="17.0" prefWidth="82.0" text="Total:" textAlignment="RIGHT" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="191.0" nodeOrientation="LEFT_TO_RIGHT" spacing="8.0">
+                                       <children>
+                                          <FlowPane HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </padding>
+                                    </HBox>
+                                            </children>
+                                        </VBox>
+                                    </content>
+                                </Tab>
+                                
+                                
                             </tabs>
                         </TabPane>
                     </center>
