@@ -5,6 +5,7 @@ import main.Main;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -136,11 +137,26 @@ public class PagamentoCtrl implements Initializable {
 
     @FXML
     private void pesquisarPeriodo() throws SQLException, ParseException {
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
         String dtIni;
         String dtFim;
+        
+        Date dtIniDt;
+        Date dtFimDt;
 
         dtIni = campoDtIni.getText();
         dtFim = campoDtFim.getText();
+        
+        
+        dtIniDt = formatter.parse(dtIni);
+        dtFimDt = formatter.parse(dtFim);
+        
+        if(dtIniDt.after(dtFimDt)){
+            Alerta.informar("A data inicial não pode ser posterior a data final");
+        }
+        
         Double total = 0.0;
 
         ArrayList<Pagamento> pagamentos = new ArrayList<>();

@@ -124,6 +124,7 @@ public class MenuCtrl implements Initializable {
             itemModalidade.setVisible(false);
             itemFuncionario.setVisible(false);
             
+            menuRelatorios.setVisible(true);
              menuCadastros.setVisible(true);
             itemPagamento.setVisible(true);
         }

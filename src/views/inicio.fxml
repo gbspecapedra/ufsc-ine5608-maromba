@@ -24,7 +24,7 @@
                         </Label>
                     </center>
                 </BorderPane>
-            <Button mnemonicParsing="false" onAction="#teste" text="Button" />
+            <!--<Button mnemonicParsing="false" onAction="#teste" text="Button" />-->
             </children>
         </StackPane>
     </children>
